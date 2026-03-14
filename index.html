@@ -1,457 +1,798 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <title>Yenepoya Libraries</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-        * {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        header{
-            display:flex;
-            justify-content:space-between;
-            padding:10px 60px;
-            align-items:center;
-        }
-
-        .logo1, .logo2 { 
-            max-height: 61px;
-        }
-
-        .navigation ul{
-            display: flex;
-            gap: 10px;
-            list-style: none;
-        }
-
-        .navigation ul li a{
-            text-decoration: none;
-        }
-        /* SEARCH SECTION */
-        .search-section {
-            background: #f4f6fa;
-            padding: 40px 40px;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        .catalog-search {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            max-width: 900px;
-            margin: auto;
-            background: #ffffff;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(46, 63, 107, 0.1);
-            transition: box-shadow 0.3s ease;
-        }
-        
-        .catalog-search:focus-within {
-            box-shadow: 0 15px 40px rgba(46, 63, 107, 0.18);
-        }
-
-        .catalog-dropdown {
-            width: 180px;
-            height: 65px;
-            padding: 5px 25px;
-            border: none;
-            border-right: 2px solid #f0f0f0;
-            border-radius: 50px 0 0 50px;
-            font-size: 15px;
-            background: transparent;
-            color: #555;
-            font-weight: 600;
-            outline: none;
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-            background-repeat: no-repeat;
-            background-position: right 25px top 50%;
-            background-size: 10px auto;
-            font-family: inherit;
-        }
-
-        .catalog-input {
-            flex: 1;
-            height: 65px;
-            border: none;
-            padding: 0 30px;
-            font-size: 16px;
-            outline: none;
-            background: transparent;
-            font-family: inherit;
-        }
-        
-        .catalog-input::placeholder {
-            color: #aaa;
-            font-weight: 300;
-        }
-
-        .catalog-btn {
-            width: 85px;
-            height: 65px;
-            background: #2e3f6b;
-            border: none;
-            border-radius: 0 50px 50px 0;
-            color: white;
-            cursor: pointer;
-            font-size: 22px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .catalog-btn:hover {
-            background: #1d2e57;
-            padding-right: 5px; /* Slight push effect */
-        }
-
-
-        /* ── Hero base ─────────────────────────────── */
-        .hero {
-            background: linear-gradient(135deg, #060e1f 0%, #0b1d3e 45%, #122a55 70%, #091727 100%);
-            padding: 70px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* dot-grid overlay */
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
-            background-size: 36px 36px;
-            pointer-events: none;
-        }
-
-        /* ambient glow spots */
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 20% 60%, rgba(74,144,217,0.22) 0%, transparent 55%),
-                radial-gradient(ellipse at 85% 15%, rgba(100,60,200,0.18) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        /* floating animated orbs */
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(70px);
-            opacity: 0.25;
-            pointer-events: none;
-            animation: floatOrb 8s ease-in-out infinite alternate;
-        }
-        .orb-1 { width:340px; height:340px; background:#3a6fd8; top:-80px; left:-80px; animation-duration:9s; }
-        .orb-2 { width:260px; height:260px; background:#7c3aed; bottom:-60px; right:15%; animation-duration:11s; animation-delay:2s; }
-        .orb-3 { width:200px; height:200px; background:#0ea5e9; top:30%; right:-60px; animation-duration:7s; animation-delay:1s; }
-
-        @keyframes floatOrb {
-            0%   { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(30px, 20px) scale(1.1); }
-        }
-
-        /* ── Layout container ─────────────────────── */
-        .hero-container {
-            max-width: 1400px;
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 80px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ── Text side ────────────────────────────── */
-        .hero-text {
-            flex: 1;
-            animation: fadeSlideUp 0.9s ease both;
-        }
-
-        @keyframes fadeSlideUp {
-            from { opacity:0; transform:translateY(32px); }
-            to   { opacity:1; transform:translateY(0); }
-        }
-
-        /* badge chip above quote */
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(74,144,217,0.15);
-            border: 1px solid rgba(74,144,217,0.35);
-            color: #7ab3f0;
-            font-size: 0.82rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 7px 18px;
-            border-radius: 50px;
-            margin-bottom: 28px;
-            backdrop-filter: blur(6px);
-        }
-        .hero-badge::before {
-            content: '';
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: #4a90d9;
-            box-shadow: 0 0 8px #4a90d9;
-            animation: pulse 1.8s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%,100% { opacity:1; transform:scale(1); }
-            50%      { opacity:0.5; transform:scale(1.4); }
-        }
-
-        /* quote block */
-        .hero-quote {
-            position: relative;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.09);
-            border-left: 5px solid #4a90d9;
-            border-radius: 0 16px 16px 0;
-            padding: 36px 36px 36px 40px;
-            margin-bottom: 32px;
-            backdrop-filter: blur(4px);
-        }
-        .hero-quote::before {
-            content: '\201C';
-            position: absolute;
-            top: -10px; left: 20px;
-            font-size: 6rem;
-            color: rgba(74,144,217,0.2);
-            font-family: Georgia, serif;
-            line-height: 1;
-            pointer-events: none;
-        }
-
-        .hero-text p {
-            font-size: 1.9rem;
-            line-height: 1.85;
-            color: #dce8ff;
-            font-style: italic;
-            font-weight: 300;
-            margin: 0;
-            letter-spacing: 0.3px;
-        }
-
-        .hero-text h3 {
-            color: #7ab3f0;
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .hero-text h3::before {
-            content: '';
-            display: inline-block;
-            width: 32px; height: 2px;
-            background: linear-gradient(90deg, #4a90d9, transparent);
-        }
-
-        /* stat chips row */
-        .hero-stats {
-            display: flex;
-            gap: 16px;
-            margin-top: 36px;
-            flex-wrap: wrap;
-        }
-        .stat-card {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 14px;
-            padding: 16px 24px;
-            text-align: center;
-            backdrop-filter: blur(8px);
-            transition: transform 0.25s, background 0.25s;
-            min-width: 110px;
-        }
-        .stat-card:hover {
-            transform: translateY(-4px);
-            background: rgba(74,144,217,0.12);
-        }
-        .stat-num {
-            font-size: 1.7rem;
-            font-weight: 800;
-            color: #fff;
-            line-height: 1;
-        }
-        .stat-label {
-            font-size: 0.72rem;
-            color: #8ab4d8;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            margin-top: 5px;
-        }
-
-        /* ── Image side ───────────────────────────── */
-        .hero-logo {
-            flex: 0 0 auto;
-            animation: fadeSlideUp 0.9s 0.3s ease both;
-        }
-
-        /* glassmorphism frame */
-        .hero-img-frame {
-            position: relative;
-            padding: 10px;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(10px);
-            box-shadow:
-                0 30px 80px rgba(0,0,0,0.5),
-                inset 0 1px 0 rgba(255,255,255,0.12);
-        }
-
-        .hero-logo img {
-            max-width: 560px;
-            width: 100%;
-            border-radius: 12px;
-            display: block;
-        }
-
-        /* floating accent line on image frame */
-        .hero-img-frame::before {
-            content: '';
-            position: absolute;
-            top: -1px; left: 40px; right: 40px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(74,144,217,0.7), transparent);
-        }
-
-
-
-
-
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yenepoya Libraries | University Road, Deralakatte, Mangalore 575018</title>
+  <meta name="description"
+    content="Yenepoya Libraries – Central hub of information for Yenepoya (Deemed to be University). Access e-resources, journals, databases, institutional repository and more.">
+  <link rel="icon" href="assets/images/favicon.jpg">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
 </head>
+
 <body>
-    <header>
 
-        <div class="logo">
-            <img src="https://library.yenepoya.edu.in/images/Central-Library-logo.png" alt="Library Logo" class="logo1">
-            <img src="https://library.yenepoya.edu.in/images/naac.png" alt="logo2" class="logo2">
-        </div>
-
-      <div class="header-left">
-        <nav class="navigation">
-            <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="eresources.html">E-Resources</a></li>
-            <li><a href="repository.html">Institutional Repository</a></li>
-            <li><a href="research.html">Research Support</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
+  <!-- ═══════════════ TOP BAR ═══════════════════ -->
+  <div class="topbar">
+    <div class="topbar__left">
+      <div class="topbar__contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+        <a href="mailto:library@yenepoya.edu.in">library@yenepoya.edu.in</a>
       </div>
-        
-    </header>
-    <section class="search-section">
+      <div class="topbar__divider"></div>
+      <div class="topbar__contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
+        </svg>
+        <a href="tel:08242206067">0824-2206067</a>
+      </div>
+      <div class="topbar__divider"></div>
+      <span class="topbar__badge">NAAC A+ Accredited</span>
+    </div>
+    <div class="topbar__right">
+      <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-user.html" target="_blank">My Account</a>
+      <div class="topbar__divider"></div>
+      <a href="services.html#membership">Get Library Card</a>
+    </div>
+  </div>
 
-<div class="catalog-search">
+  <!-- ═══════════════ HEADER ════════════════════ -->
+  <header class="header">
+    <a href="index.html" class="header__logo" aria-label="Yenepoya Libraries Home">
+      <img src="assets/images/logo.png" alt="Yenepoya Central Library" onerror="this.style.display='none'">
+      <span class="header__logo-text"
+        style="font-weight:800;font-size:18px;color:var(--clr-primary);letter-spacing:-.3px;">Yenepoya<br><span
+          style="font-weight:500;font-size:13px;color:var(--clr-text-muted);">Libraries</span></span>
+    </a>
 
-<select class="catalog-dropdown">
-<option>Title</option>
-<option>Author</option>
-<option>Subject</option>
-<option>ISBN</option>
-<option>ISSN</option>
-<option>Series</option>
-<option>call number</option>
+    <nav class="header__nav" aria-label="Primary Navigation">
+      <a href="index.html" class="nav__link">Home</a>
+      <a href="about.html" class="nav__link">About</a>
+      <a href="services.html" class="nav__link">Services</a>
+      <a href="e-resources.html" class="nav__link">E-Resources</a>
+      <a href="repository.html" class="nav__link">Repository</a>
+      <a href="research.html" class="nav__link">Research</a>
+      <a href="events.html" class="nav__link">Events</a>
+      <a href="contact.html" class="nav__link">Contact</a>
+    </nav>
 
-</select>
+    <div class="header__search">
+      <button class="header__search-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+      </button>
+    </div>
 
-<input type="text" placeholder="Search Library Catalogue" class="catalog-input">
+    <button class="header__burger" id="burger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
 
-<button class="catalog-btn">
-<i class="bi bi-search"></i>
-</button>
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile Navigation">
+    <a href="index.html" class="nav__link">Home</a>
+    <a href="about.html" class="nav__link">About</a>
+    <a href="services.html" class="nav__link">Services</a>
+    <a href="e-resources.html" class="nav__link">E-Resources</a>
+    <a href="repository.html" class="nav__link">Repository</a>
+    <a href="research.html" class="nav__link">Research</a>
+    <a href="events.html" class="nav__link">Events</a>
+    <a href="contact.html" class="nav__link">Contact</a>
+  </nav>
 
-</div>
+  <!-- ═══════════════ OPAC SEARCH ═══════════════ -->
+  <div class="opac-search" role="search" aria-label="Library Catalogue Search">
+    <form class="opac-search__form" action="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-search.pl" method="get"
+      target="_blank">
+      <select name="idx" class="opac-search__select" aria-label="Search by">
+        <option value="ti">Title</option>
+        <option value="au">Author</option>
+        <option value="su">Subject</option>
+        <option value="nb">ISBN</option>
+        <option value="ns">ISSN</option>
+        <option value="se">Series</option>
+        <option value="callnum">Call Number</option>
+      </select>
+      <input type="text" name="q" class="opac-search__input" placeholder="Search Library Catalogue…"
+        aria-label="Search term">
+      <input type="hidden" name="weight_search" value="1">
+      <button type="submit" class="opac-search__btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+        Search
+      </button>
+    </form>
+  </div>
 
-</section>
+  <main id="main">
 
+    <!-- ═══════════════ HERO CAROUSEL ═════════════ -->
+    <section class="hero" aria-label="Featured">
+      <div class="hero__track">
 
-    <main class="hero">
-
-        <!-- floating orbs -->
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-
-        <div class="hero-container">
-
-            <div class="hero-text">
-                <div class="hero-badge">Yenepoya Central Library</div>
-
-                <div class="hero-quote">
-                    <p>
-                        Libraries Store The Energy That Fuels The Imagination. They Open
-                        Up Windows To The World And Inspire Us To Explore And Achieve,
-                        And Contribute To Improving Our Quality Of Life.
-                    </p>
-                </div>
-
-                <h3>— Sidney Sheldon</h3>
-
-                <div class="hero-stats">
-                    <div class="stat-card">
-                        <div class="stat-num">1.2L+</div>
-                        <div class="stat-label">Books</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-num">500+</div>
-                        <div class="stat-label">Journals</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-num">50K+</div>
-                        <div class="stat-label">E-Resources</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-num">24/7</div>
-                        <div class="stat-label">Access</div>
-                    </div>
-                </div>
+        <!-- Slide 1 -->
+        <div class="hero__slide">
+          <img src="assets/images/banners/banner1.webp" alt="Yenepoya Central Library" loading="eager"
+            onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 480%22><rect fill=%22%23283B6A%22 width=%221200%22 height=%22480%22/><text fill=%22%2359CCC1%22 font-family=%22Inter,sans-serif%22 font-size=%2248%22 x=%22600%22 y=%22240%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22800%22>Yenepoya Libraries</text></svg>'">
+          <div class="hero__overlay">
+            <div class="hero__content">
+              <span class="hero__tag">Yenepoya (Deemed to be University)</span>
+              <h1 class="hero__title">Your Gateway to a World of Knowledge</h1>
+              <p class="hero__desc">Access 53,000+ books, 9 online databases, e-journals, institutional repository and
+                open educational resources — all in one place.</p>
+              <div class="hero__actions">
+                <a href="#opac" class="btn btn--accent">Search Catalogue</a>
+                <a href="e-resources.html" class="btn btn--outline"
+                  style="border-color:rgba(255,255,255,.5);color:#fff;">Browse E-Resources</a>
+              </div>
             </div>
-
-            <div class="hero-logo">
-                <div class="hero-img-frame">
-                    <img src="images/hero.jpeg" alt="Campus">
-                </div>
-            </div>
-
+          </div>
         </div>
 
-    </main>
+        <!-- Slide 2 -->
+        <div class="hero__slide">
+          <img src="assets/images/banners/banner2.webp" alt="Digital Library"
+            onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 480%22><rect fill=%22%231c2c54%22 width=%221200%22 height=%22480%22/><text fill=%22%2359CCC1%22 font-family=%22Inter,sans-serif%22 font-size=%2242%22 x=%22600%22 y=%22240%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22800%22>Digital Resources</text></svg>'">
+          <div class="hero__overlay">
+            <div class="hero__content">
+              <span class="hero__tag">Off-Campus Access 24×7</span>
+              <h1 class="hero__title">Learn Anytime, Access Anywhere</h1>
+              <p class="hero__desc">Remote access to premium databases — Web of Science, ProQuest, UpToDate,
+                ClinicalKey, Scopus and more, via MyLoft.</p>
+              <div class="hero__actions">
+                <a href="e-resources.html#databases" class="btn btn--accent">Explore Databases</a>
+                <a href="services.html#remote-access" class="btn btn--outline"
+                  style="border-color:rgba(255,255,255,.5);color:#fff;">Remote Access</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <!-- Slide 3 -->
+        <div class="hero__slide">
+          <img src="assets/images/banners/banner3.webp" alt="Research Support"
+            onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 480%22><rect fill=%22%23283B6A%22 width=%221200%22 height=%22480%22/><text fill=%22%23ffffff%22 font-family=%22Inter,sans-serif%22 font-size=%2242%22 x=%22600%22 y=%22240%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22800%22>Research Support</text></svg>'">
+          <div class="hero__overlay">
+            <div class="hero__content">
+              <span class="hero__tag">Research Support Services</span>
+              <h1 class="hero__title">Empowering Research Excellence</h1>
+              <p class="hero__desc">Plagiarism detection (Turnitin/iThenticate), reference management, full-text article
+                requests and UGC-CARE journal guidance.</p>
+              <div class="hero__actions">
+                <a href="research.html" class="btn btn--accent">Research Tools</a>
+                <a href="research.html#plagiarism" class="btn btn--outline"
+                  style="border-color:rgba(255,255,255,.5);color:#fff;">Plagiarism Check</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controls -->
+      <button class="hero__btn hero__btn--prev" aria-label="Previous slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="m15 18-6-6 6-6" />
+        </svg>
+      </button>
+      <button class="hero__btn hero__btn--next" aria-label="Next slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="m9 18 6-6-6-6" />
+        </svg>
+      </button>
+      <div class="hero__dots" role="tablist" aria-label="Slide navigation">
+        <button class="hero__dot active" aria-label="Slide 1" role="tab"></button>
+        <button class="hero__dot" aria-label="Slide 2" role="tab"></button>
+        <button class="hero__dot" aria-label="Slide 3" role="tab"></button>
+      </div>
+    </section>
+
+    <!-- ═══════════════ QUICK ACCESS ═══════════════ -->
+    <section class="section section--alt quick-access">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__label">Quick Access</span>
+          <h2 class="section__title">Everything You Need, One Click Away</h2>
+        </div>
+        <div class="quick-access__grid">
+
+          <a href="about.html" class="qa-card">
+            <div class="qa-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+            </div>
+            <div class="qa-card__title">About Library</div>
+            <div class="qa-card__desc">6 constituent libraries, team &amp; collections</div>
+          </a>
+
+          <a href="services.html" class="qa-card">
+            <div class="qa-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+              </svg>
+            </div>
+            <div class="qa-card__title">Print Resources</div>
+            <div class="qa-card__desc">Catalogue, new arrivals &amp; print journals</div>
+          </a>
+
+          <a href="e-resources.html" class="qa-card">
+            <div class="qa-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+              </svg>
+            </div>
+            <div class="qa-card__title">E-Resources</div>
+            <div class="qa-card__desc">Databases, e-journals &amp; e-books</div>
+          </a>
+
+          <a href="repository.html" class="qa-card">
+            <div class="qa-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+              </svg>
+            </div>
+            <div class="qa-card__title">Digital Library</div>
+            <div class="qa-card__desc">Faculty publications, theses &amp; dissertations</div>
+          </a>
+
+          <a href="research.html" class="qa-card">
+            <div class="qa-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+            </div>
+            <div class="qa-card__title">Research Support</div>
+            <div class="qa-card__desc">Plagiarism check, reference tools</div>
+          </a>
+
+          <a href="e-resources.html#open-access" class="qa-card">
+            <div class="qa-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                <line x1="6" y1="1" x2="6" y2="4" />
+                <line x1="10" y1="1" x2="10" y2="4" />
+                <line x1="14" y1="1" x2="14" y2="4" />
+              </svg>
+            </div>
+            <div class="qa-card__title">Open Access</div>
+            <div class="qa-card__desc">PubMed, DOAJ, NPTEL &amp; 18+ platforms</div>
+          </a>
+
+          <a href="e-resources.html#elearning" class="qa-card">
+            <div class="qa-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><a href="#">
+                  <polygon points="23 7 16 12 23 17 23 7" />
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                </a></svg>
+            </div>
+            <div class="qa-card__title">E-Learning</div>
+            <div class="qa-card__desc">Yengage, Swayam, Coursera &amp; more</div>
+          </a>
+
+          <a href="events.html" class="qa-card">
+            <div class="qa-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </div>
+            <div class="qa-card__title">Events</div>
+            <div class="qa-card__desc">Library events, orientations &amp; exhibitions</div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════ ABOUT SNIPPET ═══════════════ -->
+    <section class="section about-snippet">
+      <div class="container">
+        <div class="about-snippet__grid">
+          <div class="about-snippet__img-wrap">
+            <img src="assets/images/main-library.webp" alt="Yenepoya Central Library building"
+              onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 600 450%22><rect fill=%22%23EEF1F8%22 width=%22600%22 height=%22450%22/><text fill=%22%23283B6A%22 font-family=%22Inter%22 font-size=%2220%22 x=%22300%22 y=%22225%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Central Library</text></svg>'">
+            <div class="about-snippet__img-badge">
+              <div class="about-snippet__img-badge-num">33+</div>
+              <div class="about-snippet__img-badge-text">Years of<br>Excellence</div>
+            </div>
+          </div>
+
+          <div class="about-snippet__content">
+            <span class="section__label">About Yenepoya Libraries</span>
+            <h2 class="section__title" style="text-align:left;margin-bottom:16px;">A University Library That Grows With
+              You</h2>
+            <p class="about-snippet__text">
+              With a modest beginning in 1992 as a college library, Yenepoya Libraries has evolved into a full-fledged
+              university library. Our central library — located in a standalone, air-conditioned building — serves as
+              the information hub for students, researchers, and faculty across all faculties. All operations are
+              computerized with an Integrated Library Management System (Koha) and biometric access control.
+            </p>
+
+            <div class="about-snippet__stats">
+              <div class="stat-box">
+                <div class="stat-box__num">53,738+</div>
+                <div class="stat-box__label">Books</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-box__num">220</div>
+                <div class="stat-box__label">Print Journals</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-box__num">2,441</div>
+                <div class="stat-box__label">Theses &amp; Dissertations</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-box__num">1,000+</div>
+                <div class="stat-box__label">Seating Capacity</div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <a href="about.html" class="btn btn--primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+                Learn More
+              </a>
+              <a href="services.html#membership" class="btn btn--outline">Get Library Card</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ CONSTITUENT LIBRARIES ══════ -->
+    <section class="section libraries">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__label">Our Libraries</span>
+          <h2 class="section__title">Six Libraries Serving One University</h2>
+          <p class="section__subtitle">Each constituent unit has a dedicated library tailored to its discipline and
+            student community.</p>
+        </div>
+
+        <div class="libraries__grid">
+
+          <div class="lib-card">
+            <div class="lib-card__img">
+              <img src="assets/images/libraries/central.webp" alt="Central Library"
+                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 170%22><rect fill=%22%23283B6A%22 width=%22400%22 height=%22170%22/><text fill=%22%2359CCC1%22 font-size=%2220%22 font-family=%22Inter%22 x=%22200%22 y=%2285%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Central Library</text></svg>'">
+            </div>
+            <div class="lib-card__body">
+              <div class="lib-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
+              <div class="lib-card__title">Central Library</div>
+              <div class="lib-card__desc">The main library hub with 53,738+ books, periodicals, digital lab and reading
+                rooms. Serving all faculties since 1992.</div>
+              <div class="lib-card__footer">
+                <span class="lib-card__meta">Est. 1992 · Deralakatte Campus</span>
+                <a href="about.html#central-library" class="lib-card__link">
+                  Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="lib-card">
+            <div class="lib-card__img">
+              <img src="assets/images/libraries/ayurveda.webp" alt="Ayurveda Library"
+                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 170%22><rect fill=%22%231c2c54%22 width=%22400%22 height=%22170%22/><text fill=%22%2359CCC1%22 font-size=%2220%22 font-family=%22Inter%22 x=%22200%22 y=%2285%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Ayurveda Library</text></svg>'">
+            </div>
+            <div class="lib-card__body">
+              <div class="lib-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <div class="lib-card__title">Ayurveda Library</div>
+              <div class="lib-card__desc">8,253 books on Ayurveda and basic medical science, serving YAMCH students and
+                faculty since 2018.</div>
+              <div class="lib-card__footer">
+                <span class="lib-card__meta">Est. 2018 · 8,253 Books</span>
+                <a href="about.html#ayurveda-library" class="lib-card__link">
+                  Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="lib-card">
+            <div class="lib-card__img">
+              <img src="assets/images/libraries/homeopathy.webp" alt="Homoeopathy Library"
+                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 170%22><rect fill=%22%23283B6A%22 width=%22400%22 height=%22170%22/><text fill=%22%2359CCC1%22 font-size=%2218%22 font-family=%22Inter%22 x=%22200%22 y=%2285%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Homoeopathy Library</text></svg>'">
+            </div>
+            <div class="lib-card__body">
+              <div class="lib-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                </svg>
+              </div>
+              <div class="lib-card__title">Homoeopathy Library</div>
+              <div class="lib-card__desc">4,780 books including Organon of Medicine, Materia Medica and allied health
+                sciences. Opened in 2018.</div>
+              <div class="lib-card__footer">
+                <span class="lib-card__meta">Est. 2018 · 4,780 Books</span>
+                <a href="about.html#homeopathy-library" class="lib-card__link">
+                  Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="lib-card">
+            <div class="lib-card__img">
+              <img src="assets/images/libraries/allied.webp" alt="Allied Health Science Library"
+                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 170%22><rect fill=%22%231c2c54%22 width=%22400%22 height=%22170%22/><text fill=%22%2359CCC1%22 font-size=%2217%22 font-family=%22Inter%22 x=%22200%22 y=%2285%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Allied Health Library</text></svg>'">
+            </div>
+            <div class="lib-card__body">
+              <div class="lib-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M3 9h18M9 21V9" />
+                </svg>
+              </div>
+              <div class="lib-card__title">Allied Health Library</div>
+              <div class="lib-card__desc">Established in 2020 to serve Allied Healthcare professionals and students with
+                dedicated resources.</div>
+              <div class="lib-card__footer">
+                <span class="lib-card__meta">Est. 2020 · FAHCP Campus</span>
+                <a href="about.html#allied-library" class="lib-card__link">
+                  Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="lib-card">
+            <div class="lib-card__img">
+              <img src="assets/images/libraries/yiascm.webp" alt="YIASCM Degree College Library"
+                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 170%22><rect fill=%22%23283B6A%22 width=%22400%22 height=%22170%22/><text fill=%22%2359CCC1%22 font-size=%2218%22 font-family=%22Inter%22 x=%22200%22 y=%2285%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>YIASCM Library</text></svg>'">
+            </div>
+            <div class="lib-card__body">
+              <div class="lib-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                </svg>
+              </div>
+              <div class="lib-card__title">YIASCM Library</div>
+              <div class="lib-card__desc">Degree college library at Balmatta, Mangalore serving Arts, Science, Commerce
+                and Management students since 2014.</div>
+              <div class="lib-card__footer">
+                <span class="lib-card__meta">Est. 2014 · Balmatta</span>
+                <a href="about.html#yiascm-library" class="lib-card__link">
+                  Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="lib-card">
+            <div class="lib-card__img">
+              <img src="assets/images/libraries/pharmacy.webp" alt="Pharmacy College Library"
+                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 170%22><rect fill=%22%231c2c54%22 width=%22400%22 height=%22170%22/><text fill=%22%2359CCC1%22 font-size=%2218%22 font-family=%22Inter%22 x=%22200%22 y=%2285%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Pharmacy Library</text></svg>'">
+            </div>
+            <div class="lib-card__body">
+              <div class="lib-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18" />
+                </svg>
+              </div>
+              <div class="lib-card__title">Pharmacy Library</div>
+              <div class="lib-card__desc">Dedicated library for Pharmacy College students and faculty with specialized
+                pharmaceutical science resources.</div>
+              <div class="lib-card__footer">
+                <span class="lib-card__meta">YPCRC Campus</span>
+                <a href="about.html#pharmacy-library" class="lib-card__link">
+                  Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════ ANNOUNCEMENTS ══════════════ -->
+    <section class="section section--alt announcements">
+      <div class="container">
+        <div class="announcements__grid">
+
+          <!-- New Arrivals -->
+          <div>
+            <div class="panel-header">
+              <div class="panel-title" style="display:flex;align-items:center;gap:8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--clr-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            New Arrivals
+          </div>
+              <a href="services.html#new-arrivals" class="panel-link">
+                View All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+            <div class="arrivals-list">
+
+              <div class="arrival-item">
+                <div class="arrival-thumb">
+                  <img src="assets/images/books/book1.jpg" alt="Book"
+                    onerror="this.parentElement.style.background='#dde2f0'">
+                </div>
+                <div class="arrival-info">
+                  <div class="arrival-title">Harrison's Principles of Internal Medicine, 21st Edition</div>
+                  <div class="arrival-author">Fauci, Kasper, Hauser et al.</div>
+                  <div class="arrival-meta">
+                    <span class="badge badge--accent">Medicine</span>
+                    <span class="badge badge--gold">New</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="arrival-item">
+                <div class="arrival-thumb">
+                  <img src="assets/images/books/book2.jpg" alt="Book"
+                    onerror="this.parentElement.style.background='#dde2f0'">
+                </div>
+                <div class="arrival-info">
+                  <div class="arrival-title">Gray's Anatomy for Students, 4th Edition</div>
+                  <div class="arrival-author">Drake, Vogl &amp; Mitchell</div>
+                  <div class="arrival-meta">
+                    <span class="badge badge--accent">Anatomy</span>
+                    <span class="badge badge--gold">New</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="arrival-item">
+                <div class="arrival-thumb">
+                  <img src="assets/images/books/book3.jpg" alt="Book"
+                    onerror="this.parentElement.style.background='#dde2f0'">
+                </div>
+                <div class="arrival-info">
+                  <div class="arrival-title">Pharmacology and Pharmacotherapeutics</div>
+                  <div class="arrival-author">Satoskar, Bhandarkar &amp; Ainapure</div>
+                  <div class="arrival-meta">
+                    <span class="badge badge--accent">Pharmacy</span>
+                    <span class="badge badge--gold">New</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Events -->
+          <div>
+            <div class="panel-header">
+              <div class="panel-title" style="display:flex;align-items:center;gap:8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--clr-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Upcoming Events
+          </div>
+              <a href="events.html" class="panel-link">
+                View All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+            <div class="events-list">
+
+              <div class="event-item">
+                <div class="event-date">
+                  <span class="event-date__day">20</span>
+                  <span class="event-date__mon">MAR</span>
+                </div>
+                <div class="event-info">
+                  <div class="event-title">Web of Science Training Program</div>
+                  <div class="event-desc">Online session — for faculty, researchers &amp; PG students. 2:15 PM.</div>
+                </div>
+              </div>
+
+              <div class="event-item">
+                <div class="event-date">
+                  <span class="event-date__day">25</span>
+                  <span class="event-date__mon">MAR</span>
+                </div>
+                <div class="event-info">
+                  <div class="event-title">User Orientation Program 2026</div>
+                  <div class="event-desc">Library tour &amp; e-resources orientation for UG first-year students.</div>
+                </div>
+              </div>
+
+              <div class="event-item">
+                <div class="event-date">
+                  <span class="event-date__day">01</span>
+                  <span class="event-date__mon">APR</span>
+                </div>
+                <div class="event-info">
+                  <div class="event-title">Books Exhibition 2026</div>
+                  <div class="event-desc">Annual book exhibition with latest titles from major publishers.</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+  <!-- ═══════════════ FOOTER ════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__top">
+      <div class="footer__grid">
+
+        <!-- Brand -->
+        <div class="footer__brand">
+          <div class="footer__brand-logo">
+            <img src="assets/images/logo.png" alt="Yenepoya Libraries" onerror="this.style.display='none'">
+            <span style="font-weight:800;font-size:18px;color:#fff;letter-spacing:-.2px;">Yenepoya Libraries</span>
+          </div>
+          <p>Central hub of information for Yenepoya (Deemed to be University). Providing library and information
+            services to 8,000+ users since 1992.</p>
+          <div class="footer__social">
+            <!-- Placeholder social links -->
+            <a href="#" class="footer__social-link" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+            </a>
+            <a href="tel:08242206067" class="footer__social-link" aria-label="Phone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Useful Links -->
+        <div>
+          <div class="footer__col-title">Useful Links</div>
+          <div class="footer__links">
+            <a href="about.html">About Library</a>
+            <a href="e-resources.html">E-Resources</a>
+            <a href="services.html">Services</a>
+            <a href="repository.html">Institutional Repository</a>
+            <a href="research.html">Research Support</a>
+            <a href="events.html">Events</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="services.html#membership">Get Library Card</a>
+            <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-user.html" target="_blank">My Account</a>
+          </div>
+        </div>
+
+        <!-- Our Institutes -->
+        <div>
+          <div class="footer__col-title">Our Institutes</div>
+          <div class="footer__links">
+            <a href="https://ydc.yenepoya.edu.in" target="_blank">Dental College</a>
+            <a href="https://www.ypcrc.yenepoya.edu.in" target="_blank">Pharmacy &amp; Research Centre</a>
+            <a href="https://ymc.yenepoya.edu.in" target="_blank">Medical College</a>
+            <a href="https://ync.yenepoya.edu.in" target="_blank">Nursing College</a>
+            <a href="https://ypc.yenepoya.edu.in" target="_blank">Physiotherapy College</a>
+            <a href="https://yiascm.in" target="_blank">YIASCM</a>
+            <a href="https://www.yenepoyaayurveda.com" target="_blank">Ayurveda College</a>
+            <a href="https://www.yhch.in" target="_blank">Homoeopathy College</a>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <div class="footer__col-title">Get In Touch</div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>University Road, Deralakatte,<br>Mangalore – 575018, Karnataka, India</span>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+            <a href="mailto:library@yenepoya.edu.in">library@yenepoya.edu.in</a>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
+            </svg>
+            <a href="tel:08242206067">+91 824 2206067</a>
+          </div>
+          <div style="margin-top:16px;">
+            <a href="contact.html" class="btn btn--outline" style="font-size:13px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                style="width:14px;height:14px;">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+              Ask a Librarian
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="footer__bottom-inner">
+        <span>© 2026 <strong>Yenepoya (Deemed to be University)</strong>. All Rights Reserved.</span>
+        <span>Designed by <a href="https://ytincubator.com" target="_blank">Yenepoya Technology Incubator</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════ SIDEBAR ENQUIRY ═══════════ -->
+  <div class="enquiry-sidebar" id="enquirySidebar" role="complementary" aria-label="Quick Enquiry">
+    <div class="enquiry-tab" id="enquiryTab" tabindex="0" role="button" aria-expanded="false"
+      aria-controls="enquirySidebar">Enquire Now</div>
+    <h3>Quick Enquiry</h3>
+    <form id="enquiryForm" action="https://library.yenepoya.edu.in/save_enquire.php" method="post">
+      <input class="enquiry-field" type="text" name="name" placeholder="Your Name *" required>
+      <input class="enquiry-field" type="email" name="email" placeholder="Email Address">
+      <input class="enquiry-field" type="tel" name="phone" placeholder="Phone Number *" required>
+      <textarea class="enquiry-field enquiry-field--textarea" name="message" placeholder="Message…" required></textarea>
+      <button type="submit" class="enquiry-submit">Send Enquiry</button>
+    </form>
+  </div>
+
+  <!-- Back to Top -->
+  <button class="back-top" id="backTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="m18 15-6-6-6 6" />
+    </svg>
+  </button>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
 </body>
+
 </html>
