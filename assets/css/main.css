@@ -89,11 +89,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ─── HEADER ─────────────────────────────────── */
 .header {
   height: var(--header-h);
-  background: var(--clr-white);
+  background: #ffffff;
   box-shadow: var(--shadow-sm);
   position: sticky;
   top: 0;
-  z-index: 200;
+  z-index: 999;
   display: flex;
   align-items: center;
   padding: 0 32px;
@@ -430,7 +430,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   gap: 12px;
   margin-bottom: 16px;
 }
-.footer__brand-logo img { height: 40px; filter: brightness(0) invert(1); opacity:.9; }
+.footer__brand-logo img { height: 40px; border-radius: var(--radius-sm); }
 .footer__brand p {
   font-size: 13px;
   line-height: 1.7;
@@ -518,6 +518,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .footer__bottom-inner { flex-direction: column; text-align: center; }
 }
 @media (max-width: 480px) {
+  .topbar { display: none !important; }
   .enquiry-sidebar { width: 100%; left: -100%; border-radius: 0; }
   .back-top { bottom: 16px; right: 16px; }
 }

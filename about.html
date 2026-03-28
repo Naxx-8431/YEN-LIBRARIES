@@ -36,8 +36,6 @@
         </svg>
         <a href="tel:08242206067">0824-2206067</a>
       </div>
-      <div class="topbar__divider"></div>
-      <span class="topbar__badge">NAAC A+ Accredited</span>
     </div>
     <div class="topbar__right">
       <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-user.html" target="_blank">My Account</a>
@@ -49,10 +47,8 @@
   <!-- HEADER -->
   <header class="header">
     <a href="index.html" class="header__logo" aria-label="Yenepoya Libraries Home">
-      <img src="assets/images/logo.png" alt="Yenepoya Central Library" onerror="this.style.display='none'">
-      <span class="header__logo-text"
-        style="font-weight:800;font-size:18px;color:var(--clr-primary);letter-spacing:-.3px;">Yenepoya<br><span
-          style="font-weight:500;font-size:13px;color:var(--clr-text-muted);">Libraries</span></span>
+      <img src="https://library.yenepoya.edu.in/images/Central-Library-logo.png" alt="Yenepoya Central Library">
+      <img src="https://library.yenepoya.edu.in/images/naac.png" alt="NAAC" class="header__logo-naac">
     </a>
     <nav class="header__nav" aria-label="Primary Navigation">
       <a href="index.html" class="nav__link">Home</a>
@@ -88,7 +84,7 @@
   </nav>
 
   <!-- PAGE HERO -->
-  <div class="page-hero">
+  <div class="page-hero" style="background-image: linear-gradient(rgba(16, 28, 56, 0.75), rgba(16, 28, 56, 0.75)), url('images/banners/YENEPOYA LIBRARIES-1.webp'); background-size: cover; background-position: center;">
     <div class="page-hero__inner">
       <div class="page-hero__breadcrumb">
         <a href="index.html">Home</a>
@@ -658,26 +654,86 @@
           <h2 class="page-section__title">Vision &amp; Mission</h2>
           <div class="page-section__divider"></div>
         </div>
-        <div style="display:flex;gap:20px;flex-wrap:wrap;">
-          <div
-            style="background:var(--clr-primary);border-radius:var(--radius-md);padding:28px 24px;flex:1;min-width:240px;">
-            <div
-              style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--clr-accent);margin-bottom:10px;">
-              Vision</div>
-            <p style="color:rgba(255,255,255,.9);font-size:15px;line-height:1.8;margin:0;">To be a premier academic
-              library that empowers the university community through innovative information services, seamless access to
-              resources, and a culture of lifelong learning and research excellence.</p>
+        <div class="purpose-grid">
+          <!-- Vision -->
+          <div class="purpose-card purpose-card--vision">
+            <span class="purpose-tag">Vision</span>
+            <p class="purpose-main">To be a premier academic library that empowers the university community through innovative information services, seamless access to resources, and a culture of lifelong learning and research excellence.</p>
+            <ul class="purpose-list">
+              <li>
+                <svg class="purpose-bullet" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                <span>Establish global reach through connected digital knowledge systems.</span>
+              </li>
+              <li>
+                <svg class="purpose-bullet" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" />
+                </svg>
+                <span>Shape innovative, collaborative learning spaces for students and faculty.</span>
+              </li>
+              <li>
+                <svg class="purpose-bullet" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2v.09a1.65 1.65 0 0 0 1.51-1h-.09a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51h-.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82 1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2v-.09a1.65 1.65 0 0 0-1.51 1H19.4z" />
+                </svg>
+                <span>Drive advanced scholarship support via emerging analytics tools.</span>
+              </li>
+            </ul>
           </div>
-          <div
-            style="background:var(--clr-bg);border:1px solid var(--clr-border);border-radius:var(--radius-md);padding:28px 24px;flex:1;min-width:240px;">
-            <div class="page-section__label">Mission</div>
-            <ul class="content-list" style="margin-top:10px;">
-              <li>Provide equitable access to quality information resources in print and digital formats.</li>
-              <li>Support academic excellence, research, and professional development.</li>
-              <li>Deliver expert library services with a user-centric approach.</li>
-              <li>Foster information literacy and digital learning skills.</li>
-              <li>Collaborate with national and international library networks.</li>
-              <li>Continuously adopt emerging technologies to enhance library services.</li>
+
+          <!-- Mission -->
+          <div class="purpose-card purpose-card--mission">
+            <span class="purpose-tag">Mission</span>
+            <ul class="purpose-list">
+              <li>
+                <svg class="purpose-bullet" fill="none" viewBox="0 0 24 24" stroke="var(--clr-primary)" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                <span>Provide equitable access to quality information resources in print and digital formats.</span>
+              </li>
+              <li>
+                <svg class="purpose-bullet" fill="none" viewBox="0 0 24 24" stroke="var(--clr-primary)" stroke-width="2">
+                  <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                  <path d="M12 14v7" />
+                  <path d="M4.3 18.2l7.7 3.8 7.7-3.8" />
+                </svg>
+                <span>Support academic excellence, research, and professional development.</span>
+              </li>
+              <li>
+                <svg class="purpose-bullet" fill="none" viewBox="0 0 24 24" stroke="var(--clr-primary)" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+                <span>Deliver expert library services with a user-centric approach.</span>
+              </li>
+              <li>
+                <svg class="purpose-bullet" fill="none" viewBox="0 0 24 24" stroke="var(--clr-primary)" stroke-width="2">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a4 4 0 0 0-4-4H2z" />
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a4 4 0 0 1 4-4h6z" />
+                </svg>
+                <span>Foster information literacy and digital learning skills.</span>
+              </li>
+              <li>
+                <svg class="purpose-bullet" fill="none" viewBox="0 0 24 24" stroke="var(--clr-primary)" stroke-width="2">
+                  <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3z" />
+                </svg>
+                <span>Collaborate with national and international library networks.</span>
+              </li>
+              <li>
+                <svg class="purpose-bullet" fill="none" viewBox="0 0 24 24" stroke="var(--clr-primary)" stroke-width="2">
+                  <rect x="4" y="4" width="16" height="16" rx="2" ry="2" />
+                  <rect x="9" y="9" width="6" height="6" />
+                  <polyline points="9 1 9 4" />
+                  <polyline points="15 1 15 4" />
+                  <polyline points="9 20 9 23" />
+                  <polyline points="15 20 15 23" />
+                  <polyline points="20 9 23 9" />
+                  <polyline points="20 15 23 15" />
+                  <polyline points="1 9 4 9" />
+                  <polyline points="1 15 4 15" />
+                </svg>
+                <span>Continuously adopt emerging technologies to enhance library services.</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -1501,7 +1557,7 @@
       <div class="footer__grid">
         <div class="footer__brand">
           <div class="footer__brand-logo">
-            <img src="assets/images/logo.png" alt="Yenepoya Libraries" onerror="this.style.display='none'">
+            <img src="https://library.yenepoya.edu.in/images/Central-Library-logo.png" alt="Yenepoya Libraries">
             <span style="font-weight:800;font-size:18px;color:#fff;letter-spacing:-.2px;">Yenepoya Libraries</span>
           </div>
           <p>Central hub of information for Yenepoya (Deemed to be University). Providing library and information

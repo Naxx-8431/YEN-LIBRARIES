@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Repository | Yenepoya Libraries</title>
+  <meta content="Access Yenepoya University's Institutional Repository" name="description">
+
+  <link rel="icon" href="assets/images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    .repo-card {
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      height: 100%;
+    }
+
+    .repo-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      border-color: rgba(44, 73, 100, 0.2);
+    }
+
+    .repo-card__icon {
+      background: rgba(44, 73, 100, 0.05);
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      padding: 30px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .repo-card__content {
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .repo-card__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .repo-card__text {
+      color: var(--text-color);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .repo-card__btn {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 20px;
+      background: var(--primary-color);
+      color: #fff;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .repo-card:hover .repo-card__btn {
+      background: var(--primary-hover);
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar__left">
+      <div class="topbar__contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+        <a href="mailto:library@yenepoya.edu.in">library@yenepoya.edu.in</a>
+      </div>
+      <div class="topbar__divider"></div>
+      <div class="topbar__contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
+        </svg>
+        <a href="tel:08242206067">0824-2206067</a>
+      </div>
+    </div>
+    <div class="topbar__right">
+      <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-user.html" target="_blank">My Account</a>
+      <div class="topbar__divider"></div>
+      <a href="services.html#membership">Get Library Card</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="index.html" class="header__logo" aria-label="Yenepoya Libraries Home">
+      <img src="https://library.yenepoya.edu.in/images/Central-Library-logo.png" alt="Yenepoya Central Library">
+      <img src="https://library.yenepoya.edu.in/images/naac.png" alt="NAAC" class="header__logo-naac">
+    </a>
+    <nav class="header__nav" aria-label="Primary Navigation">
+      <a href="index.html" class="nav__link">Home</a>
+      <a href="about.html" class="nav__link">About</a>
+      <a href="services.html" class="nav__link">Services</a>
+      <a href="e-resources.html" class="nav__link">E-Resources</a>
+      <a href="repository.html" class="nav__link active">Repository</a>
+      <a href="research.html" class="nav__link">Research</a>
+      <a href="events.html" class="nav__link">Events</a>
+      <a href="contact.html" class="nav__link">Contact</a>
+    </nav>
+    <div class="header__search">
+      <button class="header__search-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+      </button>
+    </div>
+    <button class="header__burger" id="burger"
+      aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="nav__link">Home</a>
+    <a href="about.html" class="nav__link">About</a>
+    <a href="services.html" class="nav__link">Services</a>
+    <a href="e-resources.html" class="nav__link">E-Resources</a>
+    <a href="repository.html" class="nav__link active">Repository</a>
+    <a href="research.html" class="nav__link">Research</a>
+    <a href="events.html" class="nav__link">Events</a>
+    <a href="contact.html" class="nav__link">Contact</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero" style="background-image: linear-gradient(rgba(16, 28, 56, 0.75), rgba(16, 28, 56, 0.75)), url('images/banners/Institutional Repository.webp'); background-size: cover; background-position: center;">
+    <div class="page-hero__inner">
+      <div class="page-hero__breadcrumb">
+        <a href="index.html">Home</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m9 18 6-6-6-6" />
+        </svg>
+        <span>Institutional Repository</span>
+      </div>
+      <h1 class="page-hero__title">Institutional Repository</h1>
+      <p class="page-hero__subtitle">Access our collection of faculty publications, theses, dissertations, and previous
+        years question papers through DSpace.</p>
+    </div>
+  </div>
+
+  <div class="inner-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="page-sidebar" aria-label="Repository navigation">
+      <div class="page-sidebar__title">Repository</div>
+      <nav class="page-sidebar__nav">
+        <a href="#default-view" class="page-sidebar__link active">
+          <i class="bi bi-server me-2"></i> DSpace Repository
+        </a>
+        <a href="#faculty-publications" class="page-sidebar__link">
+          <i class="bi bi-journal-text me-2"></i> Faculty Publications
+        </a>
+        <a href="#theses-dissertations" class="page-sidebar__link">
+          <i class="bi bi-book me-2"></i> Theses & Dissertations
+        </a>
+        <a href="#question-papers" class="page-sidebar__link">
+          <i class="bi bi-file-earmark-text me-2"></i> Question Papers
+        </a>
+        <a href="#yenmedia" class="page-sidebar__link">
+          <i class="bi bi-camera-video me-2"></i> Yenepoya @Media
+        </a>
+        <a href="#annual-reports" class="page-sidebar__link">
+          <i class="bi bi-bar-chart me-2"></i> Annual Reports
+        </a>
+      </nav>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="page-content">
+
+      <!-- 1. DSpace Repository Overview -->
+      <section class="page-section active" id="default-view">
+        <div class="page-section__header">
+          <div class="page-section__label">Digital Archive</div>
+          <h2 class="page-section__title">DSpace Institutional Repository</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <div class="row align-items-center mb-5">
+          <div class="col-lg-12">
+            <p class="fs-5 text-secondary" style="line-height: 1.8;">
+              The Institutional Repository has been developed using the open source digital library software DSpace. It
+              serves as a central digital archive where members of the Yenepoya University community can access valuable
+              academic and research outputs, including faculty publications, theses, dissertations, and previous years'
+              question papers for both undergraduate and postgraduate courses.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Faculty Publications -->
+      <section class="page-section" id="faculty-publications" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">Research Outputs</div>
+          <h2 class="page-section__title">Faculty Publications</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <div class="repo-card" style="max-width: 600px;">
+          <div class="repo-card__icon">
+            <i class="bi bi-journal-text"></i>
+          </div>
+          <div class="repo-card__content">
+            <h3 class="repo-card__title">Faculty Publications</h3>
+            <p class="repo-card__text">Explore research articles, papers, and publications authored by the esteemed
+              faculty members of Yenepoya University.</p>
+            <a href="http://192.168.5.11:8080/dspace/handle/123456789/5" class="repo-card__btn" target="_blank">Access
+              Publications <i class="bi bi-arrow-right ms-2"></i></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Theses & Dissertations -->
+      <section class="page-section" id="theses-dissertations" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">Academic Research</div>
+          <h2 class="page-section__title">Theses & Dissertations</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <div class="repo-card" style="max-width: 600px;">
+          <div class="repo-card__icon">
+            <i class="bi bi-book"></i>
+          </div>
+          <div class="repo-card__content">
+            <h3 class="repo-card__title">Theses & Dissertations</h3>
+            <p class="repo-card__text">Access a comprehensive collection of theses and dissertations submitted by our
+              research scholars and postgraduate students.</p>
+            <a href="http://192.168.5.11:8080/dspace/handle/123456789/14" class="repo-card__btn" target="_blank">Access
+              Theses <i class="bi bi-arrow-right ms-2"></i></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Question Papers -->
+      <section class="page-section" id="question-papers" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">Study Material</div>
+          <h2 class="page-section__title">Previous Years Question Papers</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <div class="repo-card" style="max-width: 600px;">
+          <div class="repo-card__icon">
+            <i class="bi bi-file-earmark-text"></i>
+          </div>
+          <div class="repo-card__content">
+            <h3 class="repo-card__title">Previous Years Question Papers</h3>
+            <p class="repo-card__text">Browse archives of previous years' examination question papers for undergraduate
+              and postgraduate courses to aid in study preparation.</p>
+            <a href="http://192.168.5.11:8080/dspace/handle/123456789/21" class="repo-card__btn" target="_blank">Access
+              Question Papers <i class="bi bi-arrow-right ms-2"></i></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Yenepoya @Media -->
+      <section class="page-section" id="yenmedia" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">Media & News</div>
+          <h2 class="page-section__title">Yenepoya @Media</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <div class="repo-card" style="max-width: 600px;">
+          <div class="repo-card__icon">
+            <i class="bi bi-camera-video"></i>
+          </div>
+          <div class="repo-card__content">
+            <h3 class="repo-card__title">Yenepoya @Media</h3>
+            <p class="repo-card__text">Discover media highlights, news clippings, video coverage, and official press
+              releases concerning Yenepoya University events.</p>
+            <a href="http://www.yenepoya.edu.in/centres/centre-yenmedia.html" class="repo-card__btn"
+              target="_blank">Visit YenMedia <i class="bi bi-arrow-right ms-2"></i></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Annual Reports -->
+      <section class="page-section mt-5" id="annual-reports" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">University Reports</div>
+          <h2 class="page-section__title">Annual Reports</h2>
+          <div class="page-section__divider"></div>
+        </div>
+
+        <div class="repo-card" style="max-width: 600px;">
+          <div class="repo-card__icon">
+            <i class="bi bi-bar-chart-line"></i>
+          </div>
+          <div class="repo-card__content">
+            <h3 class="repo-card__title">Library Annual Reports</h3>
+            <p class="repo-card__text">View the annual reports detailing the Central Library's growth, activities,
+              resource additions, and overall academic support performance over the years.</p>
+            <a href="annual_reports.html" class="repo-card__btn">View Annual Reports <i
+                class="bi bi-arrow-right ms-2"></i></a>
+          </div>
+        </div>
+      </section>
+
+    </main> <!-- end page-content -->
+  </div> <!-- end inner-layout -->
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__brand-logo">
+            <img src="https://library.yenepoya.edu.in/images/Central-Library-logo.png" alt="Yenepoya Libraries">
+            <span style="font-weight:800;font-size:18px;color:#fff;letter-spacing:-.2px;">Yenepoya Libraries</span>
+          </div>
+          <p class="footer__desc">Dedicated to excellence in information retrieval and academic support, providing the
+            foundation for research and clinical practice at Yenepoya University.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-title">Quick Links</div>
+          <div class="footer__links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Library</a>
+            <a href="services.html">Library Services</a>
+            <a href="e-resources.html">E-Resources</a>
+            <a href="repository.html">Repository</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-title">Constituent Units</div>
+          <div class="footer__links">
+            <a href="https://www.ymc.yenepoya.edu.in" target="_blank">Medical College</a>
+            <a href="https://www.ydc.yenepoya.edu.in" target="_blank">Dental College</a>
+            <a href="https://www.ync.yenepoya.edu.in" target="_blank">Nursing College</a>
+            <a href="https://www.ypt.yenepoya.edu.in" target="_blank">Physiotherapy College</a>
+            <a href="https://www.yhch.in" target="_blank">Homoeopathy College</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-title">Get In Touch</div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>University Road, Deralakatte,<br>Mangalore – 575018, Karnataka, India</span>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+            <a href="mailto:library@yenepoya.edu.in">library@yenepoya.edu.in</a>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
+            </svg>
+            <a href="tel:08242206067">+91 824 2206067</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__bottom-inner">
+        <span>© 2026 <strong>Yenepoya (Deemed to be University)</strong>. All Rights Reserved.</span>
+        <span>Designed by <a href="https://ytincubator.com" target="_blank">Yenepoya Technology Incubator</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ENQUIRY SIDEBAR -->
+  <div class="enquiry-sidebar" id="enquirySidebar">
+    <div class="enquiry-tab" id="enquiryTab" tabindex="0" role="button">Enquire Now</div>
+    <h3>Quick Enquiry</h3>
+    <form id="enquiryForm" action="https://library.yenepoya.edu.in/save_enquire.php" method="post">
+      <input class="enquiry-field" type="text" name="name" placeholder="Your Name *" required>
+      <input class="enquiry-field" type="email" name="email" placeholder="Email Address">
+      <input class="enquiry-field" type="tel" name="phone" placeholder="Phone Number *" required>
+      <textarea class="enquiry-field enquiry-field--textarea" name="message" placeholder="Message…" required></textarea>
+      <button type="submit" class="enquiry-submit">Send Enquiry</button>
+    </form>
+  </div>
+
+  <button class="back-top" id="backTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="m18 15-6-6-6 6" />
+    </svg>
+  </button>
+
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

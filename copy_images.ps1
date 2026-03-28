@@ -1,0 +1,4 @@
+Copy-Item -Path "c:\Users\Fathima Afreen\OneDrive\Desktop\yenepoya libraries\yenepoya libraries\images\opendb" -Destination "c:\Users\Fathima Afreen\OneDrive\Desktop\YEN-LIBRARY\images\" -Recurse -Force
+Copy-Item -Path "c:\Users\Fathima Afreen\OneDrive\Desktop\yenepoya libraries\yenepoya libraries\images\open-access" -Destination "c:\Users\Fathima Afreen\OneDrive\Desktop\YEN-LIBRARY\images\" -Recurse -Force
+Copy-Item -Path "c:\Users\Fathima Afreen\OneDrive\Desktop\yenepoya libraries\yenepoya libraries\images\edzter" -Destination "c:\Users\Fathima Afreen\OneDrive\Desktop\YEN-LIBRARY\images\" -Recurse -Force
+Copy-Item -Path "c:\Users\Fathima Afreen\OneDrive\Desktop\yenepoya libraries\yenepoya libraries\images\banners" -Destination "c:\Users\Fathima Afreen\OneDrive\Desktop\YEN-LIBRARY\images\" -Recurse -Force

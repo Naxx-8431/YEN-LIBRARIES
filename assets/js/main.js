@@ -141,9 +141,16 @@
     
     // Default: Show ONLY the active section
     function showSection(hash) {
-      if (!hash) hash = links[0].getAttribute('href');
+      if (!hash) hash = '#default-view';
       let found = false;
       
+      // Highlight correct link
+      links.forEach(l => {
+        const isActive = l.getAttribute('href') === hash;
+        l.classList.toggle('active', isActive);
+      });
+
+      // Show correct section
       sections.forEach(s => {
         if (`#${s.id}` === hash) {
           s.style.display = 'block';
@@ -153,15 +160,16 @@
         }
       });
       
-      // Fallback to first if hash is invalid
+      // Fallback
       if (!found && sections.length) {
-        sections[0].style.display = 'block';
-        hash = `#${sections[0].id}`;
+        // If hash wasn't found, default to the first section (or default-view if we want)
+        const defaultSec = document.getElementById('default-view') || sections[0];
+        if (defaultSec) {
+            defaultSec.style.display = 'block';
+            const link = document.querySelector(`.page-sidebar__link[href="#${defaultSec.id}"]`);
+            if (link) link.classList.add('active');
+        }
       }
-      
-      links.forEach(l => {
-        l.classList.toggle('active', l.getAttribute('href') === hash);
-      });
     }
 
     // Initialize based on URL hash
@@ -171,7 +179,13 @@
     links.forEach(l => l.addEventListener('click', e => {
       e.preventDefault();
       const hash = l.getAttribute('href');
-      history.pushState(null, '', hash);
+      
+      try {
+        history.pushState(null, '', hash);
+      } catch (err) {
+        // Ignored. pushState throws a DOMException on file:// URLs locally
+      }
+      
       showSection(hash);
       
       // Optionally scroll to top of the inner layout or keep it sticky
