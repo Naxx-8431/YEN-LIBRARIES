@@ -2240,3 +2240,254 @@
   justify-content: center;
   cursor: pointer;
 }
+
+/* ─── DATABASE API WIDGET (Dropdown Format) ─── */
+.db-select-wrapper {
+  position: relative;
+  display: inline-block;
+  min-width: 320px;
+}
+.db-custom-select {
+  appearance: none;
+  background: var(--clr-white);
+  border: 2px solid var(--clr-primary);
+  border-radius: 50px;
+  padding: 16px 48px 16px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--clr-primary);
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 15px rgba(40,59,106,0.1);
+  transition: all var(--transition);
+  font-family: inherit;
+}
+.db-custom-select:hover, .db-custom-select:focus {
+  border-color: var(--clr-accent);
+  box-shadow: 0 6px 20px rgba(89, 204, 193, 0.2);
+}
+.db-select-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--clr-accent);
+}
+.db-select-icon svg {
+  width: 20px;
+  height: 20px;
+}
+.db-pane-container {
+  background: var(--clr-white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 25px rgba(40,59,106,0.06);
+  border: 1px solid var(--clr-border);
+  overflow: hidden;
+  min-height: 440px;
+  display: flex;
+}
+.db-pane {
+  display: none;
+  width: 100%;
+  padding: 48px;
+  animation: fadeIn 0.4s ease forwards;
+}
+.db-pane.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.db-pane-inner {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+.db-pane-logo {
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 24px;
+  border-radius: 4px;
+}
+.db-pane-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--clr-primary);
+  margin-bottom: 12px;
+}
+.db-pane-desc {
+  font-size: 15.5px;
+  color: var(--clr-text-muted);
+  line-height: 1.6;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.db-search-form {
+  display: flex;
+  gap: 12px;
+}
+.db-search-form input {
+  flex: 1;
+  padding: 16px 20px;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-family: inherit;
+  transition: border var(--transition);
+  outline: none;
+  background: var(--clr-bg);
+}
+.db-search-form input:focus {
+  border-color: var(--clr-accent);
+  box-shadow: 0 0 0 3px rgba(89, 204, 193, 0.15);
+}
+.db-search-form .btn {
+  padding: 16px 28px;
+  white-space: nowrap;
+}
+
+/* KOHA Grid */
+.db-koha-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top:24px; }
+.db-koha-book { display: flex; flex-direction: column; background: var(--clr-white); border: 1px solid var(--clr-border); border-radius: var(--radius-sm); overflow: hidden; text-decoration: none; color: var(--clr-text); transition: transform var(--transition), border-color var(--transition); }
+.db-koha-book:hover { transform: translateY(-4px); border-color: var(--clr-primary); }
+.db-koha-book img { width: 100%; height: 140px; object-fit: cover; }
+.db-koha-book span { padding: 8px; font-size: 13px; font-weight: 700; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.db-koha-more { background: var(--clr-primary-lt); color: #fff; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; text-align: center; text-decoration: none; font-size: 14px; font-weight: 700; transition: background var(--transition); padding: 10px; }
+.db-koha-more:hover { background: var(--clr-primary); color: #fff; }
+
+/* IRINS Stats */
+.db-irins-stats { display: flex; gap: 16px; margin: 24px auto; max-width:600px; justify-content:center;}
+.db-irins-stat { background: var(--clr-white); border: 1px solid var(--clr-border); padding: 20px; border-radius: var(--radius-sm); flex: 1; text-align:center;}
+.db-irins-stat strong { display: block; font-size: 28px; color: var(--clr-primary); line-height: 1; margin-bottom: 6px; }
+.db-irins-stat span { font-size: 13px; color: var(--clr-text-muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 700; }
+
+/* Recent List */
+.db-recent-list { list-style: none; padding: 0; margin: 0 auto 24px; max-width:600px; display: flex; flex-direction: column; gap: 12px; }
+.db-recent-list li { padding: 16px; background: var(--clr-bg); border: 1px solid var(--clr-border); border-radius: var(--radius-sm); display: flex; align-items: center; gap: 12px; font-size: 14.5px; font-weight: 600; color: var(--clr-text); transition: transform var(--transition); text-align:left;}
+.db-recent-list li:hover { transform: translateX(4px); border-color: var(--clr-accent); }
+
+@media (max-width: 768px) {
+  .db-select-wrapper { min-width: 100%; width: 100%; }
+  .db-pane { padding: 32px 24px; }
+  .db-search-form { flex-direction: column; }
+  .db-koha-grid { grid-template-columns: repeat(2, 1fr); }
+  .db-irins-stats { flex-direction: column; }
+}
+
+/* ─── DATABASE DASHBOARD (LEFT-ALIGNED REDESIGN) ─── */
+.db-dashboard-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.db-dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+  gap: 20px;
+}
+.db-header-text {
+  flex: 1;
+}
+.db-select-wrapper {
+  min-width: 380px;
+  position: relative;
+}
+@media (max-width: 900px) {
+  .db-dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .db-select-wrapper { min-width: 100%; width: 100%; }
+}
+.db-pane-container {
+  background: var(--clr-white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 40px rgba(40,59,106,0.08);
+  border: 1px solid var(--clr-border);
+  overflow: hidden;
+  min-height: 440px;
+  display: flex;
+}
+.db-pane {
+  display: none;
+  width: 100%;
+  animation: fadeIn 0.4s ease forwards;
+}
+.db-pane.active {
+  display: flex;
+}
+.db-pane-left {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.db-pane-right {
+  flex: 1;
+  background: var(--clr-bg);
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.db-pane-right--no-bg {
+  background: var(--clr-white);
+  padding: 50px 50px 50px 0;
+}
+
+@media (max-width: 800px) {
+  .db-pane.active { flex-direction: column; }
+  .db-pane-left { padding: 32px; }
+  .db-pane-right { min-height: 200px; }
+  .db-pane-right--no-bg { padding: 0 32px 32px 32px; }
+}
+
+.db-pane-logo {
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 24px;
+  border-radius: 4px;
+}
+.db-pane-left h3 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--clr-primary);
+  margin-bottom: 12px;
+}
+.db-pane-desc {
+  font-size: 15.5px;
+  color: var(--clr-text-muted);
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+.db-search-form { display: flex; gap: 12px; }
+.db-search-form input { flex: 1; padding: 16px 20px; border: 1px solid var(--clr-border); border-radius: var(--radius-sm); outline: none; transition: border var(--transition); background: var(--clr-bg);}
+.db-search-form input:focus { border-color: var(--clr-accent); }
+
+.db-abstract-graphic {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+.db-abstract-graphic svg {
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+}
+
+/* Override existing KOHA/IRINS from center to fit dashboard */
+.db-koha-grid { margin-top: 0; width: 100%; }
+.db-irins-stats { margin: 0; width: 100%; justify-content: flex-start; flex-wrap: wrap; }
+.db-irins-stat { max-width: calc(50% - 8px); flex: 1 1 calc(50% - 8px); text-align: left;}
+.db-recent-list { margin: 0; width: 100%; }
+
