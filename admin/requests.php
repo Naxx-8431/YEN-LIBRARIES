@@ -1,3 +1,23 @@
+<?php
+require_once __DIR__ . '/auth.php';
+checkAuth();
+require_once __DIR__ . '/../api/config.php';
+
+$db = getDB();
+$sql = "
+    SELECT id, name, email, 'Enquiry' as type, message, created_at, IF(is_read=1, 'Closed', 'Pending') as status, 'enquiries' as source_table FROM enquiries
+    UNION ALL
+    SELECT id, name, email, subject as type, message, created_at, status, 'contacts' as source_table FROM contacts
+    UNION ALL
+    SELECT id, requester_name as name, NULL as email, 'Book Recommendation' as type, title as message, created_at, status, 'book_recommendations' as source_table FROM book_recommendations
+    UNION ALL
+    SELECT id, NULL as name, NULL as email, 'Journal Recommendation' as type, title as message, created_at, status, 'journal_recommendations' as source_table FROM journal_recommendations
+    ORDER BY created_at DESC
+";
+
+$stmt = $db->query($sql);
+$requests = $stmt->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +79,7 @@
 
         </div>
         <nav class="nav-menu">
-            <a href="index.html" class="nav-item">
+            <a href="index.php" class="nav-item">
                 <i class="fas fa-th-large"></i>
                 <span>Dashboard</span>
             </a>
@@ -71,7 +91,7 @@
                 <i class="fas fa-book"></i>
                 <span>New Arrivals</span>
             </a>
-            <a href="requests.html" class="nav-item active">
+            <a href="requests.php" class="nav-item active">
                 <i class="fas fa-envelope-open-text"></i>
                 <span>User Requests</span>
             </a>
@@ -85,6 +105,10 @@
             <a href="#" class="nav-item">
                 <i class="fas fa-users-cog"></i>
                 <span>Users & Roles</span>
+            </a>
+            <a href="logout.php" class="nav-item" style="color:#ef4444; margin-top:30px;">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
             </a>
         </nav>
     </aside>
@@ -134,60 +158,45 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php if (count($requests) === 0): ?>
                             <tr>
-                                <td><strong>Alex Smith</strong><br><small>alex@example.com</small></td>
-                                <td>Book Recommendation</td>
-                                <td class="message-preview">I would like to recommend 'The Gene: An Intimate History'
-                                    for the oncology section...</td>
-                                <td>24 Mar, 2026</td>
-                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td colspan="6" style="text-align:center;padding:20px;">No requests found.</td>
+                            </tr>
+                            <?php else: ?>
+                            <?php foreach ($requests as $req): ?>
+                            <tr>
                                 <td>
-                                    <button class="action-btn" title="View Message"><i class="fas fa-eye"></i></button>
-                                    <button class="action-btn" title="Reply"><i class="fas fa-reply"></i></button>
-                                    <button class="action-btn" onclick="confirmDelete('Request')"><i
-                                            class="fas fa-trash"></i></button>
+                                    <strong><?php echo htmlspecialchars($req['name'] ?? 'User'); ?></strong><br>
+                                    <?php if ($req['email']): ?>
+                                    <small><a href="mailto:<?php echo htmlspecialchars($req['email']); ?>" style="color:var(--text-muted);text-decoration:underline;"><?php echo htmlspecialchars($req['email']); ?></a></small>
+                                    <?php else: ?>
+                                    <small><em>No email provided</em></small>
+                                    <?php endif; ?>
+                                </td>
+                                <td><?php echo htmlspecialchars($req['type']); ?></td>
+                                <td class="message-preview"><?php echo htmlspecialchars(substr($req['message'], 0, 50)) . (strlen($req['message']) > 50 ? '...' : ''); ?></td>
+                                <td><?php echo date('d M, Y', strtotime($req['created_at'])); ?></td>
+                                <td>
+                                    <?php
+                                    $statusNorm = strtolower($req['status']);
+                                    $statusClass = ($statusNorm === 'pending' || $statusNorm === 'new') ? 'status-pending' : 'status-active';
+                                    ?>
+                                    <span class="status-badge <?php echo $statusClass; ?>"><?php echo htmlspecialchars(ucfirst($req['status'])); ?></span>
+                                </td>
+                                <td>
+                                    <button class="action-btn" title="View Message" onclick="alert('Message:\\n\\n<?php echo htmlspecialchars(addslashes(str_replace(["\r", "\n"], ["", "\\n"], $req['message']))); ?>')"><i class="fas fa-eye"></i></button>
+                                    <?php if ($req['email']): ?>
+                                    <a href="mailto:<?php echo htmlspecialchars($req['email']); ?>" class="action-btn" title="Reply Email" style="display:inline-block;color:inherit;text-decoration:none;"><i class="fas fa-reply"></i></a>
+                                    <?php endif; ?>
+                                    <form method="POST" action="api/delete_request.php" style="display:inline;" onsubmit="return confirm('Delete this request permanentely?');">
+                                        <input type="hidden" name="id" value="<?php echo $req['id']; ?>">
+                                        <input type="hidden" name="table" value="<?php echo $req['source_table']; ?>">
+                                        <button type="submit" class="action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </form>
                                 </td>
                             </tr>
-                            <tr>
-                                <td><strong>Sarah Johnson</strong><br><small>sarah.j@university.edu</small></td>
-                                <td>General Enquiry</td>
-                                <td class="message-preview">Could you please clarify the library hours for the upcoming
-                                    holidays? We need...</td>
-                                <td>22 Mar, 2026</td>
-                                <td><span class="status-badge status-active">Replied</span></td>
-                                <td>
-                                    <button class="action-btn" title="View Message"><i class="fas fa-eye"></i></button>
-                                    <button class="action-btn" onclick="confirmDelete('Request')"><i
-                                            class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Michael Brown</strong><br><small>mbrown@pharmacology.com</small></td>
-                                <td>Library Member</td>
-                                <td class="message-preview">How long does it take to process the membership card if I
-                                    apply today? I am a...</td>
-                                <td>20 Mar, 2026</td>
-                                <td><span class="status-badge status-pending">Pending</span></td>
-                                <td>
-                                    <button class="action-btn" title="View Message"><i class="fas fa-eye"></i></button>
-                                    <button class="action-btn" title="Reply"><i class="fas fa-reply"></i></button>
-                                    <button class="action-btn" onclick="confirmDelete('Request')"><i
-                                            class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>David Wilson</strong><br><small>david.w@dental.org</small></td>
-                                <td>Feedback</td>
-                                <td class="message-preview">Great efforts by the team for the new digital library
-                                    layout. It is much more...</td>
-                                <td>18 Mar, 2026</td>
-                                <td><span class="status-badge status-active">Closed</span></td>
-                                <td>
-                                    <button class="action-btn" title="View Message"><i class="fas fa-eye"></i></button>
-                                    <button class="action-btn" onclick="confirmDelete('Request')"><i
-                                            class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
+                            <?php endforeach; ?>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>

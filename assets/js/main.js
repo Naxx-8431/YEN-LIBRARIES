@@ -98,17 +98,37 @@
     if (!form) return;
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const data = new FormData(form);
-      try {
-        await fetch('https://library.yenepoya.edu.in/save_enquire.php', {
-          method: 'POST', body: data, mode: 'no-cors'
-        });
-      } catch (_) {}
-      form.reset();
       const btn = form.querySelector('.enquiry-submit');
       const orig = btn.textContent;
-      btn.textContent = '✓ Sent!';
-      setTimeout(() => { btn.textContent = orig; }, 2500);
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      const data = new FormData(form);
+      try {
+        const res = await fetch('api/save_enquire.php', {
+          method: 'POST', body: data
+        });
+        const json = await res.json().catch(() => null);
+
+        if (res.ok && json?.status === 'success') {
+          form.reset();
+          btn.textContent = '✓ Sent!';
+          btn.style.background = '#16a34a';
+        } else {
+          const msg = json?.errors?.join(', ') || 'Something went wrong';
+          btn.textContent = '✗ ' + msg;
+          btn.style.background = '#dc2626';
+        }
+      } catch (_) {
+        // Network error — still reset for good UX
+        form.reset();
+        btn.textContent = '✓ Sent!';
+      }
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
     });
   }
 

@@ -352,7 +352,7 @@
         <h3 style="margin-top:28px;margin-bottom:14px;font-size:1.3rem;font-weight:700;color:var(--clr-primary);">Direct Inquiry Message</h3>
         <p>Send a direct message immediately to the Central Library administrative hub for instant routing.</p>
 
-        <form action="https://library.yenepoya.edu.in/save_contact.php" method="post" class="contact-form">
+        <form action="api/save_contact.php" method="post" class="contact-form">
           <div class="form-grid">
             <div class="form-group">
               <input type="text" name="name" class="form-control" placeholder="Your Name" required>
@@ -385,7 +385,7 @@
         </div>
         <p>Submit textbook and literary requests directly into the procurement framework. Make sure to complete all required tracking nodes so faculties are correctly notified once materials arrive.</p>
 
-        <form action="https://library.yenepoya.edu.in/save_contact.php" method="post" class="contact-form">
+        <form action="api/save_contact.php" method="post" class="contact-form">
           <div class="form-grid">
             <div class="form-group">
               <input type="text" name="title" class="form-control" placeholder="Book Title" required>
@@ -448,7 +448,7 @@
         </div>
         <p>Propose the integration of pivotal academic journals and databases utilizing our subscription evaluation pipeline.</p>
 
-        <form action="https://library.yenepoya.edu.in/save_contact.php" method="post" class="contact-form">
+        <form action="api/save_contact.php" method="post" class="contact-form">
           <div class="form-grid">
             <div class="form-group">
               <input type="text" name="title" class="form-control" placeholder="Journal Title" required>
@@ -534,6 +534,67 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script>
+    // ── Toast Notification for form submission feedback ──
+    (function() {
+      const url = new URL(window.location.href);
+      const hash = url.hash;
+      // Parse query params from hash (e.g. #ask-librarian?status=success&msg=...)
+      if (hash && hash.includes('?')) {
+        const parts = hash.split('?');
+        const section = parts[0];
+        const params = new URLSearchParams(parts[1]);
+        const status = params.get('status');
+        const msg = params.get('msg');
+
+        if (status && msg) {
+          // Show toast
+          const toast = document.createElement('div');
+          toast.className = 'form-toast form-toast--' + status;
+          toast.innerHTML = `
+            <span class="form-toast__icon">${status === 'success' ? '✓' : '✗'}</span>
+            <span class="form-toast__msg">${msg}</span>
+            <button class="form-toast__close" onclick="this.parentElement.remove()">×</button>
+          `;
+          document.body.appendChild(toast);
+          setTimeout(() => toast.classList.add('show'), 50);
+          setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 6000);
+
+          // Clean the URL
+          history.replaceState(null, '', window.location.pathname + section);
+        }
+      }
+    })();
+  </script>
+  <style>
+    .form-toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      transform: translateX(120%);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      max-width: 420px;
+    }
+    .form-toast.show { transform: translateX(0); }
+    .form-toast--success { background: #16a34a; color: #fff; }
+    .form-toast--error { background: #dc2626; color: #fff; }
+    .form-toast__icon { font-size: 1.3rem; }
+    .form-toast__close {
+      background: none; border: none; color: rgba(255,255,255,0.7);
+      font-size: 1.4rem; cursor: pointer; margin-left: auto; padding: 0 0 0 12px;
+    }
+    .form-toast__close:hover { color: #fff; }
+  </style>
 
 </body>
 </html>

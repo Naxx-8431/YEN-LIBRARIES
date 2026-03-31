@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/auth.php';
+checkAuth();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +23,7 @@
 
         </div>
         <nav class="nav-menu">
-            <a href="index.html" class="nav-item active">
+            <a href="index.php" class="nav-item active">
                 <i class="fas fa-th-large"></i>
                 <span>Dashboard</span>
             </a>
@@ -31,7 +35,7 @@
                 <i class="fas fa-book"></i>
                 <span>New Arrivals</span>
             </a>
-            <a href="requests.html" class="nav-item">
+            <a href="requests.php" class="nav-item">
                 <i class="fas fa-envelope-open-text"></i>
                 <span>User Requests</span>
             </a>
@@ -45,6 +49,10 @@
             <a href="#" class="nav-item">
                 <i class="fas fa-users-cog"></i>
                 <span>Users & Roles</span>
+            </a>
+            <a href="logout.php" class="nav-item" style="color:#ef4444; margin-top:30px;">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
             </a>
         </nav>
         <div class="sidebar-footer">
