@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage New Arrivals | Yenepoya Libraries Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 500px;
+            max-width: 90%;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-item.active {
+            color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="https://library.yenepoya.edu.in/images/Central-Library-logo.png" alt="Logo">
+
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="events.html" class="nav-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Manage Events</span>
+            </a>
+            <a href="new-arrivals.html" class="nav-item active">
+                <i class="fas fa-book"></i>
+                <span>New Arrivals</span>
+            </a>
+            <a href="requests.html" class="nav-item">
+                <i class="fas fa-envelope-open-text"></i>
+                <span>User Requests</span>
+            </a>
+            <div
+                style="padding: 10px 20px; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-top: 20px;">
+                Configuration</div>
+            <a href="#" class="nav-item">
+                <i class="fas fa-database"></i>
+                <span>E-Resources</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-users-cog"></i>
+                <span>Users & Roles</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+
+        <div class="page-container">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Manage New Arrivals</h1>
+                    <div class="breadcrumb">Admin / New Arrivals</div>
+                </div>
+                <button onclick="openModal('bookModal')" class="btn-add">
+                    <i class="fas fa-plus"></i>
+                    <span>Add New Book</span>
+                </button>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tab-item active">Medical College</div>
+                <div class="tab-item">Dental College</div>
+                <div class="tab-item">Nursing College</div>
+                <div class="tab-item">Ayurveda College</div>
+            </div>
+
+            <!-- Book List -->
+            <div class="data-card">
+                <div class="card-header">
+                    <h2 class="card-title">Latest Books Display List</h2>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Department</th>
+                                <th>Category</th>
+                                <th>Added Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 600;">Gray's Anatomy for Students (4th Ed)</td>
+                                <td>Anatomy</td>
+                                <td>Medical</td>
+                                <td>15 Mar, 2026</td>
+                                <td>
+                                    <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn" onclick="confirmDelete('Book')"><i
+                                            class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 600;">Harrison's Principles of Internal Medicine</td>
+                                <td>General Medicine</td>
+                                <td>Medical</td>
+                                <td>10 Mar, 2026</td>
+                                <td>
+                                    <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn" onclick="confirmDelete('Book')"><i
+                                            class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 600;">Robbins Basic Pathology</td>
+                                <td>Pathology</td>
+                                <td>Medical</td>
+                                <td>05 Mar, 2026</td>
+                                <td>
+                                    <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn" onclick="confirmDelete('Book')"><i
+                                            class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Book Modal -->
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <i class="fas fa-times close-modal" onclick="closeModal('bookModal')"></i>
+            <h2 style="margin-bottom: 20px;">Add New Book Arrival</h2>
+            <form data-action="Book Entry Added">
+                <div class="form-group">
+                    <label>Book Title</label>
+                    <input type="text" class="form-control" placeholder="Enter book name..." required>
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <input type="text" class="form-control" placeholder="e.g. Anatomy, Cardiology" required>
+                </div>
+                <div class="form-group">
+                    <label>College/Category</label>
+                    <select class="form-control" required>
+                        <option value="">Select Category</option>
+                        <option value="Medical">Medical College</option>
+                        <option value="Dental">Dental College</option>
+                        <option value="Nursing">Nursing College</option>
+                        <option value="Ayurveda">Ayurveda College</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Upload Book Cover / PDF (Link)</label>
+                    <input type="text" class="form-control" placeholder="Enter link or file path...">
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+                    <button type="button" class="action-btn" style="width: auto; padding: 0 20px;"
+                        onclick="closeModal('bookModal')">Cancel</button>
+                    <button type="submit" class="btn-add" style="border: none; cursor: pointer;">Save Entry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/admin-script.js"></script>
+</body>
+
+</html>
