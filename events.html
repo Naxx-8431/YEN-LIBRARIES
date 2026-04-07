@@ -15,104 +15,28 @@
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <style>
-    /* Styling to render nested list and tables beautifully to match components */
+    /* ── Minimal Events Styles ── */
+
     .events-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
       margin-top: 1rem;
     }
 
-    .event-card {
-      background: var(--clr-surface);
-      border: 1px solid var(--clr-border);
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s ease;
-    }
-
-    .event-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-    }
-
-    .event-card__title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--clr-primary);
-      margin-bottom: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--clr-border);
-    }
-
-    .event-details {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .event-details span {
-      font-size: 0.95rem;
-      color: var(--clr-text-secondary);
-    }
-
-    .event-details strong {
-      color: var(--clr-text-title);
-      min-width: 130px;
-      display: inline-block;
-    }
-
-    .event-desc {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--clr-text);
-      background: var(--clr-surface-alt);
-      padding: 16px;
-      border-radius: 8px;
-    }
-
-    .event-img-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .event-img-grid img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .event-img-grid img:hover {
-      transform: scale(1.05);
-    }
-
-    /* Native Details/Summary styling for Accordion replacement */
+    /* Clean accordion */
     .styled-accordion details {
-      margin-bottom: 16px;
-      background: var(--clr-surface);
-      border: 1px solid var(--clr-border);
-      border-radius: 8px;
-      overflow: hidden;
+      border-bottom: 1px solid var(--clr-border, #e2e8f0);
     }
-    
+
     .styled-accordion summary {
-      padding: 16px 20px;
+      padding: 18px 0;
       font-weight: 600;
       font-size: 1.05rem;
-      background: var(--clr-surface-alt);
       cursor: pointer;
-      color: var(--clr-text-title);
-      list-style: none; /* remove default arrow */
+      color: var(--clr-text-title, #1e293b);
+      list-style: none;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      user-select: none;
     }
 
     .styled-accordion summary::-webkit-details-marker {
@@ -121,9 +45,11 @@
 
     .styled-accordion summary::after {
       content: '+';
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 400;
-      color: var(--clr-primary);
+      color: var(--clr-primary, #283B6A);
+      flex-shrink: 0;
+      margin-left: 16px;
     }
 
     .styled-accordion details[open] summary::after {
@@ -131,8 +57,82 @@
     }
 
     .styled-accordion .details-content {
-      padding: 20px;
-      border-top: 1px solid var(--clr-border);
+      padding: 0 0 24px 0;
+    }
+
+    .styled-accordion .details-content>p {
+      font-size: 0.93rem;
+      line-height: 1.65;
+      color: var(--clr-text, #475569);
+      margin: 0 0 16px 0;
+    }
+
+    /* Simple event entry */
+    .event-entry {
+      margin-bottom: 20px;
+    }
+
+    .event-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .event-entry h3 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--clr-text-title, #1e293b);
+      margin: 0 0 4px 0;
+    }
+
+    .event-entry p,
+    .event-entry span {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--clr-text-muted, #64748b);
+      margin: 0;
+      display: block;
+    }
+
+    .event-entry strong {
+      color: var(--clr-text-title, #1e293b);
+    }
+
+    /* Simple inline images */
+    .event-photos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .event-photos img {
+      width: 170px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    /* Simple list items for flat sections */
+    .event-list-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--clr-border, #e2e8f0);
+    }
+
+    .event-list-item:last-child {
+      border-bottom: none;
+    }
+
+    .event-list-item h3 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--clr-text-title, #1e293b);
+      margin: 0 0 4px 0;
+    }
+
+    .event-list-item p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--clr-text-muted, #64748b);
+      margin: 2px 0 0 0;
     }
   </style>
 </head>
@@ -183,17 +183,20 @@
       <a href="contact.html" class="nav__link">Contact</a>
     </nav>
 
-          <div class="header__search">
-        <div class="header__search-container" id="headerSearchContainer" onclick="window.location.href='opac-search.html'" style="cursor: pointer;">
-          <button class="header__search-btn" id="headerSearchBtn" aria-label="Search" onclick="window.location.href='opac-search.html'" style="cursor: pointer; z-index: 10;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.35-4.35" />
-            </svg>
-          </button>
-          <input type="text" class="header__search-input" id="headerSearchInput" placeholder="Search for books..." readonly onclick="window.location.href='opac-search.html'" style="cursor: pointer; z-index: 10;">
-        </div>
+    <div class="header__search">
+      <div class="header__search-container" id="headerSearchContainer" onclick="window.location.href='opac-search.html'"
+        style="cursor: pointer;">
+        <button class="header__search-btn" id="headerSearchBtn" aria-label="Search"
+          onclick="window.location.href='opac-search.html'" style="cursor: pointer; z-index: 10;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+        </button>
+        <input type="text" class="header__search-input" id="headerSearchInput" placeholder="Search for books..."
+          readonly onclick="window.location.href='opac-search.html'" style="cursor: pointer; z-index: 10;">
       </div>
+    </div>
 
     <button class="header__burger" id="burger" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -213,7 +216,8 @@
   </nav>
 
   <!-- ═══════════════ PAGE HERO ═════════════════ -->
-  <div class="page-hero" style="background-image: linear-gradient(rgba(16, 28, 56, 0.75), rgba(16, 28, 56, 0.75)), url('images/banners/Library%20Events.webp'); background-size: cover; background-position: center;">
+  <div class="page-hero"
+    style="background-image: linear-gradient(rgba(16, 28, 56, 0.75), rgba(16, 28, 56, 0.75)), url('images/banners/Library%20Events.webp'); background-size: cover; background-position: center;">
     <div class="page-hero__inner">
       <div class="page-hero__breadcrumb">
         <a href="index.html">Home</a>
@@ -222,8 +226,9 @@
         </svg>
         <span>Events</span>
       </div>
-      <h1 class="page-hero__title">Library Events & Education</h1>
-      <p class="page-hero__subtitle">Explore our continuous endeavors to educate, empower, and engage students and faculty through robust academic interactions.</p>
+      <h1 class="page-hero__title">Library Events &amp; Education</h1>
+      <p class="page-hero__subtitle">Explore our continuous endeavors to educate, empower, and engage students and
+        faculty through robust academic interactions.</p>
     </div>
   </div>
 
@@ -286,22 +291,24 @@
           <h2 class="page-section__title">Library Events</h2>
           <div class="page-section__divider"></div>
         </div>
-        <p>Annual academic training conferences directly hosted by the Central Library with expert industry trainers from major research indexing platforms.</p>
+        <p>Annual academic training conferences directly hosted by the Central Library with expert industry trainers
+          from major research indexing platforms.</p>
 
         <div class="styled-accordion mt-4">
+
           <!-- Accordion 1 -->
           <details open>
-            <summary>User Awareness Programs Held on February 18th 2025 to February 20th 2025</summary>
+            <summary>User Awareness Programs — February 18–20, 2025</summary>
             <div class="details-content">
-              <p>The Central Library organized a series of User Awareness Programs designed for faculty members, researchers, and students to enhance awareness of effective utilization of subscribed e-resources.</p>
-              
-              <div class="event-card">
-                <div class="event-card__title">Library e-Resources and Research Tools Collaboration Seminars</div>
-                <div class="event-details">
-                  <span><strong>Resource Person:</strong> Dr. K.S. Ali, Chief Librarian</span>
-                  <span><strong>Highlights:</strong> Hands-on training on journal selection (without APC), identifying indexed publishers, and effective utilization of research methodology tools.</span>
-                </div>
-                <div class="event-img-grid">
+              <p>The Central Library organized a series of User Awareness Programs designed for faculty members,
+                researchers, and students to enhance awareness of effective utilization of subscribed e-resources.</p>
+
+              <div class="event-entry">
+                <h3>Library e-Resources and Research Tools Collaboration Seminars</h3>
+                <span><strong>Resource Person:</strong> Dr. K.S. Ali, Chief Librarian</span>
+                <span><strong>Highlights:</strong> Hands-on training on journal selection (without APC), identifying
+                  indexed publishers, and effective utilization of research methodology tools.</span>
+                <div class="event-photos">
                   <img src="images/library_events/events1.jpg" alt="Event photo YMC">
                   <img src="images/library_events/events2.jpg" alt="Event photo Ayurveda College">
                 </div>
@@ -311,55 +318,50 @@
 
           <!-- Accordion 2 -->
           <details>
-            <summary>Sensitization and User Awareness Programs Held on December 11th 2024 to December 19th 2024</summary>
+            <summary>Sensitization &amp; User Awareness Programs — December 11–19, 2024</summary>
             <div class="details-content">
               <p>Series of online interactive seminars enhancing robust e-resources usage tracking.</p>
 
-              <div class="event-card">
-                <div class="event-card__title">Program 1: ClinicalKey Flex (Elsevier)</div>
-                <div class="event-details">
-                  <span><strong>Date:</strong> December 11, 2024</span>
-                  <span><strong>Trainer:</strong> Mr. Abhishek Gupta, Elsevier Health Solutions</span>
-                </div>
-                <div class="event-img-grid">
+              <div class="event-entry">
+                <h3>Program 1: ClinicalKey Flex (Elsevier)</h3>
+                <span><strong>Date:</strong> December 11, 2024</span>
+                <span><strong>Trainer:</strong> Mr. Abhishek Gupta, Elsevier Health Solutions</span>
+                <div class="event-photos">
                   <img src="images/library_events/clinicalkeyflex1.jpg" alt="ClinicalKey flex 1">
                   <img src="images/library_events/clinicalkeyflex2.jpg" alt="ClinicalKey flex 2">
                 </div>
               </div>
 
-              <div class="event-card mt-3">
-                <div class="event-card__title">Program 2: Grammarly Premium</div>
-                <div class="event-details">
-                  <span><strong>Date:</strong> December 12, 2024</span>
-                  <span><strong>Trainer:</strong> Mr. Binoy Halam, Grammarly</span>
-                </div>
-                <div class="event-img-grid">
+              <div class="event-entry">
+                <h3>Program 2: Grammarly Premium</h3>
+                <span><strong>Date:</strong> December 12, 2024</span>
+                <span><strong>Trainer:</strong> Mr. Binoy Halam, Grammarly</span>
+                <div class="event-photos">
                   <img src="images/library_events/grammarly1.png" alt="Grammarly Seminar">
                   <img src="images/library_events/grammarly2.png" alt="Grammarly Session">
                 </div>
               </div>
 
-              <div class="event-card mt-3">
-                <div class="event-card__title">Program 3 & 4: Edzter & Knimbus Off-Campus</div>
-                <div class="event-details">
-                  <span><strong>Date:</strong> December 18 - 19, 2024</span>
-                  <span><strong>Highlights:</strong> Platform demonstrations for remote repository tools and magazine aggregates handling over 100 participants.</span>
-                </div>
+              <div class="event-entry">
+                <h3>Program 3 &amp; 4: Edzter &amp; Knimbus Off-Campus</h3>
+                <span><strong>Date:</strong> December 18–19, 2024</span>
+                <span><strong>Highlights:</strong> Platform demonstrations for remote repository tools and magazine
+                  aggregates handling over 100 participants.</span>
               </div>
             </div>
           </details>
 
           <!-- Accordion 3 -->
           <details>
-            <summary>User Training Program On Subscribed E-Resources Held on May 22nd 2024 to June 27th 2024</summary>
+            <summary>User Training Program on Subscribed E-Resources — May 22 – June 27, 2024</summary>
             <div class="details-content">
-              <div class="event-card">
-                <div class="event-card__title">ProQuest Central & Web of Science Training Weeks</div>
-                <div class="event-details">
-                  <span><strong>Resource Person:</strong> Dr. Subhasree Nag & Mr. Srijith Sasidharan (Clarivate)</span>
-                  <span><strong>Programs:</strong> Web of Science Literature Review, EndNote Mastery, Journal Citation Report (JCR), ProQuest E-Books Central Database Navigation.</span>
-                </div>
-                <div class="event-img-grid">
+              <div class="event-entry">
+                <h3>ProQuest Central &amp; Web of Science Training Weeks</h3>
+                <span><strong>Resource Person:</strong> Dr. Subhasree Nag &amp; Mr. Srijith Sasidharan
+                  (Clarivate)</span>
+                <span><strong>Programs:</strong> Web of Science Literature Review, EndNote Mastery, Journal Citation
+                  Report (JCR), ProQuest E-Books Central Database Navigation.</span>
+                <div class="event-photos">
                   <img src="images/library_events/webscience.jpg" alt="Web of Science Session">
                   <img src="images/library_events/endnote.png" alt="EndNote Training">
                   <img src="images/library_events/proquest.jpg" alt="ProQuest Module">
@@ -367,6 +369,7 @@
               </div>
             </div>
           </details>
+
         </div>
       </section>
 
@@ -377,56 +380,48 @@
           <h2 class="page-section__title">User Education Programs</h2>
           <div class="page-section__divider"></div>
         </div>
-        <p>Our User Education Initiatives ensure every researcher and faculty member stays highly proficient in navigating complex publication standards and platform paradigms.</p>
+        <p>Our User Education Initiatives ensure every researcher and faculty member stays highly proficient in
+          navigating complex publication standards and platform paradigms.</p>
 
         <div class="events-grid">
-          <div class="event-card">
-            <div class="event-card__title">Predatory Vs Indexed Journals Seminar</div>
-            <div class="event-details">
-              <span><strong>Date:</strong> 25-09-2021 | Google Meet</span>
-              <span><strong>Resource:</strong> Dr. B. T. Sampath Kumar</span>
-            </div>
-            <div class="event-desc">
-              Webinar explicitly highlighting nuances differentiating predatory setups from correctly indexed standard mechanisms. Topics traversed NIRF ranking metrics, SJR arrays, Scimago structures and WoS profiles.
-            </div>
+
+          <div class="event-list-item">
+            <h3>Predatory Vs Indexed Journals Seminar</h3>
+            <p><strong>Date:</strong> 25-09-2021 | Google Meet &nbsp;·&nbsp; <strong>Resource:</strong> Dr. B. T.
+              Sampath Kumar</p>
+            <p>Webinar explicitly highlighting nuances differentiating predatory setups from correctly indexed standard
+              mechanisms. Topics traversed NIRF ranking metrics, SJR arrays, Scimago structures and WoS profiles.</p>
           </div>
 
-          <div class="event-card">
-            <div class="event-card__title">Submitting Publications for BMJ</div>
-            <div class="event-details">
-              <span><strong>Date:</strong> 15-11-2021 | YDC Auditorium</span>
-              <span><strong>Resource:</strong> Mr. R. Anand and Ms. Pooja Nair (BMJ)</span>
-            </div>
-            <div class="event-desc">
-              Personalized mini workshops empowering authors with insights strictly mapping the standards for authoring BMJ accepted articles and case report evaluations.
-            </div>
-            <div class="event-img-grid" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="event-list-item">
+            <h3>Submitting Publications for BMJ</h3>
+            <p><strong>Date:</strong> 15-11-2021 | YDC Auditorium &nbsp;·&nbsp; <strong>Resource:</strong> Mr. R. Anand
+              and Ms. Pooja Nair (BMJ)</p>
+            <p>Personalized mini workshops empowering authors with insights strictly mapping the standards for authoring
+              BMJ accepted articles and case report evaluations.</p>
+            <div class="event-photos">
               <img src="images/user/user1.webp" alt="BMJ Seminar 1">
               <img src="images/user/user2.webp" alt="BMJ Seminar 2">
             </div>
           </div>
 
-          <div class="event-card">
-            <div class="event-card__title">URKUND (Ouriginal) Plagiarism Detection Software Launch</div>
-            <div class="event-details">
-              <span><strong>Date:</strong> 12-11-2021 | Virtual</span>
-              <span><strong>Resource:</strong> Shri Manoj Kumar K (Scientist-E INFLIBNET)</span>
-            </div>
-            <div class="event-desc">
-              Detailed initiation providing administrator thresholds configurations, enabling University scholars access utilizing ethical research analysis parameters comprehensively.
-            </div>
+          <div class="event-list-item">
+            <h3>URKUND (Ouriginal) Plagiarism Detection Software Launch</h3>
+            <p><strong>Date:</strong> 12-11-2021 | Virtual &nbsp;·&nbsp; <strong>Resource:</strong> Shri Manoj Kumar K
+              (Scientist-E INFLIBNET)</p>
+            <p>Detailed initiation providing administrator thresholds configurations, enabling University scholars
+              access utilizing ethical research analysis parameters comprehensively.</p>
           </div>
 
-          <div class="event-card">
-            <div class="event-card__title">Author Workshops & Basics of Publication Metrics</div>
-            <div class="event-details">
-              <span><strong>Date:</strong> Oct 2020 | Microsoft Teams</span>
-              <span><strong>Resource:</strong> Dr. K.S. Ali & Clarivate Analytics Team</span>
-            </div>
-            <div class="event-desc">
-              Multi-tiered sessions detailing accurate measurements of citations, institutional indexing via IRINS matching criteria III protocols mappings completely integrated. Focuses heavily addressed h-index calculations procedures precisely.
-            </div>
+          <div class="event-list-item">
+            <h3>Author Workshops &amp; Basics of Publication Metrics</h3>
+            <p><strong>Date:</strong> Oct 2020 | Microsoft Teams &nbsp;·&nbsp; <strong>Resource:</strong> Dr. K.S. Ali
+              &amp; Clarivate Analytics Team</p>
+            <p>Multi-tiered sessions detailing accurate measurements of citations, institutional indexing via IRINS
+              matching criteria III protocols mappings completely integrated. Focuses heavily addressed h-index
+              calculations procedures precisely.</p>
           </div>
+
         </div>
       </section>
 
@@ -437,12 +432,14 @@
           <h2 class="page-section__title">Library Orientations</h2>
           <div class="page-section__divider"></div>
         </div>
-        <p>Visual timeline tracking rigorous induction assemblies conducted actively equipping incoming batches and postgraduate divisions covering vast Central Library resources maps properly formatted.</p>
+        <p>Induction assemblies equipping incoming batches and postgraduate divisions covering Central Library
+          resources.</p>
 
         <div class="events-grid mt-4">
-          <div class="event-card">
-            <div class="event-card__title text-center" style="border-bottom:none; margin-bottom: 0;">2021 & 2019 Academic Cohorts</div>
-            <div class="event-img-grid" style="grid-template-columns: repeat(2, 1fr);">
+
+          <div class="event-list-item">
+            <h3>2021 &amp; 2019 Academic Cohorts</h3>
+            <div class="event-photos">
               <img src="images/orientation/5.webp" alt="UG orientation 21">
               <img src="images/orientation/bsc01.webp" alt="Nursing Cohort Bsc">
               <img src="images/orientation/3B%20UG%20Orientation%20Prog.webp" alt="UG Progress Cohort">
@@ -450,23 +447,25 @@
             </div>
           </div>
 
-          <div class="event-card">
-            <div class="event-card__title text-center" style="border-bottom:none; margin-bottom: 0;">2018 Nursing & Radiology Wings</div>
-            <div class="event-img-grid" style="grid-template-columns: repeat(2, 1fr);">
-               <img src="images/orientation/19-09-2018%20Radiology%20dept-%20Library%20Orientation.webp" alt="Radiology dept">
-               <img src="images/orientation/20-07-2018%20nursng%20faculty%20oriention.webp" alt="Nursing dept">
+          <div class="event-list-item">
+            <h3>2018 Nursing &amp; Radiology Wings</h3>
+            <div class="event-photos">
+              <img src="images/orientation/19-09-2018%20Radiology%20dept-%20Library%20Orientation.webp"
+                alt="Radiology dept">
+              <img src="images/orientation/20-07-2018%20nursng%20faculty%20oriention.webp" alt="Nursing dept">
             </div>
           </div>
 
-          <div class="event-card">
-            <div class="event-card__title text-center" style="border-bottom:none; margin-bottom: 0;">2017 & 2016 Medical Arrays</div>
-            <div class="event-img-grid" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="event-list-item">
+            <h3>2017 &amp; 2016 Medical Arrays</h3>
+            <div class="event-photos">
               <img src="images/orientation/DSC_0862.webp" alt="B.Pharm Induction">
               <img src="images/orientation/Lib%20Orientation-Medical%20PGs.webp" alt="PG Medical Induction">
               <img src="images/orientation/1.webp" alt="Orientation Base Set 1">
               <img src="images/orientation/2.webp" alt="Orientation Base Set 2">
             </div>
           </div>
+
         </div>
       </section>
 
@@ -477,39 +476,45 @@
           <h2 class="page-section__title">Books Exhibitions</h2>
           <div class="page-section__divider"></div>
         </div>
-        <p>Curated literature showcases linking leading vendor publishers immediately with University faculties fostering highly specific requisition pathways driving collection enrichments significantly.</p>
+        <p>Curated literature showcases linking leading vendor publishers with University faculties, fostering specific
+          requisition pathways driving collection enrichments.</p>
 
         <div class="styled-accordion mt-4">
+
           <details open>
-            <summary>Books Exhibition 2024 - 25</summary>
+            <summary>Books Exhibition 2024–25</summary>
             <div class="details-content">
-              <p>The Central Library organized a five-day Books Exhibition featuring Medical, Dental, Nursing, Physiotherapy, General Interest literature streams across multiple campuses including Deralakatte, Mudipu and Kulur.</p>
-              <div class="event-img-grid">
+              <p>The Central Library organized a five-day Books Exhibition featuring Medical, Dental, Nursing,
+                Physiotherapy, General Interest literature streams across multiple campuses including Deralakatte,
+                Mudipu and Kulur.</p>
+              <div class="event-photos">
                 <img src="images/Books%20Exhibhition/books24-25-1.jpg" alt="Exhibition 2024 Snap 1">
                 <img src="images/Books%20Exhibhition/books24-25-2.jpg" alt="Exhibition 2024 Snap 2">
                 <img src="images/Books%20Exhibhition/books24-25-3.jpg" alt="Exhibition 2024 Snap 3">
               </div>
             </div>
           </details>
-          
+
           <details>
             <summary>Books Exhibition 2017</summary>
             <div class="details-content">
-              <div class="event-img-grid" style="grid-template-columns: 1fr;">
-                <img src="images/Books%20Exhibhition/Book%20Exhibition-2017.jpg" alt="Exhibition 2017" style="height:auto;">
+              <div class="event-photos">
+                <img src="images/Books%20Exhibhition/Book%20Exhibition-2017.jpg" alt="Exhibition 2017"
+                  style="width:100%;height:auto;">
               </div>
             </div>
           </details>
 
           <details>
-            <summary>Books Exhibition 2015 & 2014</summary>
+            <summary>Books Exhibition 2015 &amp; 2014</summary>
             <div class="details-content">
-              <div class="event-img-grid">
-                 <img src="images/Books%20Exhibhition/Book%20exhibition-23%20sept%202015-1.jpg" alt="Exhibition 2015">
-                 <img src="images/Books%20Exhibhition/DSC_0001.jpg" alt="Exhibition 2014">
+              <div class="event-photos">
+                <img src="images/Books%20Exhibhition/Book%20exhibition-23%20sept%202015-1.jpg" alt="Exhibition 2015">
+                <img src="images/Books%20Exhibhition/DSC_0001.jpg" alt="Exhibition 2014">
               </div>
             </div>
           </details>
+
         </div>
       </section>
 
@@ -526,7 +531,8 @@
             <img src="https://library.yenepoya.edu.in/images/Central-Library-logo.png" alt="Yenepoya Libraries">
             <span style="font-weight:800;font-size:18px;color:#fff;letter-spacing:-.2px;">Yenepoya Libraries</span>
           </div>
-          <p>Central hub of information for Yenepoya (Deemed to be University). Providing library and information services to 8,000+ users since 1992.</p>
+          <p>Central hub of information for Yenepoya (Deemed to be University). Providing library and information
+            services to 8,000+ users since 1992.</p>
         </div>
         <!-- Links -->
         <div>
@@ -543,7 +549,7 @@
     </div>
     <div class="footer__bottom">
       <div class="footer__bottom-inner">
-        <span>© 2026 <strong>Yenepoya (Deemed to be University)</strong>. All Rights Reserved.</span>
+        <span>&copy; 2026 <strong>Yenepoya (Deemed to be University)</strong>. All Rights Reserved.</span>
       </div>
     </div>
   </footer>
@@ -551,12 +557,5 @@
   <script src="assets/js/main.js"></script>
 
 </body>
+
 </html>
-
-
-
-
-
-
-
-
