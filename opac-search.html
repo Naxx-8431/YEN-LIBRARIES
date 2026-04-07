@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yenepoya Libraries | University Road, Deralakatte, Mangalore 575018</title>
+  <meta name="description"
+    content="Yenepoya Libraries – Central hub of information for Yenepoya (Deemed to be University). Access e-resources, journals, databases, institutional repository and more.">
+  <link rel="icon" href="assets/images/favicon.jpg">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+
+<body>
+
+  <!-- ═══════════════ TOP BAR ═══════════════════ -->
+  <div class="topbar">
+    <div class="topbar__left">
+      <div class="topbar__contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+        <a href="mailto:library@yenepoya.edu.in">library@yenepoya.edu.in</a>
+      </div>
+      <div class="topbar__divider"></div>
+      <div class="topbar__contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
+        </svg>
+        <a href="tel:08242206067">0824-2206067</a>
+      </div>
+    </div>
+    <div class="topbar__right">
+      <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-user.html" target="_blank">My Account</a>
+      <div class="topbar__divider"></div>
+      <a href="services.html#membership">Get Library Card</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════ HEADER ════════════════════ -->
+  <header class="header">
+    <a href="index.html" class="header__logo" aria-label="Yenepoya Libraries Home">
+      <img src="https://library.yenepoya.edu.in/images/Central-Library-logo.png" alt="Yenepoya Central Library">
+      <img src="https://library.yenepoya.edu.in/images/naac.png" alt="NAAC" class="header__logo-naac">
+    </a>
+
+    <nav class="header__nav" aria-label="Primary Navigation">
+      <a href="index.html" class="nav__link">Home</a>
+      <a href="about.html" class="nav__link">About</a>
+      <a href="services.html" class="nav__link">Services</a>
+      <a href="e-resources.html" class="nav__link">E-Resources</a>
+      <a href="repository.html" class="nav__link">Repository</a>
+      <a href="research.html" class="nav__link">Research</a>
+      <a href="events.html" class="nav__link">Events</a>
+      <a href="contact.html" class="nav__link">Contact</a>
+    </nav>
+
+    <div class="header__search">
+      <div class="header__search-container" id="headerSearchContainer">
+        <button class="header__search-btn" id="headerSearchBtn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+        </button>
+        <input type="text" class="header__search-input" id="headerSearchInput" placeholder="Search for books..." readonly>
+      </div>
+    </div>
+
+    <button class="header__burger" id="burger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile Navigation">
+    <a href="index.html" class="nav__link">Home</a>
+    <a href="about.html" class="nav__link">About</a>
+    <a href="services.html" class="nav__link">Services</a>
+    <a href="e-resources.html" class="nav__link">E-Resources</a>
+    <a href="repository.html" class="nav__link">Repository</a>
+    <a href="research.html" class="nav__link">Research</a>
+    <a href="events.html" class="nav__link">Events</a>
+    <a href="contact.html" class="nav__link">Contact</a>
+  </nav>
+<main id="main" style="background-color: #ffffff;">
+    <div class="container" style="max-width: 760px; margin: 0 auto; text-align: center; padding: 80px 20px 40px 20px;">
+      <h1 style="font-size: 40px; color: var(--clr-primary-dk); margin-bottom: 16px; font-weight: 800; letter-spacing: -0.5px;">Library Catalogue</h1>
+      <p style="font-size: 16px; color: var(--clr-text-muted); margin-bottom: 48px; line-height: 1.6;">Search our extensive collection of books, academic journals, e-resources, databases, and more in a single unified interface.</p>
+
+            <style>
+        .custom-search-wrapper { border: 1px solid #e2e8f0; border-radius: 12px; padding: 8px; background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.04); transition: border-color 0.3s, box-shadow 0.3s; }
+        .custom-search-wrapper:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-color: var(--clr-primary); }
+        .custom-search-form { display: flex; gap: 8px; align-items: stretch; margin: 0; width: 100%; }
+        .custom-select { border: none; background: var(--clr-bg); padding: 0 20px; font-size: 15px; border-radius: 8px; color: var(--clr-text); font-weight: 500; outline: none; cursor: pointer; height: 50px; appearance: auto; }
+        .custom-input { flex: 1; border: none; background: transparent; padding: 0 20px; font-size: 16px; outline: none; height: 50px; }
+        .custom-btn { background: var(--clr-primary); color: #fff; border: none; padding: 0 32px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; height: 50px; white-space: nowrap; }
+        
+        @media (max-width: 768px) {
+          .custom-search-form { flex-direction: column; }
+          .custom-select, .custom-input, .custom-btn { width: 100%; height: 50px; }
+          .custom-input { background: var(--clr-bg); border-radius: 8px; }
+        }
+      </style>
+      <div class="custom-search-wrapper">
+        <form class="custom-search-form" action="javascript:void(0)">
+          <select name="idx" class="custom-select">
+            <option value="ti">Title</option>
+            <option value="au">Author</option>
+            <option value="su">Subject</option>
+            <option value="isbn">ISBN</option>
+            <option value="issn">ISSN</option>
+            <option value="ser">Series</option>
+            <option value="call">Call number</option>
+          </select>
+          <input type="text" class="custom-input" placeholder="Type your search here...">
+          <button type="submit" class="custom-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width: 18px; height: 18px; margin-right: 8px;"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+            Search
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Popular Books Section -->
+    <section class="section" style="padding-top: 40px; padding-bottom: 60px; background-color: #ffffff;">
+      <div class="container">
+        <div class="section__header" style="margin-bottom: 40px; text-align: left;">
+          <h2 style="font-size: 24px; color: var(--clr-text-main); font-weight: 700;">Popular Books</h2>
+        </div>
+        <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 32px;">
+          
+          <!-- Book 1 -->
+          <article class="card" style="aspect-ratio: 1/1; border-radius: 16px; background-image: url('images/e-books/ydc-e-book3.jpg'); background-size: cover; background-position: center; position: relative; overflow: hidden; cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 30px 20px 20px 20px; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%); display: flex; flex-direction: column; justify-content: flex-end;">
+              <h3 style="color: #fff; font-size: 18px; line-height: 1.4; margin: 0; font-weight: 700;">Harrison's Principles of Internal Medicine</h3>
+            </div>
+          </article>
+
+          <!-- Book 2 -->
+          <article class="card" style="aspect-ratio: 1/1; border-radius: 16px; background-image: url('images/e-books/ydc-e-book2.jpg'); background-size: cover; background-position: center; position: relative; overflow: hidden; cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 30px 20px 20px 20px; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%); display: flex; flex-direction: column; justify-content: flex-end;">
+              <h3 style="color: #fff; font-size: 18px; line-height: 1.4; margin: 0; font-weight: 700;">Gray's Anatomy for Students</h3>
+            </div>
+          </article>
+
+          <!-- Book 3 -->
+          <article class="card" style="aspect-ratio: 1/1; border-radius: 16px; background-image: url('images/e-books/ydc-e-book1.jpg'); background-size: cover; background-position: center; position: relative; overflow: hidden; cursor: pointer; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 30px 20px 20px 20px; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%); display: flex; flex-direction: column; justify-content: flex-end;">
+              <h3 style="color: #fff; font-size: 18px; line-height: 1.4; margin: 0; font-weight: 700;">Pharmacology and Pharmacotherapeutics</h3>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section class="section" style="padding-top: 0px; padding-bottom: 120px; background-color: #ffffff;">
+      <div class="container">
+        <div class="section__header" style="margin-bottom: 40px; text-align: left;">
+          <h2 style="font-size: 24px; color: var(--clr-text-main); font-weight: 700;">Upcoming Events</h2>
+        </div>
+        <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 32px;">
+          
+          <!-- Event 1 -->
+          <article class="card" style="aspect-ratio: 1/1; border: 1px solid #eaeaea; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; background: #fff; transition: box-shadow 0.3s;" onmouseover="this.style.boxShadow='0 12px 24px rgba(40, 59, 106, 0.05)'" onmouseout="this.style.boxShadow='none'">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px; color: var(--clr-primary);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span style="font-size: 14px; font-weight: 600;">20 MAR</span>
+            </div>
+            <h3 style="font-size: 20px; margin-bottom: 12px; color: var(--clr-text-main); font-weight: 700;">Web of Science Training Program</h3>
+            <p style="font-size: 14px; color: var(--clr-text-muted); line-height: 1.5; flex-grow: 1;">Online session � for faculty, researchers &amp; PG students. 2:15 PM.</p>
+            <a href="#" style="color: var(--clr-primary); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">View More &rarr;</a>
+          </article>
+
+          <!-- Event 2 -->
+          <article class="card" style="aspect-ratio: 1/1; border: 1px solid #eaeaea; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; background: #fff; transition: box-shadow 0.3s;" onmouseover="this.style.boxShadow='0 12px 24px rgba(40, 59, 106, 0.05)'" onmouseout="this.style.boxShadow='none'">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px; color: var(--clr-primary);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span style="font-size: 14px; font-weight: 600;">25 MAR</span>
+            </div>
+            <h3 style="font-size: 20px; margin-bottom: 12px; color: var(--clr-text-main); font-weight: 700;">User Orientation Program 2026</h3>
+            <p style="font-size: 14px; color: var(--clr-text-muted); line-height: 1.5; flex-grow: 1;">Library tour &amp; e-resources orientation for UG first-year students.</p>
+            <a href="#" style="color: var(--clr-primary); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">View More &rarr;</a>
+          </article>
+
+          <!-- Event 3 -->
+          <article class="card" style="aspect-ratio: 1/1; border: 1px solid #eaeaea; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; background: #fff; transition: box-shadow 0.3s;" onmouseover="this.style.boxShadow='0 12px 24px rgba(40, 59, 106, 0.05)'" onmouseout="this.style.boxShadow='none'">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px; color: var(--clr-primary);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span style="font-size: 14px; font-weight: 600;">01 APR</span>
+            </div>
+            <h3 style="font-size: 20px; margin-bottom: 12px; color: var(--clr-text-main); font-weight: 700;">Books Exhibition 2026</h3>
+            <p style="font-size: 14px; color: var(--clr-text-muted); line-height: 1.5; flex-grow: 1;">Annual book exhibition with latest titles from major publishers.</p>
+            <a href="#" style="color: var(--clr-primary); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">View More &rarr;</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <footer class="footer" role="contentinfo">
+    <div class="footer__top">
+      <div class="footer__grid">
+
+        <!-- Brand -->
+        <div class="footer__brand">
+          <div class="footer__brand-logo">
+            <img src="https://library.yenepoya.edu.in/images/Central-Library-logo.png" alt="Yenepoya Libraries">
+            <span style="font-weight:800;font-size:18px;color:#fff;letter-spacing:-.2px;">Yenepoya Libraries</span>
+          </div>
+          <p>Central hub of information for Yenepoya (Deemed to be University). Providing library and information
+            services to 8,000+ users since 1992.</p>
+          <div class="footer__social">
+            <a href="mailto:library@yenepoya.edu.in" class="footer__social-link" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+            </a>
+            <a href="tel:08242206067" class="footer__social-link" aria-label="Phone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" /></svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Useful Links -->
+        <div>
+          <div class="footer__col-title">Useful Links</div>
+          <div class="footer__links">
+            <a href="about.html">About Library</a>
+            <a href="e-resources.html">E-Resources</a>
+            <a href="services.html">Services</a>
+            <a href="repository.html">Institutional Repository</a>
+            <a href="research.html">Research Support</a>
+            <a href="events.html">Events</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="services.html#membership">Get Library Card</a>
+            <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-user.html" target="_blank">My Account</a>
+          </div>
+        </div>
+
+        <!-- Our Institutes -->
+        <div>
+          <div class="footer__col-title">Our Institutes</div>
+          <div class="footer__links">
+            <a href="https://ydc.yenepoya.edu.in" target="_blank">Dental College</a>
+            <a href="https://www.ypcrc.yenepoya.edu.in" target="_blank">Pharmacy &amp; Research Centre</a>
+            <a href="https://ymc.yenepoya.edu.in" target="_blank">Medical College</a>
+            <a href="https://ync.yenepoya.edu.in" target="_blank">Nursing College</a>
+            <a href="https://ypc.yenepoya.edu.in" target="_blank">Physiotherapy College</a>
+            <a href="https://yiascm.in" target="_blank">YIASCM</a>
+            <a href="https://www.yenepoyaayurveda.com" target="_blank">Ayurveda College</a>
+            <a href="https://www.yhch.in" target="_blank">Homoeopathy College</a>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <div class="footer__col-title">Get In Touch</div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>University Road, Deralakatte,<br>Mangalore – 575018, Karnataka, India</span>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+            <a href="mailto:library@yenepoya.edu.in">library@yenepoya.edu.in</a>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
+            </svg>
+            <a href="tel:08242206067">+91 824 2206067</a>
+          </div>
+          <div style="margin-top:16px;">
+            <a href="contact.html" class="btn btn--outline" style="font-size:13px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                style="width:14px;height:14px;">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+              Ask a Librarian
+            </a>
+          </div>
+          <!-- Social links moved to left column -->
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="footer__bottom-inner">
+        <span>© 2026 <strong>Yenepoya (Deemed to be University)</strong>. All Rights Reserved.</span>
+        <span>Designed by <a href="https://ytincubator.com" target="_blank">Yenepoya Technology Incubator</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════ SIDEBAR ENQUIRY ═══════════ -->
+  <div class="enquiry-sidebar" id="enquirySidebar" role="complementary" aria-label="Quick Enquiry">
+    <div class="enquiry-tab" id="enquiryTab" tabindex="0" role="button" aria-expanded="false"
+      aria-controls="enquirySidebar">Enquire Now</div>
+    <h3>Quick Enquiry</h3>
+    <form id="enquiryForm" action="api/save_enquire.php" method="post">
+      <input class="enquiry-field" type="text" name="name" placeholder="Your Name *" required>
+      <input class="enquiry-field" type="email" name="email" placeholder="Email Address">
+      <input class="enquiry-field" type="tel" name="phone" placeholder="Phone Number *" required>
+      <textarea class="enquiry-field enquiry-field--textarea" name="message" placeholder="Message…" required></textarea>
+      <button type="submit" class="enquiry-submit">Send Enquiry</button>
+    </form>
+  </div>
+
+  <!-- Back to Top -->
+  <button class="back-top" id="backTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="m18 15-6-6-6 6" />
+    </svg>
+  </button>
+
+  <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
+  <button class="notif-toggle" onclick="toggleNotifications()" aria-label="Notifications">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+    </svg>
+    <span class="notif-badge">3</span>
+  </button>
+  <div class="notif-sidebar" id="notifSidebar">
+    <div class="notif-header">
+      <h3>Latest Updates</h3>
+      <button class="notif-close" aria-label="Close" onclick="toggleNotifications()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="notif-body">
+      <div class="notif-item">
+        <span class="notif-time">2 hours ago</span>
+        <strong>New Trial Database:</strong> Full access to the Cochrane Library is now live for all medical faculties.
+      </div>
+      <div class="notif-item">
+        <span class="notif-time">1 day ago</span>
+        <strong>Library Timings:</strong> The Central Library will remain open 24/7 starting next Monday for exam preparations.
+      </div>
+      <div class="notif-item">
+        <span class="notif-time">3 days ago</span>
+        <strong>Upcoming Webinar:</strong> Join us for "Strategies in Plagiarism Prevention" tomorrow at 3:00 PM.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════ AI CHAT BOX ════════════════ -->
+  <button class="chat-fab" onclick="toggleChat()" aria-label="Open Chat">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+  </button>
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="chat-avatar">🤖</span>
+        <div style="line-height:1.2;">
+          <strong>YEN-Bot</strong><br>
+          <span style="font-size:11px; opacity:0.8; display:flex; align-items:center; gap:4px;">
+            <span style="display:inline-block;width:6px;height:6px;background:#4ade80;border-radius:50%;"></span> Online
+          </span>
+        </div>
+      </div>
+      <button class="chat-close" onclick="toggleChat()" aria-label="Close Chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="chat-msg bot">Hello! 👋 I'm YEN-Bot, your virtual library assistant. I can help you find books, OPAC links, or remote access details. What do you need today?</div>
+    </div>
+    <form class="chat-footer" onsubmit="event.preventDefault(); document.getElementById('chatInput').value='';">
+      <input type="text" id="chatInput" placeholder="Type your message..." autocomplete="off">
+      <button type="submit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    function switchDbPane(paneId) {
+      const panes = document.querySelectorAll('.db-pane');
+      panes.forEach(p => p.classList.remove('active'));
+      const activePane = document.getElementById(paneId);
+      if (activePane) activePane.classList.add('active');
+    }
+
+    function toggleNotifications() {
+      document.getElementById('notifSidebar').classList.toggle('open');
+    }
+    function toggleChat() {
+      document.getElementById('chatWindow').classList.toggle('open');
+      const input = document.getElementById('chatInput');
+      if(document.getElementById('chatWindow').classList.contains('open')) {
+        setTimeout(() => input.focus(), 300);
+      }
+    }
+  </script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
+
+
+
+
+
