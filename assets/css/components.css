@@ -2491,3 +2491,25 @@
 .db-irins-stat { max-width: calc(50% - 8px); flex: 1 1 calc(50% - 8px); text-align: left;}
 .db-recent-list { margin: 0; width: 100%; }
 
+.chat-avatar svg {
+  width: 24px;
+  height: 24px;
+}
+.chat-footer button {
+  flex-shrink: 0;
+}
+.chat-footer button svg {
+  width: 20px;
+  height: 20px;
+}
+.chat-avatar svg {
+  width: 24px;
+  height: 24px;
+}
+.chat-footer button {
+  flex-shrink: 0;
+}
+.chat-footer button svg {
+  width: 20px;
+  height: 20px;
+}

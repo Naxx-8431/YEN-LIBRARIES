@@ -154,14 +154,17 @@
       <a href="events.html" class="nav__link">Events</a>
       <a href="contact.html" class="nav__link">Contact</a>
     </nav>
-    <div class="header__search">
-      <button class="header__search-btn" aria-label="Search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-          <circle cx="11" cy="11" r="8" />
-          <path d="m21 21-4.35-4.35" />
-        </svg>
-      </button>
-    </div>
+          <div class="header__search">
+        <div class="header__search-container" id="headerSearchContainer" onclick="window.location.href='opac-search.html'" style="cursor: pointer;">
+          <button class="header__search-btn" id="headerSearchBtn" aria-label="Search" onclick="window.location.href='opac-search.html'" style="cursor: pointer; z-index: 10;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+          </button>
+          <input type="text" class="header__search-input" id="headerSearchInput" placeholder="Search for books..." readonly onclick="window.location.href='opac-search.html'" style="cursor: pointer; z-index: 10;">
+        </div>
+      </div>
     <button class="header__burger" id="burger"
       aria-label="Toggle navigation"><span></span><span></span><span></span></button>
   </header>
@@ -262,46 +265,61 @@
     <!-- MAIN CONTENT -->
     <main class="page-content" id="main">
 
-      <!-- Default View -->
-      <section class="page-section" id="default-view">
-        <div class="page-section__header">
-          <div class="page-section__label">Knowledge Portal</div>
-          <h2 class="page-section__title">Yenepoya Library E-Resources</h2>
-          <div class="page-section__divider"></div>
-        </div>
-        <div class="content-block">
-          <p class="lead">Welcome to the Yenepoya Libraries E-Resources portal. We provide comprehensive access to a
-            vast collection of academic and research materials through various digital platforms.</p>
-          <p>Please select a category from the menu to explore available databases, journals, e-books, and open-access
-            materials tailored to support your learning and research needs.</p>
+              <!-- Default View -->
+        <section class="page-section" id="default-view">
+          <div class="page-section__header">
+            <div class="page-section__label">Knowledge Portal</div>
+            <h2 class="page-section__title">Yenepoya Library E-Resources</h2>
+            <div class="page-section__divider"></div>
+          </div>
+          <div class="content-block">
 
-          <div class="row g-4 mt-4">
-            <div class="col-md-4">
-              <div class="stat-card stat-card--primary text-center p-4 rounded bg-light border">
-                <i class="bi bi-database display-4 text-primary mb-3 block"></i>
-                <h3 class="h2 font-weight-bold mb-1">10+</h3>
-                <p class="text-muted mb-0">Subscribed Databases</p>
+            <div style="background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-dk)); border-radius: 12px; padding: 24px; color: #fff; margin-bottom: 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+              <div style="flex: 1; min-width: 250px;">
+                <h3 style="color: #fff; margin-bottom: 8px; font-weight: 700;">Remote (Off-Campus) Access</h3>
+                <p style="margin: 0; font-size: 15px; opacity: 0.9;">Access all our E-Journals, E-Books, and Databases 24x7 from anywhere through our secure remote access portals.</p>
+              </div>
+              <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <a href="https://app.myloft.xyz/user/login?institute=ckp6jp0d6km6t0a2446c6v30c" target="_blank" style="background: #fff; color: var(--clr-primary); padding: 10px 20px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: transform 0.2s;">Login via MyLOFT</a>
+                <a href="https://forms.gle/4ezioAY7YQZicoKs8" target="_blank" style="background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3); padding: 10px 20px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: background 0.2s;">Knimbus Registration</a>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="stat-card stat-card--secondary text-center p-4 rounded bg-light border">
-                <i class="bi bi-journal-check display-4 text-secondary mb-3 block"></i>
-                <h3 class="h2 font-weight-bold mb-1">5000+</h3>
-                <p class="text-muted mb-0">E-Journals</p>
+
+            <p class="lead">Welcome to the Yenepoya Libraries E-Resources portal. We provide comprehensive access to a vast collection of academic and research materials through various digital platforms including ClinicalKey, ProQuest, and multiple national consortiums.</p>
+            <p>Please select a category from the sidebar menu to explore available databases, journals, e-books, and open-access materials tailored to support your learning and research needs.</p>
+
+            <div class="row g-4 mt-4">
+              <div class="col-md-4">
+                <div class="stat-card stat-card--primary text-center p-4 rounded bg-light border">
+                  <i class="bi bi-database display-4 text-primary mb-3 block"></i>
+                  <h3 class="h2 font-weight-bold mb-1">15+</h3>
+                  <p class="text-muted mb-0">Premium Databases</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="stat-card stat-card--secondary text-center p-4 rounded bg-light border">
+                  <i class="bi bi-journal-check display-4 text-secondary mb-3 block"></i>
+                  <h3 class="h2 font-weight-bold mb-1">5000+</h3>
+                  <p class="text-muted mb-0">E-Journals</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="stat-card stat-card--accent text-center p-4 rounded bg-light border">
+                  <i class="bi bi-book-half display-4 text-warning mb-3 block"></i>
+                  <h3 class="h2 font-weight-bold mb-1">1000s</h3>
+                  <p class="text-muted mb-0">E-Books Available</p>
+                </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="stat-card stat-card--accent text-center p-4 rounded bg-light border">
-                <i class="bi bi-book-half display-4 text-warning mb-3 block"></i>
-                <h3 class="h2 font-weight-bold mb-1">1000s</h3>
-                <p class="text-muted mb-0">E-Books Available</p>
-              </div>
+            
+            <div style="margin-top: 32px; border: 1px solid var(--clr-border); padding: 20px; border-radius: 12px; background: #fafafa;">
+              <h4 style="font-size: 16px; margin-bottom: 12px; color: var(--clr-primary-dk); font-weight: 700;">Library Consortia & Memberships</h4>
+              <p style="font-size: 14px; margin-bottom: 0; color: var(--clr-text-main);">Yenepoya (Deemed to be University) proudly holds active memberships with the <strong>National Cancer Grid (NCG)</strong>, <strong>National Digital Library (NDL)</strong>, <strong>HELINET</strong> (Rajiv Gandhi University of Health Sciences), and <strong>DELNET</strong> to enable extensive resource sharing.</p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- 1. Online Databases -->
+                <!-- 1. Online Databases -->
       <section class="page-section" id="online-databases" style="display:none;">
         <div class="page-section__header">
           <div class="page-section__label">Research Tools</div>
@@ -310,79 +328,49 @@
         </div>
 
         <div class="resource-grid" id="database-grid">
-          <!-- WebOfScience -->
           <div class="resource-card">
             <img src="images/opendb/clarivate.png" class="resource-card__img" alt="WebOfScience">
             <div class="resource-card__content">
               <a href="https://www.webofscience.com/wos" class="resource-card__title" target="_blank">WebOfScience</a>
-              <div class="resource-card__subtitle">Bibliographic, Abstract, Citation & Indexing Database</div>
-              <p class="resource-card__text">Reputable research citation database providing access to a vast collection
-                of scholarly literature across broad disciplines.</p>
+              <div class="resource-card__subtitle">Bibliographic & Citation Database</div>
+              <p class="resource-card__text">Reputable research citation database providing access to scholarly literature.</p>
             </div>
           </div>
-
-          <!-- ProQuest Central -->
           <div class="resource-card">
             <img src="images/opendb/proquest.png" class="resource-card__img" alt="ProQuest">
             <div class="resource-card__content">
               <a href="https://www.proquest.com/" class="resource-card__title" target="_blank">ProQuest Central</a>
-              <div class="resource-card__subtitle">Multidisciplinary E-Resources Database</div>
-              <p class="resource-card__text">Provides access to 47 databases containing full-text content from journals,
-                magazines, news sources, and trade publications.</p>
+              <div class="resource-card__subtitle">Multidisciplinary Database</div>
+              <p class="resource-card__text">47 databases containing full-text content from journals, magazines, news sources.</p>
             </div>
           </div>
-
-          <!-- UPTODATE -->
           <div class="resource-card">
             <img src="images/opendb/utd-logo-desktop.png" class="resource-card__img" alt="UpToDate">
             <div class="resource-card__content">
-              <a href="https://www.uptodate.com/contents/search" class="resource-card__title"
-                target="_blank">UPTODATE</a>
+              <a href="https://www.uptodate.com/contents/search" class="resource-card__title" target="_blank">UpToDate</a>
               <div class="resource-card__subtitle">Evidence-Based Clinical Database</div>
-              <p class="resource-card__text">An evidence-based resource useful for rapid consultation at the bedside for
-                diagnosis, tests, and patient care.</p>
+              <p class="resource-card__text">Rapid consultation at the bedside for diagnosis, tests, and patient care.</p>
             </div>
           </div>
-
-          <!-- National Cancer Grid -->
-          <div class="resource-card">
-            <img src="images/opendb/logo2.png" class="resource-card__img" alt="National Cancer Grid">
-            <div class="resource-card__content">
-              <a href="https://www.ncgindia.org/learning-resources/library-resources" class="resource-card__title"
-                target="_blank">National Cancer Grid</a>
-              <div class="resource-card__subtitle">Oncology E-Resources Consortium</div>
-              <p class="resource-card__text">Access to electronic resources in Oncology, Hematology, Palliative care and
-                Pathology.</p>
-              <div style="margin-top:10px;">
-                <a href="https://www.clinicalkey.com/#!/browse/journals" target="_blank"
-                  style="font-size:12px;color:var(--clr-accent);margin-right:15px;text-decoration:none;font-weight:600;">ClinicalKey
-                  →</a>
-                <a href="https://ovidsp.dc1.ovid.com/ovid-a/ovidweb.cgi" target="_blank"
-                  style="font-size:12px;color:var(--clr-accent);text-decoration:none;font-weight:600;">Ovid →</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Thieme MedOne -->
-          <div class="resource-card">
-            <img src="images/opendb/thieme.png" class="resource-card__img" alt="Thieme MedOne">
-            <div class="resource-card__content">
-              <a href="http://medone-comsci.thieme.com/" class="resource-card__title" target="_blank">Thieme MedOne
-                ComSci</a>
-              <div class="resource-card__subtitle">Audiology & Speech-Language Pathology</div>
-              <p class="resource-card__text">Digital library offering medical and scientific journals, textbooks, and
-                multimedia content.</p>
-            </div>
-          </div>
-
-          <!-- Scopus -->
           <div class="resource-card">
             <img src="images/opendb/scopus.png" class="resource-card__img" alt="Scopus">
             <div class="resource-card__content">
-              <a href="https://www.scopus.com/sources.uri" class="resource-card__title" target="_blank">Scopus</a>
+              <a href="https://www.scopus.com/" class="resource-card__title" target="_blank">Scopus</a>
               <div class="resource-card__subtitle">Abstract & Citation Database</div>
-              <p class="resource-card__text">Indexes over 100 million records across science, technology, medicine, and
-                social sciences.</p>
+              <p class="resource-card__text">Expertly curated abstract and citation database enriched with data and linked scholarly literature.</p>
+            </div>
+          </div>
+          <div class="resource-card">
+            <img src="images/opendb/logo2.png" class="resource-card__img" alt="National Cancer Grid">
+            <div class="resource-card__content">
+              <a href="https://www.ncgindia.org/learning-resources" class="resource-card__title" target="_blank">National Cancer Grid</a>
+              <div class="resource-card__subtitle">Oncology E-Resources</div>
+              <p class="resource-card__text">Electronic resources in Oncology, Hematology, Palliative care and Pathology.</p>
+              <div style="margin-top:10px;">
+                <a href="https://www.clinicalkey.com/#!/browse/journals" target="_blank" style="font-size:12px; color:var(--clr-primary); font-weight:bold; display:block;">ClinicalKey Journals &rsaquo;</a>
+                <a href="https://www.clinicalkey.com/#!/browse/books" target="_blank" style="font-size:12px; color:var(--clr-primary); font-weight:bold; display:block;">ClinicalKey Books &rsaquo;</a>
+                <a href="http://search.ebscohost.com/" target="_blank" style="font-size:12px; color:var(--clr-primary); font-weight:bold; display:block;">EBSCO Host &rsaquo;</a>
+              </div>
             </div>
           </div>
         </div>
@@ -391,34 +379,30 @@
       <!-- 2. E-Journals -->
       <section class="page-section" id="e-journals" style="display:none;">
         <div class="page-section__header">
-          <div class="page-section__label">Academic Publications</div>
+          <div class="page-section__label">Publications</div>
           <h2 class="page-section__title">E-Journals</h2>
           <div class="page-section__divider"></div>
         </div>
-        <div class="resource-grid" id="ejournal-grid">
-          <!-- ProQuest Central -->
+        <div class="resource-grid">
           <div class="resource-card">
-            <img src="images/opendb/proquest.png" class="resource-card__img" alt="ProQuest">
+            <img src="images/opendb/thieme.png" class="resource-card__img" alt="Thieme">
             <div class="resource-card__content">
-              <a href="https://www.proquest.com/" class="resource-card__title" target="_blank">ProQuest Central</a>
-              <div class="resource-card__subtitle">Health & Medical Collection E-Journals</div>
-              <p class="resource-card__text">The Health & Medical Collection is a comprehensive medical information
-                resource for researchers, students, faculty, and healthcare professionals. Inside, users will find
-                biomedical information from MEDLINE® alongside more than 4,200 scholarly journals, trade publications,
-                magazines & newspapers, and over 1,000 evidence-based systematic reviews.</p>
+              <a href="https://www.thieme-connect.com/products/all/home.html" class="resource-card__title" target="_blank">Thieme Medical Publishers</a>
+              <p class="resource-card__text">Award-winning international medical and science publisher serving health professionals and students.</p>
             </div>
           </div>
-
-          <!-- EBSCO -->
           <div class="resource-card">
-            <img src="images/user/EBSCO-DOSS 26.6.2019.webp" class="resource-card__img" alt="EBSCO">
+            <img src="images/opendb/wiley.webp" class="resource-card__img" alt="Wiley">
             <div class="resource-card__content">
-              <a href="https://www.ebsco.com/products/research-databases/dentistry-oral-sciences-source"
-                class="resource-card__title" target="_blank">EBSCO</a>
-              <div class="resource-card__subtitle">Dentistry & Oral Sciences Source E-Journals Database</div>
-              <p class="resource-card__text">Dentistry & Oral Sciences Source offers an extensive collection of
-                important full-text journals, as well as dozens of full-text monographs. The collection includes more
-                than 260 full-text journals, including many of the top-ranked titles in the discipline.</p>
+              <a href="https://onlinelibrary.wiley.com/" class="resource-card__title" target="_blank">Wiley Online Library</a>
+              <p class="resource-card__text">Extensive collection of online multidisciplinary journals, books, and research resources.</p>
+            </div>
+          </div>
+          <div class="resource-card">
+            <img src="images/opendb/jaypee.jpg" class="resource-card__img" alt="Jaypee">
+            <div class="resource-card__content">
+              <a href="https://www.jaypeedigital.com/" class="resource-card__title" target="_blank">JaypeeDigital</a>
+              <p class="resource-card__text">Access to Jaypee's vast health science journals and textbooks.</p>
             </div>
           </div>
         </div>
@@ -427,308 +411,211 @@
       <!-- 3. E-Books -->
       <section class="page-section" id="e-books" style="display:none;">
         <div class="page-section__header">
-          <div class="page-section__label">Digital Library</div>
+          <div class="page-section__label">Digital Libary</div>
           <h2 class="page-section__title">E-Books Collections</h2>
           <div class="page-section__divider"></div>
         </div>
-        <div class="resource-grid" id="ebook-grid">
-          <!-- ProQuest E-Books -->
+        <div class="resource-grid">
           <div class="resource-card">
-            <img src="images/opendb/proquest.png" class="resource-card__img" alt="ProQuest">
+            <img src="images/opendb/clinicalkeyflex.jpg" class="resource-card__img" alt="ClinicalKey Flex">
             <div class="resource-card__content">
-              <a href="http://ebookcentral.proquest.com/lib/yenepoya/home.action" class="resource-card__title" target="_blank">PROQUEST E-Books (Academic Complete)</a>
-              <div class="resource-card__subtitle">ProQuest E-Books Collection</div>
-              <p class="resource-card__text">With Academic Complete, libraries can offer an affordable, critical mass of over 232,000 multi-disciplinary ebooks with unlimited, multi-user access, powerful research tools, and DRM-free chapter downloads. Academic Complete is ProQuest’s flagship subscription database that supports a wide range of students and faculty.</p>
+              <a href="https://www.clinicalkey.com/student/nursing" class="resource-card__title" target="_blank">ClinicalKey Student</a>
+              <div class="resource-card__subtitle">Medical & Nursing Collections</div>
+              <p class="resource-card__text">Interactive medical learning platform with textbooks, images, and quick-access summaries.</p>
             </div>
           </div>
-
-          <!-- Clinical Key Student -->
           <div class="resource-card">
-            <img src="images/opendb/clinicalkeystudent.jpg" class="resource-card__img" alt="Clinical Key Student">
+            <img src="images/open-access/Cambridge-logo.jpg" class="resource-card__img" alt="Cambridge">
             <div class="resource-card__content">
-              <a href="https://www.clinicalkey.com/student/" class="resource-card__title" target="_blank">Clinical Key Student</a>
-              <div class="resource-card__subtitle">Elsevier E-Books for UG Students</div>
-              <p class="resource-card__text">Clinical Key Student is an interactive educational platform designed for medical and healthcare students. It offers access to a vast collection of textbooks, multimedia resources, and clinical tools to enhance learning. Features include personalized study plans and note-taking.</p>
+              <a href="https://www.cambridge.org/core" class="resource-card__title" target="_blank">Cambridge Core Books</a>
+              <p class="resource-card__text">Books published by Cambridge University Press.</p>
             </div>
           </div>
-
-          <!-- Clinical Key Flex -->
           <div class="resource-card">
-            <img src="images/opendb/clinicalkeyflex.jpg" class="resource-card__img" alt="Clinical Key Flex">
+            <img src="images/open-access/Science-direct-logo.jpg" class="resource-card__img" alt="ScienceDirect">
             <div class="resource-card__content">
-              <a href="https://www.clinicalkey.com/#!/" class="resource-card__title" target="_blank">Clinical Key Flex</a>
-              <div class="resource-card__subtitle">Elsevier E-Resources for PG and Research</div>
-              <p class="resource-card__text">Clinical Key Flex is a comprehensive medical resource platform designed to provide institutions with flexible access to Elsevier’s extensive collection of medical content, including journals, books, videos, and evidence-based guidelines.</p>
-            </div>
-          </div>
-
-          <!-- Jaypee E-Books -->
-          <div class="resource-card">
-            <img src="images/opendb/jaypee.jpg" class="resource-card__img" alt="Jaypee E-Books">
-            <div class="resource-card__content">
-              <a href="https://www.jaypeedigital.com/home" class="resource-card__title" target="_blank">Jaypee E-Books</a>
-              <div class="resource-card__subtitle">Jaypee Medical Content</div>
-              <p class="resource-card__text">Jaypee E-Books is a comprehensive digital platform offering access to a wide range of medical and healthcare-related textbooks covering numerous specialties, including medicine, surgery, dentistry, and nursing.</p>
+              <a href="https://www.sciencedirect.com/" class="resource-card__title" target="_blank">ScienceDirect</a>
+              <p class="resource-card__text">Leading platform of peer-reviewed scholarly literature and book collections.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 4. Course Wise E-Books -->
+            <!-- 4. Coursewise E-Books -->
       <section class="page-section" id="coursewise-ebooks" style="display:none;">
         <div class="page-section__header">
-          <div class="page-section__label">Curriculum Support</div>
+          <div class="page-section__label">Curriculum Books</div>
           <h2 class="page-section__title">Course Wise E-Books</h2>
           <div class="page-section__divider"></div>
-          <p class="text-muted mt-2">Explore e-books tailored specifically for your rigorous academic courses.</p>
+        </div>
+        <p class="mb-4">Select your college to view prescribed digital textbooks for your courses.</p>
+        
+        <!-- Internal Filters -->
+        <div class="course-filters" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px;">
+          <button class="btn btn--primary filter-btn active" onclick="filterCourse('ymc', this)" style="padding: 8px 16px; font-size: 13px; border-radius: 20px;">Medical College</button>
+          <button class="btn btn--outline filter-btn" onclick="filterCourse('ydc', this)" style="padding: 8px 16px; font-size: 13px; border-radius: 20px;">Dental College</button>
+          <button class="btn btn--outline filter-btn" onclick="filterCourse('ync', this)" style="padding: 8px 16px; font-size: 13px; border-radius: 20px;">Nursing College</button>
+          <button class="btn btn--outline filter-btn" onclick="filterCourse('ypc', this)" style="padding: 8px 16px; font-size: 13px; border-radius: 20px;">Physiotherapy College</button>
         </div>
 
-        <div class="row mt-4">
-          <div class="col-12">
-            <div class="list-group list-group-flush shadow-sm rounded">
-              <a href="https://www.ydc.yenepoya.edu.in/" target="_blank"
-                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3">
-                <div>
-                  <h6 class="mb-0 fw-bold class-title">Dental College E-Books</h6>
-                </div>
-                <i class="bi bi-chevron-right text-muted"></i>
-              </a>
-              <a href="https://ymc.yenepoya.edu.in/" target="_blank"
-                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3">
-                <div>
-                  <h6 class="mb-0 fw-bold class-title">Medical College E-Books</h6>
-                </div>
-                <i class="bi bi-chevron-right text-muted"></i>
-              </a>
-              <a href="https://ync.yenepoya.edu.in/" target="_blank"
-                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3">
-                <div>
-                  <h6 class="mb-0 fw-bold class-title">Nursing College E-Books</h6>
-                </div>
-                <i class="bi bi-chevron-right text-muted"></i>
-              </a>
-              <a href="https://www.yenepoyaayurveda.com/" target="_blank"
-                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3">
-                <div>
-                  <h6 class="mb-0 fw-bold class-title">Ayurveda E-Books</h6>
-                </div>
-                <i class="bi bi-chevron-right text-muted"></i>
-              </a>
-              <a href="https://www.yhch.in/" target="_blank"
-                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3">
-                <div>
-                  <h6 class="mb-0 fw-bold class-title">Homoeopathy E-Books</h6>
-                </div>
-                <i class="bi bi-chevron-right text-muted"></i>
-              </a>
-            </div>
+        <!-- Medical College Books -->
+        <div class="open-access-grid course-grid active" id="grid-ymc">
+          <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-search.pl?q=anatomy" target="_blank" class="oa-card">
+            <img src="images/e-books/ymc-e-book1.jpg" alt="Medical Book 1">
+            <span>Anatomy</span>
+          </a>
+          <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-search.pl?q=biochemistry" target="_blank" class="oa-card">
+            <img src="images/e-books/ymc-e-book2.jpg" alt="Medical Book 2">
+            <span>Biochemistry</span>
+          </a>
+          <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-search.pl?q=pathology" target="_blank" class="oa-card">
+            <img src="images/e-books/ymc-e-book3.jpg" alt="Medical Book 3">
+            <span>Pathology</span>
+          </a>
+          <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-search.pl?q=pharmacology" target="_blank" class="oa-card">
+            <img src="images/e-books/ymc-e-book4.jpg" alt="Medical Book 4">
+            <span>Pharmacology</span>
+          </a>
+          <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-search.pl?q=microbiology" target="_blank" class="oa-card">
+            <img src="images/e-books/ymc-e-book5.jpg" alt="Medical Book 5">
+            <span>Microbiology</span>
+          </a>
+        </div>
+
+        <!-- Dental College Books -->
+        <div class="open-access-grid course-grid" id="grid-ydc" style="display: none;">
+          <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-search.pl?q=oral+medicine" target="_blank" class="oa-card">
+            <img src="images/e-books/ydc-e-book1.jpg" alt="Dental Book 1">
+            <span>Oral Medicine</span>
+          </a>
+          <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-search.pl?q=dental+surgery" target="_blank" class="oa-card">
+            <img src="images/e-books/ydc-e-book2.jpg" alt="Dental Book 2">
+            <span>Dental Surgery</span>
+          </a>
+          <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-search.pl?q=orthodontics" target="_blank" class="oa-card">
+            <img src="images/e-books/ydc-e-book3.jpg" alt="Dental Book 3">
+            <span>Orthodontics</span>
+          </a>
+          <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-search.pl?q=periodontics" target="_blank" class="oa-card">
+            <img src="images/e-books/ydc-e-book4.jpg" alt="Dental Book 4">
+            <span>Periodontics</span>
+          </a>
+        </div>
+
+        <!-- Nursing College Books -->
+        <div class="open-access-grid course-grid" id="grid-ync" style="display: none;">
+          <div style="grid-column: 1 / -1; padding: 30px; text-align: center; background: var(--clr-bg); border-radius: 8px; border: 1 dashed var(--clr-border);">
+            <p style="margin:0; color: var(--clr-text-muted);">Nursing e-books catalogue integration pending.</p>
           </div>
         </div>
+
+        <!-- Physiotherapy College Books -->
+        <div class="open-access-grid course-grid" id="grid-ypc" style="display: none;">
+          <div style="grid-column: 1 / -1; padding: 30px; text-align: center; background: var(--clr-bg); border-radius: 8px; border: 1 dashed var(--clr-border);">
+            <p style="margin:0; color: var(--clr-text-muted);">Physiotherapy e-books catalogue integration pending.</p>
+          </div>
+        </div>
+
+        <script>
+          function filterCourse(collegeId, btn) {
+            // Hide all grids
+            document.querySelectorAll('.course-grid').forEach(grid => {
+              grid.style.display = 'none';
+            });
+            // Reset button styles
+            document.querySelectorAll('.filter-btn').forEach(b => {
+              b.classList.remove('btn--primary');
+              b.classList.add('btn--outline');
+            });
+            // Show selected grid
+            document.getElementById('grid-' + collegeId).style.display = 'grid';
+            // Set active button
+            btn.classList.remove('btn--outline');
+            btn.classList.add('btn--primary');
+          }
+        </script>
       </section>
 
       <!-- 5. E-Newspapers & Magazines -->
       <section class="page-section" id="newspapers-magazines" style="display:none;">
         <div class="page-section__header">
-          <div class="page-section__label">Current Affairs</div>
+          <div class="page-section__label">Periodicals</div>
           <h2 class="page-section__title">E-Newspapers & Magazines</h2>
           <div class="page-section__divider"></div>
         </div>
-
-        <div class="row align-items-center mt-4">
-          <div class="col-md-6 mb-4 mb-md-0">
-            <h3 class="h4 fw-bold text-primary mb-3">EDZTER Platform</h3>
-            <p><strong>Edzter</strong> is a digital platform designed to provide educational institutions with access to
-              thousands of online magazines, newspapers, and journals. It offers over 5,000 publications across 40+
-              categories, including business, science, technology, and health.</p>
-
-            <div class="d-flex align-items-center gap-3 mt-4">
-              <a href="https://edzter.com/" target="_blank" class="btn btn--primary"><i
-                  class="bi bi-box-arrow-up-right me-2"></i>Access EDZTER</a>
-              <a href="images/edzter/User Manual & Steps to Access EDZTER.pdf" target="_blank"
-                class="btn btn--outline"><i class="bi bi-file-earmark-pdf me-2"></i>User Manual</a>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <img src="images/edzter/edzterguide-11.png" alt="Edzter Access Guide" class="img-fluid rounded shadow-sm">
-          </div>
-        </div>
-
-        <hr class="my-5">
-
-        <div class="edzter-highlights mt-5">
-          <h4 class="fw-bold mb-4" style="color: var(--primary-color);">Content Highlights</h4>
-          <div class="row g-4">
-            <!-- Indian Content -->
-            <div class="col-md-6">
-              <div class="highlight-card h-100 p-4 rounded bg-white shadow-sm" style="border: 1px solid rgba(0,0,0,0.05); transition: transform 0.2s;">
-                <h5 class="fw-bold mb-3 d-flex align-items-center" style="color: var(--primary-color);">
-                  <i class="bi bi-flag-fill me-2 fs-4" style="color: #FF9933;"></i> Indian Content
-                </h5>
-                <h6 class="fw-bold mb-3" style="color: #333;">6000+ top Indian titles</h6>
-                <ul class="list-unstyled mb-0">
-                  <li class="mb-2 text-secondary d-flex align-items-start">
-                    <i class="bi bi-check-circle-fill me-2 mt-1" style="color: #4CAF50; font-size: 0.9rem;"></i>
-                    <span>Leading newspapers (The Hindu, Hindustan Times, Indian Express, etc.)</span>
-                  </li>
-                  <li class="text-secondary d-flex align-items-start">
-                    <i class="bi bi-check-circle-fill me-2 mt-1" style="color: #4CAF50; font-size: 0.9rem;"></i>
-                    <span>Top magazines (Business Today, India Today, Outlook Money, etc.)</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- International Content -->
-            <div class="col-md-6">
-              <div class="highlight-card h-100 p-4 rounded bg-white shadow-sm" style="border: 1px solid rgba(0,0,0,0.05); transition: transform 0.2s;">
-                <h5 class="fw-bold mb-3 d-flex align-items-center" style="color: var(--primary-color);">
-                  <i class="bi bi-globe me-2 fs-4" style="color: #4A90E2;"></i> International Content
-                </h5>
-                <h6 class="fw-bold mb-3" style="color: #333;">3000+ top international titles</h6>
-                <ul class="list-unstyled mb-0">
-                  <li class="mb-2 text-secondary d-flex align-items-start">
-                    <i class="bi bi-check-circle-fill me-2 mt-1" style="color: #4CAF50; font-size: 0.9rem;"></i>
-                    <span>Leading newspapers (The Guardian, The Independent, etc.)</span>
-                  </li>
-                  <li class="text-secondary d-flex align-items-start">
-                    <i class="bi bi-check-circle-fill me-2 mt-1" style="color: #4CAF50; font-size: 0.9rem;"></i>
-                    <span>Top magazines (Time Magazine, Newsweek, Bloomberg, etc.)</span>
-                  </li>
-                </ul>
-              </div>
+        <div class="resource-grid">
+           <div class="resource-card">
+            <img src="images/edzter/userManual.png" style="height:80px; object-fit:contain;" class="resource-card__img" alt="Edzter">
+            <div class="resource-card__content">
+              <a href="https://www.edzter.com/" class="resource-card__title" target="_blank">EDZTER</a>
+              <div class="resource-card__subtitle">Digital Newsstand</div>
+              <p class="resource-card__text">Access over 5,000+ top magazines, newspapers and journals globally.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 6. Other E-Resources -->
+      <!-- 6. Other Electronic Resources -->
       <section class="page-section" id="other-resources" style="display:none;">
         <div class="page-section__header">
-          <div class="page-section__label">Networked Resources</div>
-          <h2 class="page-section__title">Other Electronic Resources</h2>
-          <div class="page-section__divider"></div>
+           <h2 class="page-section__title">Other Electronic Resources</h2>
+           <div class="page-section__divider"></div>
         </div>
-        <div class="resource-grid" id="other-resource-grid">
-
-          <!-- DELNET -->
-          <div class="resource-card">
-            <img src="images/opendb/logo1.jpg" class="resource-card__img" alt="DELNET">
-            <div class="resource-card__content">
-              <a href="https://delnet.in/" class="resource-card__title" target="_blank">DELNET (Developing Library Network)</a>
-              <div class="resource-card__subtitle">Resource Sharing Network</div>
-              <p class="resource-card__text">This is a Resource sharing network between member libraries. It is a single window layer which encourages the users to explore the networked library resources. It facilitates Inter Library loan (ILL) and document delivery services among the member libraries.</p>
-            </div>
-          </div>
-
-          <!-- National Digital Library -->
-          <div class="resource-card">
-            <img src="images/opendb/National-Digital-Library-of-India.jpg" class="resource-card__img" alt="National Digital Library">
-            <div class="resource-card__content">
-              <a href="https://ndl.iitkgp.ac.in/index.html" class="resource-card__title" target="_blank">National Digital Library</a>
-              <div class="resource-card__subtitle">Virtual Repository of Learning Resources</div>
-              <p class="resource-card__text">The National Digital Library (NDL) project was initiated by the Ministry of Human Resource Development (MHRD) to develop a framework of virtual repository of learning resources. It is an all-digital 24x7 library that integrates all existing digitized and digital contents across Institutions.</p>
-            </div>
-          </div>
-
-          <!-- Shodhganga -->
-          <div class="resource-card">
-            <img src="images/opendb/logo3.png" class="resource-card__img" alt="Shodhganga">
-            <div class="resource-card__content">
-              <a href="https://shodhganga.inflibnet.ac.in/index.html" class="resource-card__title" target="_blank">Shodhganga</a>
-              <div class="resource-card__subtitle">Ph.D. Theses Repository</div>
-              <p class="resource-card__text">The Shodhganga@INFLIBNET Centre provides a platform for research scholars to deposit their Ph.D. theses and make it available to the entire scholarly community in open access.</p>
-            </div>
-          </div>
-
-          <!-- E-Shodhsindhu -->
-          <div class="resource-card">
-            <img src="images/opendb/logo.png" class="resource-card__img" alt="E-Shodhsindhu">
-            <div class="resource-card__content">
-              <a href="https://ess.inflibnet.ac.in/" class="resource-card__title" target="_blank">E-Shodhsindhu</a>
-              <div class="resource-card__subtitle">E-Resource Consortium</div>
-              <p class="resource-card__text">e-ShodhSindhu provides current as well as archival access to more than 15,000 core and peer-reviewed journals and a number of bibliographic, citation and factual databases in different disciplines from a large number of publishers.</p>
-            </div>
-          </div>
-
+        <div class="open-access-grid">
+          <a href="https://ndl.iitkgp.ac.in/" target="_blank" class="oa-card">
+            <img src="images/opendb/National-Digital-Library-of-India.jpg" alt="NDLI">
+            <span>NDLI</span>
+          </a>
+          <a href="https://delnet.in/" target="_blank" class="oa-card">
+            <img src="images/open-access/Delnet-logo.jpg" alt="DELNET">
+            <span>DELNET</span>
+          </a>
+          <a href="https://jgateplus.com/" target="_blank" class="oa-card">
+            <img src="images/opendb/Akshara-J gateplus.webp" alt="J-Gate">
+            <span>J-Gate Plus</span>
+          </a>
         </div>
       </section>
 
       <!-- 7. Open Access Resources -->
       <section class="page-section" id="open-access" style="display:none;">
         <div class="page-section__header">
-          <div class="page-section__label">Global Knowledge</div>
+          <div class="page-section__label">Free Access</div>
           <h2 class="page-section__title">Open Access Resources</h2>
           <div class="page-section__divider"></div>
         </div>
-
-        <div class="open-access-grid" id="open-access-grid">
-          <a href="https://storage.googleapis.com/uniquecourses/online.html" target="_blank" class="oa-card">
+        <div class="open-access-grid">
+          <a href="https://doaj.org/" target="_blank" class="oa-card">
+            <img src="images/open-access/Doaj-logo.jpg" alt="DOAJ">
+            <span>DOAJ</span>
+          </a>
+          <a href="https://doabooks.org/" target="_blank" class="oa-card">
+            <img src="images/open-access/doab-logo.jpg" alt="DOAB">
+            <span>DOAB</span>
+          </a>
+          <a href="https://swayam.gov.in/" target="_blank" class="oa-card">
             <img src="images/open-access/swayam-logo.jpg" alt="SWAYAM">
-            <span>SWAYAM Online Courses</span>
-          </a>
-          <a href="https://nkn.gov.in/en/" target="_blank" class="oa-card">
-            <img src="images/open-access/nkn-logo.jpg" alt="NKN">
-            <span>National Knowledge Network</span>
-          </a>
-          <a href="https://discovery.delnet.in/" target="_blank" class="oa-card">
-            <img src="images/open-access/Delnet-logo.jpg" alt="Delnet">
-            <span>Delnet Discovery</span>
+            <span>SWAYAM</span>
           </a>
           <a href="https://nptel.ac.in/" target="_blank" class="oa-card">
             <img src="images/open-access/Nptel-logo.jpg" alt="NPTEL">
             <span>NPTEL</span>
           </a>
-          <a href="https://infoport.inflibnet.ac.in/" target="_blank" class="oa-card">
-            <img src="images/open-access/info-port-logo.jpg" alt="Info Port">
-            <span>Info Port</span>
-          </a>
-          <a href="https://www.ted.com/playlists/182/talks_from_inspiring_teachers" target="_blank" class="oa-card">
-            <img src="images/open-access/ted-Logo.jpg" alt="TED">
-            <span>Talks to Teacher</span>
-          </a>
-          <a href="http://aview.in/" target="_blank" class="oa-card">
-            <img src="images/open-access/aview-logo.jpg" alt="A-VIEW">
-            <span>A-VIEW</span>
-          </a>
-          <a href="https://fossee.in/index.html" target="_blank" class="oa-card">
-            <img src="images/open-access/fossee-logo.jpg" alt="FOSSEE">
-            <span>FOSSEE</span>
-          </a>
-          <a href="https://spoken-tutorial.org/index.html" target="_blank" class="oa-card">
-            <img src="images/open-access/Spoken-logo.jpg" alt="Spoken Tutorial">
-            <span>Spoken Tutorial</span>
-          </a>
-          <a href="https://new.e-yantra.org/" target="_blank" class="oa-card">
-            <img src="images/open-access/Yanta-logo.jpg" alt="e-Yantra">
-            <span>e-Yantra</span>
-          </a>
-          <a href="NCERT Text Books.html" target="_blank" class="oa-card">
-            <img src="images/open-access/ncert-logo.jpg" alt="NCERT">
-            <span>NCERT Text Books</span>
-          </a>
-          <a href="https://www.doabooks.org/index.html" target="_blank" class="oa-card">
-            <img src="images/open-access/doab-logo.jpg" alt="DOAB">
-            <span>DOAB</span>
-          </a>
-          <a href="https://doaj.org/index.html" target="_blank" class="oa-card">
-            <img src="images/open-access/Doaj-logo.jpg" alt="DOAJ">
-            <span>DOAJ</span>
-          </a>
           <a href="https://openknowledge.worldbank.org/" target="_blank" class="oa-card">
-            <img src="images/open-access/Okr-logo.jpg" alt="World Bank">
-            <span>World Bank OKR</span>
+            <img src="images/open-access/Okr-logo.jpg" alt="OKR">
+            <span>Open Knowledge Repository</span>
           </a>
-          <a href="https://epgp.inflibnet.ac.in/index.html" target="_blank" class="oa-card">
-            <img src="images/open-access/Athshala-logo.jpg" alt="e-PG Pathshala">
-            <span>e-PG Pathshala</span>
+          <a href="https://ess.inflibnet.ac.in/" target="_blank" class="oa-card">
+            <img src="images/open-access/consortium-logo.jpg" alt="Consortium">
+            <span>Library Consortium</span>
           </a>
-          <a href="https://www.swayamprabha.gov.in/index.html" target="_blank" class="oa-card">
-            <img src="images/open-access/swayamprabha-logo.jpg" alt="SWAYAMPRABHA">
-            <span>SWAYAMPRABHA</span>
+          <a href="https://ncert.nic.in/" target="_blank" class="oa-card">
+            <img src="images/open-access/ncert-logo.jpg" alt="NCERT">
+            <span>NCERT</span>
           </a>
         </div>
+        <p class="mt-4 text-muted" style="font-size:0.9rem;">Many of these resources are sponsored by the Ministry of Education (MoE) and other government bodies.</p>
       </section>
-
     </main> <!-- end page-content -->
   </div> <!-- end inner-layout -->
 
@@ -806,7 +693,8 @@
   <!-- ENQUIRY SIDEBAR -->
   <div class="enquiry-sidebar" id="enquirySidebar">
     <div class="enquiry-tab" id="enquiryTab" tabindex="0" role="button">Enquire Now</div>
-    <h3>Quick Enquiry</h3>
+          <button type="button" onclick="document.getElementById('enquirySidebar').classList.remove('open')" aria-label="Close form" style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; font-size: 32px; font-weight: 400; line-height: 1; color: var(--clr-text-muted, #777); cursor: pointer; padding: 0; z-index: 10;">&times;</button>
+      <h3 style="margin-top: 0;">Quick Enquiry</h3>
     <form id="enquiryForm" action="api/save_enquire.php" method="post">
       <input class="enquiry-field" type="text" name="name" placeholder="Your Name *" required>
       <input class="enquiry-field" type="email" name="email" placeholder="Email Address">
@@ -816,13 +704,20 @@
     </form>
   </div>
 
-  <button class="back-top" id="backTop" aria-label="Back to top">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-      <path d="m18 15-6-6-6 6" />
-    </svg>
-  </button>
-
   <script src="assets/js/main.js"></script>
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

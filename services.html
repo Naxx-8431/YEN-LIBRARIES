@@ -128,14 +128,17 @@
       <a href="events.html" class="nav__link">Events</a>
       <a href="contact.html" class="nav__link">Contact</a>
     </nav>
-    <div class="header__search">
-      <button class="header__search-btn" aria-label="Search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-          <circle cx="11" cy="11" r="8" />
-          <path d="m21 21-4.35-4.35" />
-        </svg>
-      </button>
-    </div>
+          <div class="header__search">
+        <div class="header__search-container" id="headerSearchContainer" onclick="window.location.href='opac-search.html'" style="cursor: pointer;">
+          <button class="header__search-btn" id="headerSearchBtn" aria-label="Search" onclick="window.location.href='opac-search.html'" style="cursor: pointer; z-index: 10;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+          </button>
+          <input type="text" class="header__search-input" id="headerSearchInput" placeholder="Search for books..." readonly onclick="window.location.href='opac-search.html'" style="cursor: pointer; z-index: 10;">
+        </div>
+      </div>
     <button class="header__burger" id="burger"
       aria-label="Toggle navigation"><span></span><span></span><span></span></button>
   </header>
@@ -683,7 +686,8 @@
   <!-- ENQUIRY SIDEBAR -->
   <div class="enquiry-sidebar" id="enquirySidebar">
     <div class="enquiry-tab" id="enquiryTab" tabindex="0" role="button">Enquire Now</div>
-    <h3>Quick Enquiry</h3>
+          <button type="button" onclick="document.getElementById('enquirySidebar').classList.remove('open')" aria-label="Close form" style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; font-size: 32px; font-weight: 400; line-height: 1; color: var(--clr-text-muted, #777); cursor: pointer; padding: 0; z-index: 10;">&times;</button>
+      <h3 style="margin-top: 0;">Quick Enquiry</h3>
     <form id="enquiryForm" action="api/save_enquire.php" method="post">
       <input class="enquiry-field" type="text" name="name" placeholder="Your Name *" required>
       <input class="enquiry-field" type="email" name="email" placeholder="Email Address">
@@ -693,13 +697,16 @@
     </form>
   </div>
 
-  <button class="back-top" id="backTop" aria-label="Back to top">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-      <path d="m18 15-6-6-6 6" />
-    </svg>
-  </button>
-
   <script src="assets/js/main.js"></script>
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+

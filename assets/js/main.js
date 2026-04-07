@@ -85,11 +85,15 @@
   }
 
   /* ── Enquiry Sidebar ─────────────────────── */
-  function initEnquiry() {
+    function initEnquiry() {
     const sidebar = document.getElementById('enquirySidebar');
     const tab     = document.getElementById('enquiryTab');
+    const closeBtn = document.getElementById('enquiryClose');
     if (!sidebar || !tab) return;
     tab.addEventListener('click', () => sidebar.classList.toggle('open'));
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => sidebar.classList.remove('open'));
+    }
   }
 
   /* ── Sidebar Enquiry Form ────────────────── */
@@ -130,16 +134,6 @@
         btn.disabled = false;
       }, 3000);
     });
-  }
-
-  /* ── Back To Top ─────────────────────────── */
-  function initBackTop() {
-    const btn = document.getElementById('backTop');
-    if (!btn) return;
-    window.addEventListener('scroll', () => {
-      btn.classList.toggle('visible', window.scrollY > 300);
-    });
-    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
   /* ── Sticky Header Shadow ────────────────── */
@@ -237,17 +231,44 @@
     });
   }
 
-  /* ── Init ────────────────────────────────── */
+  /* ── Header Search ────────────────────────────── */
+  function initHeaderSearch() {
+    const searchContainer = document.getElementById('headerSearchContainer');
+    const searchInput = document.getElementById('headerSearchInput');
+    
+    if (!searchContainer || !searchInput) return;
+
+    const placeholders = ['Search for books...', 'Search for events...', 'Search for journals...', 'Search library catalogue...'];
+    let currentIndex = 0;
+    
+    setInterval(() => {
+      // Only swap if it is currently expanded
+      if (searchContainer.matches(':hover') || searchContainer.matches(':focus-within')) {
+        currentIndex = (currentIndex + 1) % placeholders.length;
+        searchInput.setAttribute('placeholder', placeholders[currentIndex]);
+      }
+    }, 2000);
+
+    searchContainer.addEventListener('click', (e) => {
+      // Don't redirect if they just focused the input text box
+      // If we want it to act strictly as a link:
+      window.location.href = 'opac-search.html';
+    });
+  }
+
+  /* ── Init ────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', () => {
     setActiveNav();
     initBurger();
     initHero();
     initEnquiry();
     initEnquiryForm();
-    initBackTop();
+
     initHeaderScroll();
     initPageSidebar();
     initDbScroll();
+    initHeaderSearch();
   });
 
 })();
+
