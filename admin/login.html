@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Yenepoya Libraries Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-card">
+      <!-- Logo -->
+      <div class="login-card__logo">
+        <div class="login-card__logo-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h8"/></svg>
+        </div>
+        <div class="login-card__logo-text">
+          Yenepoya Libraries
+          <small>Admin Panel</small>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h1 class="login-card__title">Welcome back</h1>
+      <p class="login-card__subtitle">Sign in to manage your library website content</p>
+
+      <!-- Form -->
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label class="form-label">Username <span>*</span></label>
+          <input type="text" class="form-input" id="loginUsername" placeholder="Enter your username" value="admin" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password <span>*</span></label>
+          <input type="password" class="form-input" id="loginPassword" placeholder="Enter your password" value="admin123" required>
+        </div>
+        <button type="submit" class="btn btn--primary">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+          Sign In
+        </button>
+      </form>
+
+      <p style="text-align:center; margin-top:20px; font-size:12px; color:var(--admin-text-muted);">
+        Default: admin / admin123
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function handleLogin(e) {
+      e.preventDefault();
+      const u = document.getElementById('loginUsername').value;
+      const p = document.getElementById('loginPassword').value;
+      // Simple demo auth
+      if (u && p) {
+        sessionStorage.setItem('yen_admin_auth', 'true');
+        sessionStorage.setItem('yen_admin_user', u);
+        window.location.href = 'index.html';
+      }
+    }
+  </script>
+</body>
+</html>
