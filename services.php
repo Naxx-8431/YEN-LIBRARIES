@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Yenepoya Libraries</title>
+  <meta name="description"
+    content="Explore the variety of services keeping our users well informed and supported at Yenepoya Libraries.">
+  <link rel="icon" href="assets/images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <style>
+    /* SERVICES specific tweaks */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 25px;
+    }
+
+    .service-card {
+      background: #ffffff;
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      padding: 30px 25px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      scroll-margin-top: 100px; /* Prevents card from hiding under the fixed header */
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      border-color: var(--clr-accent);
+    }
+
+    .service-card__icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(67, 189, 174, 0.1);
+      color: var(--clr-accent);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    .service-card__title {
+      color: var(--clr-primary);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .service-card__desc {
+      color: var(--clr-text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .service-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--clr-accent);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .service-card__link:hover {
+      color: var(--clr-primary);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar__left">
+      <div class="topbar__contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+        <a href="mailto:library@yenepoya.edu.in">library@yenepoya.edu.in</a>
+      </div>
+      <div class="topbar__divider"></div>
+      <div class="topbar__contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
+        </svg>
+        <a href="tel:08242206067">0824-2206067</a>
+      </div>
+    </div>
+    <div class="topbar__right">
+      <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-user.php" target="_blank">My Account</a>
+      <div class="topbar__divider"></div>
+      <a href="#membership">Get Library Card</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="index.php" class="header__logo" aria-label="Yenepoya Libraries Home">
+      <img src="https://library.yenepoya.edu.in/images/Central-Library-logo.png" alt="Yenepoya Central Library">
+      <img src="https://library.yenepoya.edu.in/images/naac.png" alt="NAAC" class="header__logo-naac">
+    </a>
+    <nav class="header__nav" aria-label="Primary Navigation">
+      <a href="index.php" class="nav__link">Home</a>
+      <a href="about.php" class="nav__link">About</a>
+      <a href="services.php" class="nav__link active">Services</a>
+      <a href="e-resources.php" class="nav__link">E-Resources</a>
+      <a href="repository.php" class="nav__link">Repository</a>
+      <a href="research.php" class="nav__link">Research</a>
+      <a href="events.php" class="nav__link">Events</a>
+      <a href="contact.php" class="nav__link">Contact</a>
+    </nav>
+          <div class="header__search">
+        <div class="header__search-container" id="headerSearchContainer" onclick="window.location.href='index.php#opac'" style="cursor: pointer;">
+          <button class="header__search-btn" id="headerSearchBtn" aria-label="Search" onclick="window.location.href='index.php#opac'" style="cursor: pointer; z-index: 10;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+          </button>
+          <input type="text" class="header__search-input" id="headerSearchInput" placeholder="Search for books..." readonly onclick="window.location.href='index.php#opac'" style="cursor: pointer; z-index: 10;">
+        </div>
+      </div>
+    <button class="header__burger" id="burger"
+      aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.php" class="nav__link">Home</a>
+    <a href="about.php" class="nav__link">About</a>
+    <a href="services.php" class="nav__link active">Services</a>
+    <a href="e-resources.php" class="nav__link">E-Resources</a>
+    <a href="repository.php" class="nav__link">Repository</a>
+    <a href="research.php" class="nav__link">Research</a>
+    <a href="events.php" class="nav__link">Events</a>
+    <a href="contact.php" class="nav__link">Contact</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero" style="background-image: linear-gradient(rgba(16, 28, 56, 0.75), rgba(16, 28, 56, 0.75)), url('images/hero-bg2.png'); background-size: cover; background-position: center;"images/banners/Library Collections.webp'); background-size: cover; background-position: center;">
+    <div class="page-hero__inner">
+      <div class="page-hero__breadcrumb">
+        <a href="index.php">Home</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m9 18 6-6-6-6" />
+        </svg>
+        <span>Services</span>
+      </div>
+      <h1 class="page-hero__title">Library Services</h1>
+      <p class="page-hero__subtitle">Explore the wide variety of services provided by Yenepoya Libraries to keep our users well informed and fully supported in their academic journey.</p>
+    </div>
+  </div>
+
+  <!-- INNER LAYOUT -->
+  <div class="inner-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="page-sidebar" aria-label="Services navigation">
+      <div class="page-sidebar__title">Library Services</div>
+      <nav class="page-sidebar__nav">
+        <a href="#discovery" class="page-sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          OPAC/WEB-OPAC LINK
+        </a>
+        <a href="#remote-access" class="page-sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 3 21 3 21 9" />
+            <polyline points="9 21 3 21 3 15" />
+            <line x1="21" y1="3" x2="14" y2="10" />
+            <line x1="3" y1="21" x2="10" y2="14" />
+          </svg>
+          Off-Campus (Remote Access) to Online Resources
+        </a>
+        <a href="#article-request" class="page-sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <line x1="10" y1="9" x2="8" y2="9" />
+          </svg>
+          Article Request Services
+        </a>
+        <a href="#borrowing" class="page-sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          </svg>
+          Borrowing Facility
+        </a>
+        <a href="#statistics" class="page-sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg>
+          Library Statistics
+        </a>
+        <a href="#new-arrivals" class="page-sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="12" y1="18" x2="12" y2="12" />
+            <line x1="9" y1="15" x2="15" y2="15" />
+          </svg>
+          New Arrivals
+        </a>
+        <a href="#membership" class="page-sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          Library Membership
+        </a>
+        <a href="#document-delivery" class="page-sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          Document Delivery services
+        </a>
+        <a href="#repository" class="page-sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+          </svg>
+          Institutional Repository
+        </a>
+        <a href="#virtual-tour" class="page-sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="23 7 16 12 23 17 23 7" />
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+          </svg>
+          Virtual – Library tour
+        </a>
+        <a href="#email-services" class="page-sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          Email Based Services
+        </a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="page-content" id="main">
+
+      <!-- 1. Discovery -->
+      <section class="page-section" id="discovery">
+        <div class="page-section__header">
+          <div class="page-section__label">Search & Discovery</div>
+          <h2 class="page-section__title">OPAC/WEB-OPAC LINK</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <p>OPAC (Online Public Access Catalogue) is a meticulously maintained online catalogue to search and browse the extensive library resources. It provides detailed metadata about books, journals, and non-book materials available physically in the library.</p>
+        
+        <div class="info-grid">
+          <div class="info-box">
+            <div class="info-box__label">Search By</div>
+            <div class="info-box__value">Author / Title</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box__label">Browse By</div>
+            <div class="info-box__value">Keyword / Subject</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box__label">Account Services</div>
+            <div class="info-box__value">Current Checkouts</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box__label">Features</div>
+            <div class="info-box__value">Hold / Reserve</div>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top:28px;">
+          <strong>Tip:</strong> Log in to your OPAC account using your University ID to track your borrowed items and due dates in real-time.
+        </div>
+
+        <p style="margin-top:24px;">
+          <a href="https://opac.yenepoya.edu.in/" target="_blank" class="btn btn--primary">
+            Access Web OPAC
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </p>
+      </section>
+
+      <!-- 2. Remote Access -->
+      <section class="page-section" id="remote-access" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">Digital Access</div>
+          <h2 class="page-section__title">Off-Campus (Remote Access)</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <p>Our digital library breaks physical boundaries. Faculty, researchers, and students can access subscribed e-resources, journals, and databases 24x7 from anywhere globally through the Knimbus remote access portal.</p>
+        
+        <h3 style="margin-top:28px;margin-bottom:14px;font-size:16px;font-weight:700;color:var(--clr-primary);">Available Digital Collections</h3>
+        <ul style="list-style:disc; margin-left:20px; line-height:1.7; margin-bottom: 24px;">
+          <li>High-impact premium Electronic Journals from renowned publishers.</li>
+          <li>Comprehensive Medical and Dental Electronic Databases.</li>
+          <li>E-Books ranging from textbooks to deep research monographs.</li>
+          <li>Digital archives and back-volumes of important publications.</li>
+        </ul>
+
+        <div class="callout" style="border-left-color: #f39c12;">
+          <strong>Registration:</strong> Initial registration for Knimbus Remote Access must be completed via <a href="https://forms.gle/4ezioAY7YQZicoKs8" target="_blank" style="color:var(--clr-primary);text-decoration:underline;">this registration form</a>. For login credentials, please contact the Central Library circulation desk.
+        </div>
+
+        <p style="margin-top:24px;">
+          <a href="https://yenepoya.knimbus.com/" target="_blank" class="btn btn--outline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 3 21 3 21 9" />
+              <polyline points="9 21 3 21 3 15" />
+              <line x1="21" y1="3" x2="14" y2="10" />
+              <line x1="3" y1="21" x2="10" y2="14" />
+            </svg>
+            Knimbus Remote Access Portal
+          </a>
+        </p>
+      </section>
+
+      <!-- 3. Article Request -->
+      <section class="page-section" id="article-request" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">Research Support</div>
+          <h2 class="page-section__title">Article Request Services</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <p>The Central Library provides dedicated full-text article request services specifically tailored to support the rigorous needs of research scholars, robust clinical studies, and our esteemed faculty members.</p>
+        
+        <div class="info-grid">
+          <div class="info-box">
+            <div class="info-box__label">Turnaround Time</div>
+            <div class="info-box__value">24 - 48 Hrs</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box__label">Delivery Mode</div>
+            <div class="info-box__value">Email (PDF)</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box__label">Network Partner</div>
+            <div class="info-box__value">DELNET</div>
+          </div>
+        </div>
+        
+        <p style="margin-top: 24px;">Articles that are not locally available within our subscribed databases are skillfully sourced and procured through the document delivery services of DELNET (Developing Library Network), guaranteeing you access to virtually any academic paper globally.</p>
+
+        <div class="callout" style="margin-top:28px;">
+          <strong>Submit a Request:</strong> Send your citations (including DOI or PMID) to <a href="mailto:articlerequest@yenepoya.edu.in" style="font-weight:700; color:var(--clr-primary);">articlerequest@yenepoya.edu.in</a>
+        </div>
+      </section>
+
+      <!-- 4. Borrowing Facility -->
+      <section class="page-section" id="borrowing" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">Circulation</div>
+          <h2 class="page-section__title">Borrowing Facility</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <p>Our circulation desk is the heart of the library. Students, faculty members, and research scholars possessing electronically coded membership cards are fully entitled to borrow a vast array of library materials.</p>
+        
+        <h3 style="margin-top:28px;margin-bottom:10px;font-size:16px;font-weight:700;color:var(--clr-primary);">Borrowing Privileges</h3>
+        <table class="hours-table">
+          <thead>
+            <tr>
+              <th>Member Category</th>
+              <th>Book Limit</th>
+              <th>Borrowing Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Undergraduate Students</strong></td>
+              <td>2 Books</td>
+              <td>14 Days</td>
+            </tr>
+            <tr>
+              <td><strong>Postgraduate Students / Scholars</strong></td>
+              <td>4 Books</td>
+              <td>14 Days</td>
+            </tr>
+            <tr>
+              <td><strong>Faculty Members</strong></td>
+              <td>10 Books</td>
+              <td>30 Days</td>
+            </tr>
+            <tr>
+              <td><strong>Non-Teaching Staff</strong></td>
+              <td>2 Books</td>
+              <td>14 Days</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout" style="margin-top:20px; border-left-color: #e74c3c;">
+          <strong>Requirement:</strong> All students are strictly required to obtain a 'No Dues Certificate' from the library upon the successful completion of their studies.
+        </div>
+      </section>
+
+      <!-- 5. Library Statistics -->
+      <section class="page-section" id="statistics" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">Data & Analytics</div>
+          <h2 class="page-section__title">Library Statistics</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <p>We believe in data-driven growth. The Yenepoya Libraries actively track usage metrics to continually optimize our collections, facility availability, and resource negotiations based on actual user demand.</p>
+        
+        <div class="info-grid" style="margin-top:28px;">
+          <div class="info-box">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--clr-primary); margin-bottom:10px;">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <div class="info-box__label">E-Resource Analytics</div>
+            <div class="info-box__value" style="font-size: 15px; font-weight:500;">Tracking electronic article downloads, database logins, and search queries.</div>
+          </div>
+          <div class="info-box">
+             <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--clr-primary); margin-bottom:10px;">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg>
+            <div class="info-box__label">Circulation Statistics</div>
+            <div class="info-box__value" style="font-size: 15px; font-weight:500;">Monitoring physical book loans, renewals, and most popular titles.</div>
+          </div>
+          <div class="info-box">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--clr-primary); margin-bottom:10px;">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            <div class="info-box__label">Footfall & Visitors</div>
+            <div class="info-box__value" style="font-size: 15px; font-weight:500;">Daily gate registers tracking student and faculty attendance visually.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. New Arrivals -->
+      <section class="page-section" id="new-arrivals" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">Collections</div>
+          <h2 class="page-section__title">New Arrivals</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <p>To keep pace with the rapidly evolving field of medicine and allied sciences, the Yenepoya Libraries continuously enrich their collection with the latest publications, updated textbooks, and modern reference materials.</p>
+        
+        <h3 style="margin-top:28px;margin-bottom:14px;font-size:16px;font-weight:700;color:var(--clr-primary);">College Wise Display</h3>
+        <ul style="list-style:circle; margin-left:20px; line-height:1.7; margin-bottom: 24px;">
+          <li><strong>Yenepoya Medical College:</strong> Anatomy, General Medicine, Surgery, Pediatrics, etc.</li>
+          <li><strong>Yenepoya Dental College:</strong> Periodontics, Prosthodontics, Oral Pathology, etc.</li>
+          <li><strong>Nursing & Physiotherapy:</strong> Latest textbooks tailored for practical learning.</li>
+        </ul>
+        
+        <div class="callout">
+          New arrivals are prominently displayed in the dedicated "New Book Display Section" at the front of the Central Library for 15 days before being moved to the general circulation stacks.
+        </div>
+      </section>
+
+      <!-- 7. Library Membership -->
+      <section class="page-section" id="membership" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">Registration</div>
+          <h2 class="page-section__title">Library Membership</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <p>Membership to the prestigious Yenepoya Libraries is wide open. We encourage all members of our academic community to register and take full advantage of our world-class resources.</p>
+        
+        <div class="info-grid">
+          <div class="info-box">
+            <div class="info-box__label">Core Eligibility</div>
+            <div class="info-box__value" style="font-size:15px; font-weight:600;">Students &amp; Faculty</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box__label">External Access</div>
+            <div class="info-box__value" style="font-size:15px; font-weight:600;">Guest &amp; Alumni (Nominal Fee)</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box__label">Requirements</div>
+            <div class="info-box__value" style="font-size:15px; font-weight:600;">Submit form + 3 Photographs</div>
+          </div>
+        </div>
+
+        <p style="margin-top:28px;">
+          <a href="https://library.yenepoya.edu.in/images/membership/LIBRARY%20MEMBERSHIP%20REQUEST%20FORM%20final.pdf" target="_blank" class="btn btn--primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Download Membership Form
+          </a>
+        </p>
+      </section>
+
+      <!-- 8. Document Delivery services -->
+      <section class="page-section" id="document-delivery" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">Inter-Library</div>
+          <h2 class="page-section__title">Document Delivery Services</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <p>When our vast local collection doesn't hold the specific document you require, our library seamlessly steps outside its walls. We facilitate the procurement of books and specialized journal articles through robust inter-library loan programs.</p>
+
+        <div class="callout" style="margin-top:24px;">
+          <strong>DELNET Membership:</strong> We are proud members of DELNET (Developing Library Network), New Delhi. This expansive network connects us to thousands of libraries across the nation, ensuring you receive the documents you need delivered directly to our campus.
+        </div>
+      </section>
+
+      <!-- 9. Institutional Repository -->
+      <section class="page-section" id="repository" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">Archives</div>
+          <h2 class="page-section__title">Institutional Repository</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <p>The Yenepoya Institutional Repository serves as the digital memory of the university. Developed using the robust open-source DSpace software, it meticulously collects, preserves, and disseminates the intellectual output of our institution.</p>
+        
+        <h3 style="margin-top:28px;margin-bottom:14px;font-size:16px;font-weight:700;color:var(--clr-primary);">Repository Contents</h3>
+        <ul style="list-style:square; margin-left:20px; line-height:1.7; margin-bottom: 24px;">
+          <li>Published Faculty Research &amp; Articles</li>
+          <li>Postgraduate and Doctoral Theses</li>
+          <li>Student Dissertations</li>
+          <li>Previous years' University Examination Question Papers (UG &amp; PG)</li>
+        </ul>
+
+        <p style="margin-top:20px;">
+          <a href="http://192.168.5.11:8080/dspace" target="_blank" class="btn btn--primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg>
+            Browse Repository Portal
+          </a>
+        </p>
+      </section>
+
+      <!-- 10. Virtual – Library tour -->
+      <section class="page-section" id="virtual-tour" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">Experience</div>
+          <h2 class="page-section__title">Virtual Library Tour</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <p>Explore the vast, modern facilities of the Yenepoya Central Library without leaving your desk. Take a comprehensive 360-degree virtual tour designed to help students familiarize themselves with our layout.</p>
+        
+        <div style="margin-top:28px; background:#f1f5f9; border-radius:12px; height:300px; display:flex; flex-direction:column; align-items:center; justify-content:center; border:2px dashed #cbd5e1; cursor:pointer;" title="Click to launch 360 Tour">
+          <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="var(--clr-primary)" stroke-width="1.5">
+            <polygon points="23 7 16 12 23 17 23 7" />
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+          </svg>
+          <span style="margin-top:16px; font-weight:600; color:var(--clr-gray); font-size:18px;">360° Interactive Tour</span>
+          <span style="color:var(--clr-primary); font-size:14px; margin-top:8px;">Click to Launch Player</span>
+        </div>
+      </section>
+
+      <!-- 11. Email Based Services -->
+      <section class="page-section" id="email-services" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label">Communication</div>
+          <h2 class="page-section__title">Email Based Services</h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <p>Our library staff is dedicated to assisting you digitally. Reach out to us via email for prompt support, expert guidance, and personalized assistance tailored to your academic needs.</p>
+        
+        <div class="info-grid">
+          <div class="info-box" style="padding: 24px;">
+            <div class="info-box__label" style="font-size:16px;">General Inquiry &amp; Support</div>
+            <div class="info-box__value" style="font-size:15px; margin-top:8px;">
+              <a href="mailto:library@yenepoya.edu.in" style="color:var(--clr-primary); text-decoration:none;">library@yenepoya.edu.in</a>
+            </div>
+            <p style="font-size:13px; color:var(--clr-gray); margin-top:8px;">For suggestions, account queries, and general questions.</p>
+          </div>
+          
+          <div class="info-box" style="padding: 24px;">
+            <div class="info-box__label" style="font-size:16px;">Ayurveda Library Branch</div>
+            <div class="info-box__value" style="font-size:15px; margin-top:8px;">
+              <a href="mailto:libraryayurveda@yenepoya.edu.in" style="color:var(--clr-primary); text-decoration:none;">libraryayurveda@yenepoya.edu.in</a>
+            </div>
+            <p style="font-size:13px; color:var(--clr-gray); margin-top:8px;">Contact the constituent Ayurveda medical college directly.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div><!-- end inner-layout -->
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__top">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__brand-logo">
+            <img src="https://library.yenepoya.edu.in/images/Central-Library-logo.png" alt="Yenepoya Libraries">
+            <span style="font-weight:800;font-size:18px;color:#fff;letter-spacing:-.2px;">Yenepoya Libraries</span>
+          </div>
+          <p>Central hub of information for Yenepoya (Deemed to be University). Providing library and information
+            services to 8,000+ users since 1992.</p>
+        </div>
+        <div>
+          <div class="footer__col-title">Useful Links</div>
+          <div class="footer__links">
+            <a href="about.php">About Library</a>
+            <a href="e-resources.php">E-Resources</a>
+            <a href="services.php">Services</a>
+            <a href="repository.php">Institutional Repository</a>
+            <a href="research.php">Research Support</a>
+            <a href="events.php">Events</a>
+            <a href="contact.php">Contact Us</a>
+            <a href="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-user.php" target="_blank">My Account</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-title">Our Institutes</div>
+          <div class="footer__links">
+            <a href="https://ydc.yenepoya.edu.in" target="_blank">Dental College</a>
+            <a href="https://www.ypcrc.yenepoya.edu.in" target="_blank">Pharmacy &amp; Research Centre</a>
+            <a href="https://ymc.yenepoya.edu.in" target="_blank">Medical College</a>
+            <a href="https://ync.yenepoya.edu.in" target="_blank">Nursing College</a>
+            <a href="https://ypc.yenepoya.edu.in" target="_blank">Physiotherapy College</a>
+            <a href="https://yiascm.in" target="_blank">YIASCM</a>
+            <a href="https://www.yenepoyaayurveda.com" target="_blank">Ayurveda College</a>
+            <a href="https://www.yhch.in" target="_blank">Homoeopathy College</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-title">Get In Touch</div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>University Road, Deralakatte,<br>Mangalore – 575018, Karnataka, India</span>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+            <a href="mailto:library@yenepoya.edu.in">library@yenepoya.edu.in</a>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
+            </svg>
+            <a href="tel:08242206067">+91 824 2206067</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__bottom-inner">
+        <span>© 2026 <strong>Yenepoya (Deemed to be University)</strong>. All Rights Reserved.</span>
+        <span>Designed by <a href="https://ytincubator.com" target="_blank">Yenepoya Technology Incubator</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ENQUIRY SIDEBAR -->
+  <div class="enquiry-sidebar" id="enquirySidebar">
+    <div class="enquiry-tab" id="enquiryTab" tabindex="0" role="button">Enquire Now</div>
+          <button type="button" onclick="document.getElementById('enquirySidebar').classList.remove('open')" aria-label="Close form" style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; font-size: 32px; font-weight: 400; line-height: 1; color: var(--clr-text-muted, #777); cursor: pointer; padding: 0; z-index: 10;">&times;</button>
+      <h3 style="margin-top: 0;">Quick Enquiry</h3>
+    <form id="enquiryForm" action="api/save_enquire.php" method="post">
+      <input class="enquiry-field" type="text" name="name" placeholder="Your Name *" required>
+      <input class="enquiry-field" type="email" name="email" placeholder="Email Address">
+      <input class="enquiry-field" type="tel" name="phone" placeholder="Phone Number *" required>
+      <textarea class="enquiry-field enquiry-field--textarea" name="message" placeholder="Message…" required></textarea>
+      <button type="submit" class="enquiry-submit">Send Enquiry</button>
+    </form>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+

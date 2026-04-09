@@ -3,18 +3,8 @@
    Sidebar toggle, navigation, modals, toasts, action menus
    ═══════════════════════════════════════════════════════ */
 
-// ── Auth Check ──
-(function checkAuth() {
-  if (!sessionStorage.getItem('yen_admin_auth')) {
-    // Detect if we are in admin/ root or admin/pages/
-    const path = window.location.pathname;
-    if (path.includes('/pages/')) {
-      window.location.href = '../login.html';
-    } else {
-      window.location.href = 'login.html';
-    }
-  }
-})();
+// Auth is now handled by PHP sessions (see login.php)
+// No client-side auth check needed
 
 // ── Sidebar Toggle (Mobile) ──
 function toggleSidebar() {
@@ -130,12 +120,8 @@ function confirmDelete(itemName, callback) {
   }
 }
 
-// ── Logout ──
-function logout() {
-  sessionStorage.removeItem('yen_admin_auth');
-  sessionStorage.removeItem('yen_admin_user');
-  window.location.href = '../login.html';
-}
+// Logout is now handled by PHP (see logout.php)
+// No client-side logout needed
 
 // ── Table Search (simple client-side) ──
 function initTableSearch(inputId, tableId) {

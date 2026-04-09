@@ -8,10 +8,10 @@
 
   /* ── Active Nav Link ─────────────────────── */
   function setActiveNav() {
-    const page = location.pathname.split('/').pop() || 'index.html';
+    const page = location.pathname.split('/').pop() || 'index.php';
     document.querySelectorAll('.nav__link').forEach(a => {
       const href = a.getAttribute('href');
-      if (href === page || (page === '' && href === 'index.html')) {
+      if (href === page || (page === '' && href === 'index.php')) {
         a.classList.add('active');
       }
     });
