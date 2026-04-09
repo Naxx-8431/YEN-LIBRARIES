@@ -65,14 +65,19 @@
     </nav>
 
     <div class="header__search">
-      <div class="header__search-container" id="headerSearchContainer" onclick="document.getElementById('opac').scrollIntoView({behavior:'smooth'})" style="cursor: pointer;">
-        <button class="header__search-btn" id="headerSearchBtn" aria-label="Search" onclick="document.getElementById('opac').scrollIntoView({behavior:'smooth'})" style="cursor: pointer; z-index: 10;">
+      <div class="header__search-container" id="headerSearchContainer"
+        onclick="document.getElementById('opac').scrollIntoView({behavior:'smooth'})" style="cursor: pointer;">
+        <button class="header__search-btn" id="headerSearchBtn" aria-label="Search"
+          onclick="document.getElementById('opac').scrollIntoView({behavior:'smooth'})"
+          style="cursor: pointer; z-index: 10;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.35-4.35" />
           </svg>
         </button>
-        <input type="text" class="header__search-input" id="headerSearchInput" placeholder="Search for books..." readonly onclick="document.getElementById('opac').scrollIntoView({behavior:'smooth'})" style="cursor: pointer; z-index: 10;">
+        <input type="text" class="header__search-input" id="headerSearchInput" placeholder="Search for books..."
+          readonly onclick="document.getElementById('opac').scrollIntoView({behavior:'smooth'})"
+          style="cursor: pointer; z-index: 10;">
       </div>
     </div>
 
@@ -101,8 +106,10 @@
       <div class="hero-search__content">
         <span class="hero-search__tag">Yenepoya (Deemed to be University)</span>
         <h1 class="hero-search__title">Welcome to Yenepoya Libraries</h1>
-        <p class="hero-search__desc">Search our collection of 53,000+ books, e-journals, databases, and digital resources — all in one place.</p>
-        <form class="hero-search__form" id="opacSearchForm" action="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-search.pl" method="get" target="_blank">
+        <p class="hero-search__desc">Search our collection of 53,000+ books, e-journals, databases, and digital
+          resources — all in one place.</p>
+        <form class="hero-search__form" id="opacSearchForm"
+          action="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-search.pl" method="get" target="_blank">
           <div class="hero-search__bar">
             <select name="idx" class="hero-search__select" aria-label="Search by">
               <option value="ti">Title</option>
@@ -113,9 +120,13 @@
               <option value="ser">Series</option>
               <option value="call">Call number</option>
             </select>
-            <input type="text" name="q" class="hero-search__input" placeholder="Articles, books, and more" required autocomplete="off">
+            <input type="text" name="q" class="hero-search__input" placeholder="Articles, books, and more" required
+              autocomplete="off">
             <button type="submit" class="hero-search__btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
               SEARCH
             </button>
           </div>
@@ -279,18 +290,20 @@
     <!-- ══════════════ INTEGRATED DATABASES WIDGET (Dashboard Interface) ══════════════ -->
     <section class="section db-api-section bg-light" style="padding: 70px 0; background: var(--clr-bg);">
       <div class="container">
-        
+
         <div class="db-dashboard-wrapper">
-          
+
           <!-- Top Dashboard Header (Left Aligned) -->
           <div class="db-dashboard-header">
             <div class="db-header-text">
-              <span class="section__label" style="justify-content:flex-start; margin-bottom:12px;">Premium Digital Assets</span>
+              <span class="section__label" style="justify-content:flex-start; margin-bottom:12px;">Premium Digital
+                Assets</span>
               <h2 class="section__title" style="margin-bottom:0; text-align:left;">Explore Subscribed Databases</h2>
             </div>
-            
+
             <div class="db-select-wrapper">
-              <select class="db-custom-select" id="dbApiDropdown" onchange="switchDbPane(this.value)" aria-label="Select Database">
+              <select class="db-custom-select" id="dbApiDropdown" onchange="switchDbPane(this.value)"
+                aria-label="Select Database">
                 <optgroup label="Medical & Health Sciences">
                   <option value="pane-clinical" selected>ClinicalKey by Elsevier</option>
                   <option value="pane-proquest">ProQuest Health & Medical</option>
@@ -303,38 +316,65 @@
                 </optgroup>
               </select>
               <div class="db-select-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
               </div>
             </div>
           </div>
 
           <!-- The Pane Container (2-Columns) -->
           <div class="db-pane-container">
-            
+
             <!-- Pane: ClinicalKey -->
             <div class="db-pane active" id="pane-clinical">
               <div class="db-pane-left">
                 <div style="margin-bottom: 24px; color: var(--clr-accent);">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="40" height="40"><path d="M12 2L2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="40" height="40">
+                    <path d="M12 2L2 7l10 5 10-5-10-5Z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                  </svg>
                 </div>
                 <h3 class="db-pane-title">ClinicalKey by Elsevier</h3>
-                <p class="db-pane-desc">A dynamic clinical search engine providing access to over 600 journals, 1,000+ books, and thousands of medical and surgical videos.</p>
+                <p class="db-pane-desc">A dynamic clinical search engine providing access to over 600 journals, 1,000+
+                  books, and thousands of medical and surgical videos.</p>
                 <form class="db-search-form" action="https://www.clinicalkey.com/" method="get" target="_blank">
                   <input type="text" name="q" placeholder="Search conditions, treatments, drugs...">
                   <button type="submit" class="btn btn--accent">Search ClinicalKey</button>
                 </form>
               </div>
-              <div class="db-pane-right" style="background: linear-gradient(135deg, var(--clr-bg) 0%, #fff 100%); padding: 40px;">
+              <div class="db-pane-right"
+                style="background: linear-gradient(135deg, var(--clr-bg) 0%, #fff 100%); padding: 40px;">
                 <div style="width: 100%;">
-                  <div style="display: inline-block; padding: 4px 12px; background: rgba(89,204,193,0.1); color: var(--clr-accent-dk); border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; border: 1px solid rgba(89,204,193,0.2);">Full Institutional Access</div>
-                  <h4 style="font-size: 14px; color: var(--clr-primary); margin-bottom: 12px; font-weight: 700;">Key Resource Highlights:</h4>
+                  <div
+                    style="display: inline-block; padding: 4px 12px; background: rgba(89,204,193,0.1); color: var(--clr-accent-dk); border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; border: 1px solid rgba(89,204,193,0.2);">
+                    Full Institutional Access</div>
+                  <h4 style="font-size: 14px; color: var(--clr-primary); margin-bottom: 12px; font-weight: 700;">Key
+                    Resource Highlights:</h4>
                   <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 10px;">
-                    <li style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 600+ Full-text Journals</li>
-                    <li style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 1,100+ Medical Books</li>
-                    <li style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 2,500+ Surgical Videos</li>
+                    <li
+                      style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)"
+                        stroke-width="2.5">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg> 600+ Full-text Journals</li>
+                    <li
+                      style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)"
+                        stroke-width="2.5">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg> 1,100+ Medical Books</li>
+                    <li
+                      style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)"
+                        stroke-width="2.5">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg> 2,500+ Surgical Videos</li>
                   </ul>
                   <div style="margin-top: 24px; padding-top: 16px; border-top: 1px dashed var(--clr-border);">
-                    <p style="font-size: 11px; color: var(--clr-text-muted); line-height: 1.4;">Provided by <strong>Elsevier Health</strong> for Yenepoya students and clinical faculty.</p>
+                    <p style="font-size: 11px; color: var(--clr-text-muted); line-height: 1.4;">Provided by
+                      <strong>Elsevier Health</strong> for Yenepoya students and clinical faculty.</p>
                   </div>
                 </div>
               </div>
@@ -344,26 +384,55 @@
             <div class="db-pane" id="pane-proquest">
               <div class="db-pane-left">
                 <div style="margin-bottom: 24px; color: var(--clr-accent);">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="40" height="40"><path d="M12 2L2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="40" height="40">
+                    <path d="M12 2L2 7l10 5 10-5-10-5Z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                  </svg>
                 </div>
                 <h3 class="db-pane-title">ProQuest Health & Medical</h3>
-                <p class="db-pane-desc">Comprehensive clinical and biomedical coverage with thousands of full-text journals, dissertations, and evidence-based resources.</p>
+                <p class="db-pane-desc">Comprehensive clinical and biomedical coverage with thousands of full-text
+                  journals, dissertations, and evidence-based resources.</p>
                 <form class="db-search-form" action="https://www.proquest.com/" method="get" target="_blank">
                   <input type="text" name="q" placeholder="Search medical research, authors, subjects...">
                   <button type="submit" class="btn btn--accent">Search ProQuest</button>
                 </form>
               </div>
-              <div class="db-pane-right" style="background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-dk) 100%); color: #fff; padding: 40px;">
+              <div class="db-pane-right"
+                style="background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-dk) 100%); color: #fff; padding: 40px;">
                 <div style="width: 100%;">
-                  <div style="display: inline-block; padding: 4px 12px; background: rgba(255,255,255,0.1); color: var(--clr-accent); border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px;">Biomedical Database</div>
-                  <h4 style="font-size: 14px; color: #fff; margin-bottom: 12px; font-weight: 700;">Database Coverage:</h4>
+                  <div
+                    style="display: inline-block; padding: 4px 12px; background: rgba(255,255,255,0.1); color: var(--clr-accent); border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px;">
+                    Biomedical Database</div>
+                  <h4 style="font-size: 14px; color: #fff; margin-bottom: 12px; font-weight: 700;">Database Coverage:
+                  </h4>
                   <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 10px;">
-                    <li style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 4,500+ Scholarly Journals</li>
-                    <li style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 30,000+ Dissertations</li>
-                    <li style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Evidence-based Reports</li>
+                    <li
+                      style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)"
+                        stroke-width="2.5">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg> 4,500+ Scholarly Journals</li>
+                    <li
+                      style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)"
+                        stroke-width="2.5">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg> 30,000+ Dissertations</li>
+                    <li
+                      style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)"
+                        stroke-width="2.5">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg> Evidence-based Reports</li>
                   </ul>
                   <div style="margin-top: 24px; display: flex; align-items: center; gap: 10px;">
-                    <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--clr-accent); display: flex; align-items: center; justify-content: center; color: var(--clr-primary);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                    <div
+                      style="width: 32px; height: 32px; border-radius: 50%; background: var(--clr-accent); display: flex; align-items: center; justify-content: center; color: var(--clr-primary);">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg></div>
                     <span style="font-size: 12px; font-weight: 600;">Secure Remote Access Enabled</span>
                   </div>
                 </div>
@@ -374,25 +443,51 @@
             <div class="db-pane" id="pane-jaypee">
               <div class="db-pane-left">
                 <div style="margin-bottom: 24px; color: var(--clr-accent);">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="40" height="40"><path d="M12 2L2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="40" height="40">
+                    <path d="M12 2L2 7l10 5 10-5-10-5Z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                  </svg>
                 </div>
                 <h3 class="db-pane-title">Jaypee Digital</h3>
-                <p class="db-pane-desc">Access to an extensive collection of Indian and global medical reference books, textbooks, and surgical procedure videos.</p>
+                <p class="db-pane-desc">Access to an extensive collection of Indian and global medical reference books,
+                  textbooks, and surgical procedure videos.</p>
                 <form class="db-search-form" action="https://www.jaypeedigital.com/" method="get" target="_blank">
                   <input type="text" name="q" placeholder="Search textbooks, chapters, videos...">
                   <button type="submit" class="btn btn--accent">Search Jaypee</button>
                 </form>
               </div>
-              <div class="db-pane-right" style="background: #fff; border-left: 1px solid var(--clr-border); padding: 40px;">
+              <div class="db-pane-right"
+                style="background: #fff; border-left: 1px solid var(--clr-border); padding: 40px;">
                 <div style="width: 100%;">
-                  <div style="display: inline-block; padding: 4px 12px; background: #fff5e6; color: #d97706; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; border: 1px solid #fee2e2;">Indian Medical Focus</div>
-                  <h4 style="font-size: 14px; color: var(--clr-primary); margin-bottom: 12px; font-weight: 700;">Resource Content:</h4>
+                  <div
+                    style="display: inline-block; padding: 4px 12px; background: #fff5e6; color: #d97706; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; border: 1px solid #fee2e2;">
+                    Indian Medical Focus</div>
+                  <h4 style="font-size: 14px; color: var(--clr-primary); margin-bottom: 12px; font-weight: 700;">
+                    Resource Content:</h4>
                   <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 10px;">
-                    <li style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-gold)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 2,000+ Clinical E-books</li>
-                    <li style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-gold)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Speciality Specific Journals</li>
-                    <li style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-gold)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Step-by-step Procedures</li>
+                    <li
+                      style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-gold)"
+                        stroke-width="2.5">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg> 2,000+ Clinical E-books</li>
+                    <li
+                      style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-gold)"
+                        stroke-width="2.5">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg> Speciality Specific Journals</li>
+                    <li
+                      style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-gold)"
+                        stroke-width="2.5">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg> Step-by-step Procedures</li>
                   </ul>
-                  <a href="https://www.jaypeedigital.com/" target="_blank" style="margin-top: 24px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--clr-primary); text-decoration: underline; text-underline-offset: 4px;">Explore Jaypee Digital Hub &rarr;</a>
+                  <a href="https://www.jaypeedigital.com/" target="_blank"
+                    style="margin-top: 24px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--clr-primary); text-decoration: underline; text-underline-offset: 4px;">Explore
+                    Jaypee Digital Hub &rarr;</a>
                 </div>
               </div>
             </div>
@@ -401,26 +496,34 @@
             <div class="db-pane" id="pane-koha">
               <div class="db-pane-left">
                 <h3 class="db-pane-title" style="margin-top:24px;">KOHA OPAC (New Arrivals)</h3>
-                <p class="db-pane-desc">Real-time feed of the latest physical books added to the Yenepoya Central Library catalogue.</p>
-                <a href="https://opac.yenepoya.edu.in/" class="btn btn--outline" target="_blank" style="margin-top:16px;">Open Library Catalogue</a>
+                <p class="db-pane-desc">Real-time feed of the latest physical books added to the Yenepoya Central
+                  Library catalogue.</p>
+                <a href="https://opac.yenepoya.edu.in/" class="btn btn--outline" target="_blank"
+                  style="margin-top:16px;">Open Library Catalogue</a>
               </div>
               <div class="db-pane-right db-pane-right--no-bg" style="flex-direction: column; align-items: flex-end;">
                 <div class="db-koha-grid" style="grid-template-columns: repeat(3, 1fr);">
                   <a href="https://opac.yenepoya.edu.in/" class="db-koha-book" target="_blank">
-                    <img src="images/e-books/ydc-e-book1.jpg" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22><rect fill=%22%23cbd5e1%22 width=%22100%25%22 height=%22140%22/></svg>'">
+                    <img src="images/e-books/ydc-e-book1.jpg"
+                      onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22><rect fill=%22%23cbd5e1%22 width=%22100%25%22 height=%22140%22/></svg>'">
                     <span>Robbins Pathology</span>
                   </a>
                   <a href="https://opac.yenepoya.edu.in/" class="db-koha-book" target="_blank">
-                    <img src="images/e-books/ymc-e-book2.jpg" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22><rect fill=%22%23cbd5e1%22 width=%22100%25%22 height=%22140%22/></svg>'">
+                    <img src="images/e-books/ymc-e-book2.jpg"
+                      onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22><rect fill=%22%23cbd5e1%22 width=%22100%25%22 height=%22140%22/></svg>'">
                     <span>Harrison's Medicine</span>
                   </a>
                   <a href="https://opac.yenepoya.edu.in/" class="db-koha-book" target="_blank">
-                    <img src="images/e-books/yams-e-book1.jpg" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22><rect fill=%22%23cbd5e1%22 width=%22100%25%22 height=%22140%22/></svg>'">
+                    <img src="images/e-books/yams-e-book1.jpg"
+                      onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22><rect fill=%22%23cbd5e1%22 width=%22100%25%22 height=%22140%22/></svg>'">
                     <span>Charaka Samhita</span>
                   </a>
                 </div>
                 <div style="text-align: right; margin-top: 20px; width: 100%;">
-                  <a href="https://opac.yenepoya.edu.in/" target="_blank" style="font-weight: 700; color: var(--clr-primary); text-decoration: none; border-bottom: 2px solid var(--clr-accent); padding-bottom: 2px; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">View all New Arrivals &rarr;</a>
+                  <a href="https://opac.yenepoya.edu.in/" target="_blank"
+                    style="font-weight: 700; color: var(--clr-primary); text-decoration: none; border-bottom: 2px solid var(--clr-accent); padding-bottom: 2px; transition: opacity 0.2s;"
+                    onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">View all New Arrivals
+                    &rarr;</a>
                 </div>
               </div>
             </div>
@@ -429,28 +532,46 @@
             <div class="db-pane" id="pane-irins">
               <div class="db-pane-left">
                 <h3 class="db-pane-title" style="margin-top:24px;">IRINS (Faculty Profiles)</h3>
-                <p class="db-pane-desc">Indian Research Information Network System measuring the research output and footprint of Yenepoya University faculty.</p>
-                <a href="https://yenepoya.irins.org/" class="btn btn--accent" target="_blank" style="display:inline-flex; align-items:center; gap:8px; margin-top:16px;">Browse Faculty Profiles <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <p class="db-pane-desc">Indian Research Information Network System measuring the research output and
+                  footprint of Yenepoya University faculty.</p>
+                <a href="https://yenepoya.irins.org/" class="btn btn--accent" target="_blank"
+                  style="display:inline-flex; align-items:center; gap:8px; margin-top:16px;">Browse Faculty Profiles
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg></a>
               </div>
-              <div class="db-pane-right" style="background: #fff; border-left: 1px solid var(--clr-border); padding: 40px;">
+              <div class="db-pane-right"
+                style="background: #fff; border-left: 1px solid var(--clr-border); padding: 40px;">
                 <div style="width: 100%;">
-                  <div style="display: inline-block; padding: 4px 12px; background: rgba(40,59,106,0.05); color: var(--clr-primary); border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; border: 1px solid var(--clr-border);">Research Metrics Hub</div>
-                  <h4 style="font-size: 14px; color: var(--clr-primary); margin-bottom: 16px; font-weight: 700;">University Research Footprint:</h4>
+                  <div
+                    style="display: inline-block; padding: 4px 12px; background: rgba(40,59,106,0.05); color: var(--clr-primary); border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; border: 1px solid var(--clr-border);">
+                    Research Metrics Hub</div>
+                  <h4 style="font-size: 14px; color: var(--clr-primary); margin-bottom: 16px; font-weight: 700;">
+                    University Research Footprint:</h4>
                   <div class="db-irins-stats" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                    <div style="background: var(--clr-bg); padding: 16px; border-radius: 8px; border: 1px solid var(--clr-border);">
+                    <div
+                      style="background: var(--clr-bg); padding: 16px; border-radius: 8px; border: 1px solid var(--clr-border);">
                       <div style="font-size: 20px; font-weight: 800; color: var(--clr-primary);">400+</div>
-                      <div style="font-size: 11px; color: var(--clr-text-muted); font-weight: 600;">Faculty Profiles</div>
+                      <div style="font-size: 11px; color: var(--clr-text-muted); font-weight: 600;">Faculty Profiles
+                      </div>
                     </div>
-                    <div style="background: var(--clr-bg); padding: 16px; border-radius: 8px; border: 1px solid var(--clr-border);">
+                    <div
+                      style="background: var(--clr-bg); padding: 16px; border-radius: 8px; border: 1px solid var(--clr-border);">
                       <div style="font-size: 20px; font-weight: 800; color: var(--clr-primary);">8,500+</div>
                       <div style="font-size: 11px; color: var(--clr-text-muted); font-weight: 600;">Publications</div>
                     </div>
-                    <div style="grid-column: span 2; background: rgba(89,204,193,0.05); padding: 16px; border-radius: 8px; border: 1px solid rgba(89,204,193,0.2); display: flex; align-items: center; justify-content: space-between;">
+                    <div
+                      style="grid-column: span 2; background: rgba(89,204,193,0.05); padding: 16px; border-radius: 8px; border: 1px solid rgba(89,204,193,0.2); display: flex; align-items: center; justify-content: space-between;">
                       <div>
                         <div style="font-size: 20px; font-weight: 800; color: var(--clr-accent-dk);">75,000+</div>
-                        <div style="font-size: 11px; color: var(--clr-text-muted); font-weight: 600;">Total Citations</div>
+                        <div style="font-size: 11px; color: var(--clr-text-muted); font-weight: 600;">Total Citations
+                        </div>
                       </div>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)"
+                        stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <path d="M22 4L12 14.01l-3-3" />
+                      </svg>
                     </div>
                   </div>
                 </div>
@@ -461,34 +582,48 @@
             <div class="db-pane" id="pane-recent">
               <div class="db-pane-left">
                 <h3 class="db-pane-title" style="margin-top:24px;">E-journals & E-books</h3>
-                <p class="db-pane-desc">Recently subscribed high-impact journals and digital textbooks available for direct download or reading.</p>
+                <p class="db-pane-desc">Recently subscribed high-impact journals and digital textbooks available for
+                  direct download or reading.</p>
                 <a href="e-resources.html" class="btn btn--outline" style="margin-top:16px;">View E-Resources Hub</a>
               </div>
-              <div class="db-pane-right" style="background: linear-gradient(135deg, #fff 0%, var(--clr-bg) 100%); padding: 40px; border-left: 1px solid var(--clr-border);">
+              <div class="db-pane-right"
+                style="background: linear-gradient(135deg, #fff 0%, var(--clr-bg) 100%); padding: 40px; border-left: 1px solid var(--clr-border);">
                 <div style="width: 100%;">
                   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
                     <h4 style="font-size: 14px; color: var(--clr-primary); font-weight: 700;">Latest Subscriptions:</h4>
-                    <span style="font-size: 10px; font-weight: 800; color: #fff; background: var(--clr-gold); padding: 2px 8px; border-radius: 99px; text-transform: uppercase;">New</span>
+                    <span
+                      style="font-size: 10px; font-weight: 800; color: #fff; background: var(--clr-gold); padding: 2px 8px; border-radius: 99px; text-transform: uppercase;">New</span>
                   </div>
                   <div style="display: flex; flex-direction: column; gap: 12px;">
-                    <div style="display: flex; align-items: center; gap: 14px; background: #fff; padding: 12px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--clr-border);">
-                      <div style="width: 32px; height: 42px; background: #e2e8f0; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 18px; font-weight: bold;">L</div>
+                    <div
+                      style="display: flex; align-items: center; gap: 14px; background: #fff; padding: 12px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--clr-border);">
+                      <div
+                        style="width: 32px; height: 42px; background: #e2e8f0; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 18px; font-weight: bold;">
+                        L</div>
                       <div>
-                        <div style="font-size: 13px; font-weight: 700; color: var(--clr-primary);">The Lancet Oncology</div>
+                        <div style="font-size: 13px; font-weight: 700; color: var(--clr-primary);">The Lancet Oncology
+                        </div>
                         <div style="font-size: 11px; color: var(--clr-accent-dk);">Elsevier Journal</div>
                       </div>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 14px; background: #fff; padding: 12px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--clr-border);">
-                      <div style="width: 32px; height: 42px; background: #fef3c7; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #d97706; font-size: 18px; font-weight: bold;">N</div>
+                    <div
+                      style="display: flex; align-items: center; gap: 14px; background: #fff; padding: 12px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--clr-border);">
+                      <div
+                        style="width: 32px; height: 42px; background: #fef3c7; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #d97706; font-size: 18px; font-weight: bold;">
+                        N</div>
                       <div>
                         <div style="font-size: 13px; font-weight: 700; color: var(--clr-primary);">Nature Medicine</div>
                         <div style="font-size: 11px; color: var(--clr-accent-dk);">Nature Springer</div>
                       </div>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 14px; background: #fff; padding: 12px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--clr-border);">
-                      <div style="width: 32px; height: 42px; background: #dcfce7; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #16a34a; font-size: 18px; font-weight: bold;">G</div>
+                    <div
+                      style="display: flex; align-items: center; gap: 14px; background: #fff; padding: 12px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid var(--clr-border);">
+                      <div
+                        style="width: 32px; height: 42px; background: #dcfce7; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #16a34a; font-size: 18px; font-weight: bold;">
+                        G</div>
                       <div>
-                        <div style="font-size: 13px; font-weight: 700; color: var(--clr-primary);">Gray's Anatomy (42nd Ed)</div>
+                        <div style="font-size: 13px; font-weight: 700; color: var(--clr-primary);">Gray's Anatomy (42nd
+                          Ed)</div>
                         <div style="font-size: 11px; color: var(--clr-accent-dk);">New E-Book</div>
                       </div>
                     </div>
@@ -499,7 +634,7 @@
 
           </div>
         </div>
-        
+
       </div>
     </section>
 
@@ -508,22 +643,37 @@
       <div class="container container--stats">
         <div class="stats-grid">
           <div class="stat-item">
-            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+              </svg></div>
             <div class="stat-num">53,738+</div>
             <div class="stat-label">Volumes Available</div>
           </div>
           <div class="stat-item">
-            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg></div>
             <div class="stat-num">2.1M+</div>
             <div class="stat-label">E-Resources & E-Books</div>
           </div>
           <div class="stat-item">
-            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
+            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+              </svg></div>
             <div class="stat-num">8,000+</div>
             <div class="stat-label">E-Journals Accessible</div>
           </div>
           <div class="stat-item">
-            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg></div>
             <div class="stat-num">1,200+</div>
             <div class="stat-label">Daily Average Footfall</div>
           </div>
@@ -708,12 +858,14 @@
           <div class="academic-col">
             <div class="panel-header">
               <div class="panel-title" style="display:flex;align-items:center;gap:8px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg>
                 Faculty Publications
               </div>
               <a href="repository.html" class="panel-link">IRINS Portal →</a>
             </div>
-            
+
             <div class="faculty-pubs">
               <a href="repository.html#publications" class="pub-card">
                 <div class="pub-date">Mar 2026</div>
@@ -737,7 +889,10 @@
           <div class="academic-col">
             <div class="panel-header">
               <div class="panel-title" style="display:flex;align-items:center;gap:8px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+                </svg>
                 Trending Subjects & News (Edzter)
               </div>
               <a href="https://edzter.com/" target="_blank" class="panel-link">Open Edzter →</a>
@@ -745,21 +900,27 @@
 
             <div class="edzter-feed">
               <a href="e-resources.html#newspapers-magazines" class="edzter-item">
-                <div class="edzter-thumb"><img src="images/edzter/Edzter Magazine Cover.webp" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23283B6A%22 width=%22100%22 height=%22100%22/></svg>'" alt="News"></div>
+                <div class="edzter-thumb"><img src="images/edzter/Edzter Magazine Cover.webp"
+                    onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23283B6A%22 width=%22100%22 height=%22100%22/></svg>'"
+                    alt="News"></div>
                 <div class="edzter-content">
                   <div class="edzter-tag">Health & Medicine</div>
                   <div class="edzter-title">New Breakthrough in Oncology Treatments Published in Lancet</div>
                 </div>
               </a>
               <a href="e-resources.html#newspapers-magazines" class="edzter-item">
-                <div class="edzter-thumb"><img src="images/edzter/Newspaper clipping.webp" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23283B6A%22 width=%22100%22 height=%22100%22/></svg>'" alt="News"></div>
+                <div class="edzter-thumb"><img src="images/edzter/Newspaper clipping.webp"
+                    onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23283B6A%22 width=%22100%22 height=%22100%22/></svg>'"
+                    alt="News"></div>
                 <div class="edzter-content">
                   <div class="edzter-tag">University News</div>
                   <div class="edzter-title">Yenepoya Ranked Top 100 in NIRF National Framework</div>
                 </div>
               </a>
               <a href="e-resources.html#newspapers-magazines" class="edzter-item">
-                <div class="edzter-thumb"><img src="images/edzter/Edzter Magazine Cover.webp" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23283B6A%22 width=%22100%22 height=%22100%22/></svg>'" alt="News"></div>
+                <div class="edzter-thumb"><img src="images/edzter/Edzter Magazine Cover.webp"
+                    onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23283B6A%22 width=%22100%22 height=%22100%22/></svg>'"
+                    alt="News"></div>
                 <div class="edzter-content">
                   <div class="edzter-tag">Technology & Science</div>
                   <div class="edzter-title">AI's Role in Diagnosing Rare Diseases Faster</div>
@@ -922,22 +1083,43 @@
             services to 8,000+ users since 1992.</p>
           <div class="footer__social">
             <a href="mailto:library@yenepoya.edu.in" class="footer__social-link" aria-label="Email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
             </a>
             <a href="tel:08242206067" class="footer__social-link" aria-label="Phone">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" /></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
+              </svg>
             </a>
             <a href="#" class="footer__social-link" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
             </a>
             <a href="#" class="footer__social-link" aria-label="Twitter">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                </path>
+              </svg>
             </a>
             <a href="#" class="footer__social-link" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
             </a>
             <a href="#" class="footer__social-link" aria-label="YouTube">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                </path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+              </svg>
             </a>
           </div>
         </div>
@@ -1024,8 +1206,10 @@
   <div class="enquiry-sidebar" id="enquirySidebar" role="complementary" aria-label="Quick Enquiry">
     <div class="enquiry-tab" id="enquiryTab" tabindex="0" role="button" aria-expanded="false"
       aria-controls="enquirySidebar">Enquire Now</div>
-          <button type="button" onclick="document.getElementById('enquirySidebar').classList.remove('open')" aria-label="Close form" style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; font-size: 32px; font-weight: 400; line-height: 1; color: var(--clr-text-muted, #777); cursor: pointer; padding: 0; z-index: 10;">&times;</button>
-      <h3 style="margin-top: 0;">Quick Enquiry</h3>
+    <button type="button" onclick="document.getElementById('enquirySidebar').classList.remove('open')"
+      aria-label="Close form"
+      style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; font-size: 32px; font-weight: 400; line-height: 1; color: var(--clr-text-muted, #777); cursor: pointer; padding: 0; z-index: 10;">&times;</button>
+    <h3 style="margin-top: 0;">Quick Enquiry</h3>
     <form id="enquiryForm" action="api/save_enquire.php" method="post">
       <input class="enquiry-field" type="text" name="name" placeholder="Your Name *" required>
       <input class="enquiry-field" type="email" name="email" placeholder="Email Address">
@@ -1047,7 +1231,9 @@
     <div class="notif-header">
       <h3>Latest Updates</h3>
       <button class="notif-close" aria-label="Close" onclick="toggleNotifications()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
       </button>
     </div>
     <div class="notif-body">
@@ -1057,7 +1243,8 @@
       </div>
       <div class="notif-item">
         <span class="notif-time">1 day ago</span>
-        <strong>Library Timings:</strong> The Central Library will remain open 24/7 starting next Monday for exam preparations.
+        <strong>Library Timings:</strong> The Central Library will remain open 24/7 starting next Monday for exam
+        preparations.
       </div>
       <div class="notif-item">
         <span class="notif-time">3 days ago</span>
@@ -1077,8 +1264,11 @@
     <div class="chat-header">
       <div style="display:flex;align-items:center;gap:12px;">
         <span class="chat-avatar">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5M3 8.062C3 6.76 4.235 5.765 5.53 5.889a28.047 28.047 0 0 1 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.933.933 0 0 1-.765.935c-.845.147-2.34.346-4.235.346-1.895 0-3.39-.2-4.235-.346A.933.933 0 0 1 3 9.219zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a24.767 24.767 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25.286 25.286 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.135M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v-.5A4.5 4.5 0 0 0 10.5 3h-2V1.866M14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5"/></svg>
-          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+            <path
+              d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5M3 8.062C3 6.76 4.235 5.765 5.53 5.889a28.047 28.047 0 0 1 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.933.933 0 0 1-.765.935c-.845.147-2.34.346-4.235.346-1.895 0-3.39-.2-4.235-.346A.933.933 0 0 1 3 9.219zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a24.767 24.767 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25.286 25.286 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.135M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v-.5A4.5 4.5 0 0 0 10.5 3h-2V1.866M14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5" />
+          </svg>
+        </span>
         <div style="line-height:1.2;">
           <strong>YEN-Bot</strong><br>
           <span style="font-size:11px; opacity:0.8; display:flex; align-items:center; gap:4px;">
@@ -1087,16 +1277,22 @@
         </div>
       </div>
       <button class="chat-close" onclick="toggleChat()" aria-label="Close Chat">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
       </button>
     </div>
     <div class="chat-body" id="chatBody">
-      <div class="chat-msg bot">Hello! I'm YEN-Bot, your virtual library assistant. I can help you find books, OPAC links, or remote access details. What do you need today?</div>
+      <div class="chat-msg bot">Hello! I'm YEN-Bot, your virtual library assistant. I can help you find books, OPAC
+        links, or remote access details. What do you need today?</div>
     </div>
     <form class="chat-footer" onsubmit="event.preventDefault(); document.getElementById('chatInput').value='';">
       <input type="text" id="chatInput" placeholder="Type your message..." autocomplete="off">
       <button type="submit">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg>
       </button>
     </form>
   </div>
@@ -1116,7 +1312,7 @@
     function toggleChat() {
       document.getElementById('chatWindow').classList.toggle('open');
       const input = document.getElementById('chatInput');
-      if(document.getElementById('chatWindow').classList.contains('open')) {
+      if (document.getElementById('chatWindow').classList.contains('open')) {
         setTimeout(() => input.focus(), 300);
       }
     }
@@ -1125,15 +1321,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
