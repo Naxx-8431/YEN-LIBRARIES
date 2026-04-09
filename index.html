@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -65,14 +65,14 @@
     </nav>
 
     <div class="header__search">
-      <div class="header__search-container" id="headerSearchContainer" onclick="window.location.href='opac-search.html'" style="cursor: pointer;">
-        <button class="header__search-btn" id="headerSearchBtn" aria-label="Search" onclick="window.location.href='opac-search.html'" style="cursor: pointer; z-index: 10;">
+      <div class="header__search-container" id="headerSearchContainer" onclick="document.getElementById('opac').scrollIntoView({behavior:'smooth'})" style="cursor: pointer;">
+        <button class="header__search-btn" id="headerSearchBtn" aria-label="Search" onclick="document.getElementById('opac').scrollIntoView({behavior:'smooth'})" style="cursor: pointer; z-index: 10;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.35-4.35" />
           </svg>
         </button>
-        <input type="text" class="header__search-input" id="headerSearchInput" placeholder="Search for books..." readonly onclick="window.location.href='opac-search.html'" style="cursor: pointer; z-index: 10;">
+        <input type="text" class="header__search-input" id="headerSearchInput" placeholder="Search for books..." readonly onclick="document.getElementById('opac').scrollIntoView({behavior:'smooth'})" style="cursor: pointer; z-index: 10;">
       </div>
     </div>
 
@@ -95,124 +95,40 @@
 
   <main id="main">
 
-    <!-- ═══════════════ HERO CAROUSEL ═════════════ -->
-    <section class="hero" aria-label="Featured">
-      <div class="hero__track">
-
-        <!-- Slide 1 -->
-        <div class="hero__slide">
-          <img src="images/banners/YENEPOYA LIBRARIES-1.webp" alt="Yenepoya Central Library" loading="eager"
-            onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 480%22><rect fill=%22%23283B6A%22 width=%221200%22 height=%22480%22/><text fill=%22%2359CCC1%22 font-family=%22Inter,sans-serif%22 font-size=%2248%22 x=%22600%22 y=%22240%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22800%22>Yenepoya Libraries</text></svg>'">
-          <div class="hero__overlay">
-            <div class="hero__content">
-              <span class="hero__tag">Yenepoya (Deemed to be University)</span>
-              <h1 class="hero__title">Your Gateway to a World of Knowledge</h1>
-              <p class="hero__desc">Access 53,000+ books, 9 online databases, e-journals, institutional repository and
-                open educational resources — all in one place.</p>
-              <div class="hero__actions">
-                <a href="#opac" class="btn btn--accent">Search Catalogue</a>
-                <a href="e-resources.html" class="btn btn--outline"
-                  style="border-color:rgba(255,255,255,.5);color:#fff;">Browse E-Resources</a>
-              </div>
-            </div>
+    <!-- ═══════════════ HERO — OPAC SEARCH ═════════════ -->
+    <section class="hero-search" id="opac" aria-label="Library Catalogue Search">
+      <div class="hero-search__overlay"></div>
+      <div class="hero-search__content">
+        <span class="hero-search__tag">Yenepoya (Deemed to be University)</span>
+        <h1 class="hero-search__title">Welcome to Yenepoya Libraries</h1>
+        <p class="hero-search__desc">Search our collection of 53,000+ books, e-journals, databases, and digital resources — all in one place.</p>
+        <form class="hero-search__form" id="opacSearchForm" action="https://opac.yenepoya.edu.in/cgi-bin/koha/opac-search.pl" method="get" target="_blank">
+          <div class="hero-search__bar">
+            <select name="idx" class="hero-search__select" aria-label="Search by">
+              <option value="ti">Title</option>
+              <option value="au">Author</option>
+              <option value="su">Subject</option>
+              <option value="isbn">ISBN</option>
+              <option value="issn">ISSN</option>
+              <option value="ser">Series</option>
+              <option value="call">Call number</option>
+            </select>
+            <input type="text" name="q" class="hero-search__input" placeholder="Articles, books, and more" required autocomplete="off">
+            <button type="submit" class="hero-search__btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              SEARCH
+            </button>
           </div>
+        </form>
+        <div class="hero-search__links">
+          <a href="e-resources.html">E-Resources</a>
+          <span class="hero-search__links-divider"></span>
+          <a href="e-resources.html#online-databases">Online Databases</a>
+          <span class="hero-search__links-divider"></span>
+          <a href="repository.html">Institutional Repository</a>
+          <span class="hero-search__links-divider"></span>
+          <a href="research.html">Research Support</a>
         </div>
-
-        <!-- Slide 2 -->
-        <div class="hero__slide">
-          <img src="images/banners/Remote Access.webp" alt="Digital Library"
-            onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 480%22><rect fill=%22%231c2c54%22 width=%221200%22 height=%22480%22/><text fill=%22%2359CCC1%22 font-family=%22Inter,sans-serif%22 font-size=%2242%22 x=%22600%22 y=%22240%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22800%22>Digital Resources</text></svg>'">
-          <div class="hero__overlay">
-            <div class="hero__content">
-              <span class="hero__tag">Off-Campus Access 24×7</span>
-              <h1 class="hero__title">Learn Anytime, Access Anywhere</h1>
-              <p class="hero__desc">Remote access to premium databases — Web of Science, ProQuest, UpToDate,
-                ClinicalKey, Scopus and more, via <a href="https://app.myloft.xyz/" target="_blank" style="color:var(--clr-accent);text-decoration:none;font-weight:600;">MyLoft</a>.</p>
-              <div class="hero__actions">
-                <a href="e-resources.html#online-databases" class="btn btn--accent">Explore Databases</a>
-                <a href="services.html#remote-access" class="btn btn--outline"
-                  style="border-color:rgba(255,255,255,.5);color:#fff;">Remote Access</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="hero__slide">
-          <img src="images/banners/Online Databases.webp" alt="Research Support"
-            onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 480%22><rect fill=%22%23283B6A%22 width=%221200%22 height=%22480%22/><text fill=%22%23ffffff%22 font-family=%22Inter,sans-serif%22 font-size=%2242%22 x=%22600%22 y=%22240%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22800%22>Research Support</text></svg>'">
-          <div class="hero__overlay">
-            <div class="hero__content">
-              <span class="hero__tag">Research Support Services</span>
-              <h1 class="hero__title">Empowering Research Excellence</h1>
-              <p class="hero__desc">Plagiarism detection (Turnitin/iThenticate), reference management, full-text article
-                requests and UGC-CARE journal guidance.</p>
-              <div class="hero__actions">
-                <a href="research.html" class="btn btn--accent">Research Tools</a>
-                <a href="research.html#plagiarism" class="btn btn--outline"
-                  style="border-color:rgba(255,255,255,.5);color:#fff;">Plagiarism Check</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Slide 4 -->
-        <div class="hero__slide">
-          <img src="images/banners/E-Books.webp" alt="E-Resources"
-            onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 480%22><rect fill=%22%231c2c54%22 width=%221200%22 height=%22480%22/><text fill=%22%2359CCC1%22 font-family=%22Inter,sans-serif%22 font-size=%2242%22 x=%22600%22 y=%22240%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22800%22>E-Books</text></svg>'">
-          <div class="hero__overlay">
-            <div class="hero__content">
-              <span class="hero__tag">Unlimited E-Resources</span>
-              <h1 class="hero__title">Access Thousands of E-Books</h1>
-              <p class="hero__desc">Explore our vast collection of e-books and digital textbooks accessible on any
-                device, anywhere.</p>
-              <div class="hero__actions">
-                <a href="e-resources.html#e-books" class="btn btn--accent">Explore E-Books</a>
-                <a href="services.html" class="btn btn--outline"
-                  style="border-color:rgba(255,255,255,.5);color:#fff;">Browse Catalogue</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Slide 5 -->
-        <div class="hero__slide">
-          <img src="images/banners/Ayurveda Library.webp" alt="Ayurveda Library"
-            onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 480%22><rect fill=%22%23283B6A%22 width=%221200%22 height=%22480%22/><text fill=%22%23ffffff%22 font-family=%22Inter,sans-serif%22 font-size=%2242%22 x=%22600%22 y=%22240%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-weight=%22800%22>Ayurveda Library</text></svg>'">
-          <div class="hero__overlay">
-            <div class="hero__content">
-              <span class="hero__tag">Constituent Libraries</span>
-              <h1 class="hero__title">Dedicated Ayurveda Library</h1>
-              <p class="hero__desc">8,253+ books on Ayurveda and basic medical science supporting specialized learning
-                and research.</p>
-              <div class="hero__actions">
-                <a href="about.html#ayurveda-library" class="btn btn--accent">Explore</a>
-                <a href="about.html" class="btn btn--outline" style="border-color:rgba(255,255,255,.5);color:#fff;">All
-                  Libraries</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Controls -->
-      <button class="hero__btn hero__btn--prev" aria-label="Previous slide">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="m15 18-6-6 6-6" />
-        </svg>
-      </button>
-      <button class="hero__btn hero__btn--next" aria-label="Next slide">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="m9 18 6-6-6-6" />
-        </svg>
-      </button>
-      <div class="hero__dots" role="tablist" aria-label="Slide navigation">
-        <button class="hero__dot active" aria-label="Slide 1" role="tab"></button>
-        <button class="hero__dot" aria-label="Slide 2" role="tab"></button>
-        <button class="hero__dot" aria-label="Slide 3" role="tab"></button>
-        <button class="hero__dot" aria-label="Slide 4" role="tab"></button>
-        <button class="hero__dot" aria-label="Slide 5" role="tab"></button>
       </div>
     </section>
 

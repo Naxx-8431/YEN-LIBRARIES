@@ -252,7 +252,7 @@
     searchContainer.addEventListener('click', (e) => {
       // Don't redirect if they just focused the input text box
       // If we want it to act strictly as a link:
-      window.location.href = 'opac-search.html';
+      window.location.href = 'index.html#opac';
     });
   }
 
