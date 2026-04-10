@@ -96,13 +96,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
       <form method="POST" action="">
         <div class="form-group">
           <label class="form-label">Username <span>*</span></label>
-          <input type="text" name="username" class="form-input" placeholder="Enter your username" value="admin"
-            required>
+          <input type="text" name="username" class="form-input" placeholder="Enter your username" required>
         </div>
         <div class="form-group">
           <label class="form-label">Password <span>*</span></label>
-          <input type="password" name="password" class="form-input" placeholder="Enter your password" value="admin123"
-            required>
+          <input type="password" name="password" class="form-input" placeholder="Enter your password" required>
         </div>
         <button type="submit" name="login" class="btn btn--primary">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -114,10 +112,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
           Sign In
         </button>
       </form>
-
-      <p style="text-align:center; margin-top:20px; font-size:12px; color:var(--admin-text-muted);">
-        Default: admin / admin123
-      </p>
     </div>
   </div>
 </body>
