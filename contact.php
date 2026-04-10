@@ -651,6 +651,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_journal'])) {
   </footer>
 
   <script src="assets/js/main.js"></script>
+  
+  <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
+  <?php include 'components/notifications.php'; ?>
+
   <script>
     // ── Toast Notification for form submission feedback ──
     (function() {

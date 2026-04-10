@@ -1091,40 +1091,9 @@
     </form>
   </div>
 
+  
   <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
-  <button class="notif-toggle" onclick="toggleNotifications()" aria-label="Notifications">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-    </svg>
-    <span class="notif-badge">3</span>
-  </button>
-  <div class="notif-sidebar" id="notifSidebar">
-    <div class="notif-header">
-      <h3>Latest Updates</h3>
-      <button class="notif-close" aria-label="Close" onclick="toggleNotifications()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 6L6 18M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
-    <div class="notif-body">
-      <div class="notif-item">
-        <span class="notif-time">2 hours ago</span>
-        <strong>New Trial Database:</strong> Full access to the Cochrane Library is now live for all medical faculties.
-      </div>
-      <div class="notif-item">
-        <span class="notif-time">1 day ago</span>
-        <strong>Library Timings:</strong> The Central Library will remain open 24/7 starting next Monday for exam
-        preparations.
-      </div>
-      <div class="notif-item">
-        <span class="notif-time">3 days ago</span>
-        <strong>Upcoming Webinar:</strong> Join us for "Strategies in Plagiarism Prevention" tomorrow at 3:00 PM.
-      </div>
-    </div>
-  </div>
-
+  <?php include 'components/notifications.php'; ?>
 
   <!-- ═══════════════ AI CHAT BOX ════════════════ -->
   <button class="chat-fab" onclick="toggleChat()" aria-label="Open Chat">

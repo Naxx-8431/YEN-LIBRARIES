@@ -79,6 +79,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_event'])) {
                   VALUES ('$title', '$description', '$category', '$event_date', '$location', '$image_path', '$status')";
 
     if (mysqli_query($conn, $query)) {
+      $new_event_id = mysqli_insert_id($conn);
+
+      // Handle Notification creation
+      if (isset($_POST['send_notification']) && $_POST['send_notification'] == '1') {
+          $notif_msg = clean($conn, $_POST['notif_msg']);
+          if(empty($notif_msg)) $notif_msg = "New event: " . $title;
+          $link = "events.php?id=" . $new_event_id;
+          mysqli_query($conn, "INSERT INTO notifications (title, message, link_url) VALUES ('$title', '$notif_msg', '$link')");
+      }
+
       $message = "Event added successfully!";
       $msg_type = "success";
     } else {
@@ -124,6 +134,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_event'])) {
                   WHERE id = $id";
 
     if (mysqli_query($conn, $query)) {
+      
+      // Handle Notification creation
+      if (isset($_POST['send_notification']) && $_POST['send_notification'] == '1') {
+          $notif_msg = clean($conn, $_POST['notif_msg']);
+          if(empty($notif_msg)) $notif_msg = "Updated event: " . $title;
+          $link = "events.php?id=" . $id;
+          mysqli_query($conn, "INSERT INTO notifications (title, message, link_url) VALUES ('$title', '$notif_msg', '$link')");
+      }
+
       $message = "Event updated successfully!";
       $msg_type = "success";
     } else {
@@ -245,6 +264,13 @@ if (isset($_GET['edit'])) {
             fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>Messages</a>
+        <a href="notifications-manager.php" class="sidebar__link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          Notifications
+        </a>
         <a href="settings.php" class="sidebar__link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="3" />
@@ -265,7 +291,13 @@ if (isset($_GET['edit'])) {
             </svg></button>
           <h1 class="topbar__title">Events Manager</h1>
         </div>
-        <div class="topbar__right"><a href="../logout.php" class="topbar__logout"><svg
+        <div class="topbar__right"><a href="notifications-manager.php" class="topbar__btn" title="Notifications" style="margin-right:12px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+          </a>
+          <a href="../logout.php" class="topbar__logout"><svg
               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
               <polyline points="16 17 21 12 16 7" />
@@ -348,6 +380,14 @@ if (isset($_GET['edit'])) {
                 <div class="form-group">
                   <label class="form-label">Event Image</label>
                   <input type="file" name="image" class="form-input" accept="image/*">
+                </div>
+                <!-- NOTIFICATION SYSTEM HOOK -->
+                <div class="form-group" style="grid-column: 1 / -1; padding-top:10px; border-top:1px solid #e5e7eb;">
+                  <label style="display:flex; align-items:center; gap:8px; font-weight:600; font-size:13px; color:var(--admin-primary); cursor:pointer;">
+                    <input type="checkbox" name="send_notification" value="1" style="width:16px; height:16px;"> 
+                    Send Notification across website
+                  </label>
+                  <input type="text" name="notif_msg" class="form-input" placeholder="Notification Message (e.g. Join our AI webinar tomorrow at 3 PM)" style="margin-top:8px;">
                 </div>
               </div>
               <div class="form-group">

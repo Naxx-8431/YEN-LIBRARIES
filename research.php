@@ -384,6 +384,10 @@
 
   <script src="assets/js/main.js"></script>
 
+
+  <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
+  <?php include 'components/notifications.php'; ?>
+
 </body>
 </html>
 

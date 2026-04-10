@@ -589,6 +589,10 @@ $db_events = mysqli_query($conn, "SELECT * FROM events WHERE status = 'published
 
   <script src="assets/js/main.js"></script>
 
+
+  <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
+  <?php include 'components/notifications.php'; ?>
+
 </body>
 
 </html>

@@ -35,6 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_resource'])) {
   } else {
     $query = "INSERT INTO e_resources (title, description, category, provider, access_url) VALUES ('$title','$description','$category','$provider','$access_url')";
     if (mysqli_query($conn, $query)) {
+      
+      if (isset($_POST['send_notification']) && $_POST['send_notification'] == '1') {
+          $notif_msg = clean($conn, $_POST['notif_msg']);
+          if(empty($notif_msg)) $notif_msg = "New E-Resource: " . $title;
+          $link = "e-resources.php#" . $category;
+          mysqli_query($conn, "INSERT INTO notifications (title, message, link_url) VALUES ('$title', '$notif_msg', '$link')");
+      }
+
       $message = "Resource added!";
       $msg_type = "success";
     }
@@ -53,6 +61,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_resource'])) {
 
   $query = "UPDATE e_resources SET title='$title', description='$description', category='$category', provider='$provider', access_url='$access_url', visible=$visible WHERE id=$id";
   if (mysqli_query($conn, $query)) {
+      
+    if (isset($_POST['send_notification']) && $_POST['send_notification'] == '1') {
+        $notif_msg = clean($conn, $_POST['notif_msg']);
+        if(empty($notif_msg)) $notif_msg = "Updated E-Resource: " . $title;
+        $link = "e-resources.php#" . $category;
+        mysqli_query($conn, "INSERT INTO notifications (title, message, link_url) VALUES ('$title', '$notif_msg', '$link')");
+    }
+
     $message = "Resource updated!";
     $msg_type = "success";
   }
@@ -126,6 +142,13 @@ $count_all = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM e
             fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>Messages</a>
+        <a href="notifications-manager.php" class="sidebar__link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          Notifications
+        </a>
         <a href="settings.php" class="sidebar__link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="3" />
@@ -145,7 +168,13 @@ $count_all = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM e
             </svg></button>
           <h1 class="topbar__title">E-Resources Manager</h1>
         </div>
-        <div class="topbar__right"><a href="../logout.php" class="topbar__logout"><svg
+        <div class="topbar__right"><a href="notifications-manager.php" class="topbar__btn" title="Notifications" style="margin-right:12px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+          </a>
+          <a href="../logout.php" class="topbar__logout"><svg
               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
               <polyline points="16 17 21 12 16 7" />
@@ -198,6 +227,15 @@ $count_all = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM e
                   rows="3"><?php echo $edit ? htmlspecialchars($edit['description']) : ''; ?></textarea></div>
               <?php if ($edit): ?>
                 <div class="form-group"><label><input type="checkbox" name="visible" <?php echo $edit['visible'] ? 'checked' : ''; ?>> Visible on website</label></div><?php endif; ?>
+              
+              <!-- NOTIFICATION SYSTEM HOOK -->
+              <div class="form-group" style="grid-column: 1 / -1; padding-top:10px; border-top:1px solid #e5e7eb;">
+                <label style="display:flex; align-items:center; gap:8px; font-weight:600; font-size:13px; color:var(--admin-primary); cursor:pointer;">
+                  <input type="checkbox" name="send_notification" value="1" style="width:16px; height:16px;"> 
+                  Send Notification across website
+                </label>
+                <input type="text" name="notif_msg" class="form-input" placeholder="Notification Message (e.g. New medical database available!)" style="margin-top:8px;">
+              </div>
               <div style="display:flex;gap:10px;margin-top:16px;">
                 <?php if ($edit): ?>
                   <button type="submit" name="edit_resource" class="btn btn--primary">Update Resource</button>

@@ -479,7 +479,11 @@
           </div>
         </div>
 
-        <script>
+        
+  <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
+  <?php include 'components/notifications.php'; ?>
+
+  <script>
           function filterCourse(collegeId, btn) {
             // Hide all grids
             document.querySelectorAll('.course-grid').forEach(grid => {
