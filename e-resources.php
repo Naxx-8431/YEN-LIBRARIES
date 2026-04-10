@@ -1,3 +1,4 @@
+<?php require_once 'db.php'; ?>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -328,51 +329,23 @@
         </div>
 
         <div class="resource-grid" id="database-grid">
+          <?php
+          $q_db = mysqli_query($conn, "SELECT * FROM e_resources WHERE category='database' AND visible=1 ORDER BY sort_order ASC, created_at DESC");
+          if(mysqli_num_rows($q_db) > 0):
+             while($row = mysqli_fetch_assoc($q_db)):
+               $fc = strtoupper(substr($row['title'],0,1));
+          ?>
           <div class="resource-card">
-            <img src="images/opendb/clarivate.png" class="resource-card__img" alt="WebOfScience">
+            <div class="resource-card__img" style="background:#f1f5f9;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;color:var(--clr-primary);width:120px;height:80px;"><?php echo $fc; ?></div>
             <div class="resource-card__content">
-              <a href="https://www.webofscience.com/wos" class="resource-card__title" target="_blank">WebOfScience</a>
-              <div class="resource-card__subtitle">Bibliographic & Citation Database</div>
-              <p class="resource-card__text">Reputable research citation database providing access to scholarly literature.</p>
+              <a href="<?php echo htmlspecialchars($row['access_url']); ?>" class="resource-card__title" target="_blank"><?php echo htmlspecialchars($row['title']); ?></a>
+              <?php if($row['provider']): ?><div class="resource-card__subtitle"><?php echo htmlspecialchars($row['provider']); ?></div><?php endif; ?>
+              <p class="resource-card__text"><?php echo nl2br(htmlspecialchars($row['description'])); ?></p>
             </div>
           </div>
-          <div class="resource-card">
-            <img src="images/opendb/proquest.png" class="resource-card__img" alt="ProQuest">
-            <div class="resource-card__content">
-              <a href="https://www.proquest.com/" class="resource-card__title" target="_blank">ProQuest Central</a>
-              <div class="resource-card__subtitle">Multidisciplinary Database</div>
-              <p class="resource-card__text">47 databases containing full-text content from journals, magazines, news sources.</p>
-            </div>
-          </div>
-          <div class="resource-card">
-            <img src="images/opendb/utd-logo-desktop.png" class="resource-card__img" alt="UpToDate">
-            <div class="resource-card__content">
-              <a href="https://www.uptodate.com/contents/search" class="resource-card__title" target="_blank">UpToDate</a>
-              <div class="resource-card__subtitle">Evidence-Based Clinical Database</div>
-              <p class="resource-card__text">Rapid consultation at the bedside for diagnosis, tests, and patient care.</p>
-            </div>
-          </div>
-          <div class="resource-card">
-            <img src="images/opendb/scopus.png" class="resource-card__img" alt="Scopus">
-            <div class="resource-card__content">
-              <a href="https://www.scopus.com/" class="resource-card__title" target="_blank">Scopus</a>
-              <div class="resource-card__subtitle">Abstract & Citation Database</div>
-              <p class="resource-card__text">Expertly curated abstract and citation database enriched with data and linked scholarly literature.</p>
-            </div>
-          </div>
-          <div class="resource-card">
-            <img src="images/opendb/logo2.png" class="resource-card__img" alt="National Cancer Grid">
-            <div class="resource-card__content">
-              <a href="https://www.ncgindia.org/learning-resources" class="resource-card__title" target="_blank">National Cancer Grid</a>
-              <div class="resource-card__subtitle">Oncology E-Resources</div>
-              <p class="resource-card__text">Electronic resources in Oncology, Hematology, Palliative care and Pathology.</p>
-              <div style="margin-top:10px;">
-                <a href="https://www.clinicalkey.com/#!/browse/journals" target="_blank" style="font-size:12px; color:var(--clr-primary); font-weight:bold; display:block;">ClinicalKey Journals &rsaquo;</a>
-                <a href="https://www.clinicalkey.com/#!/browse/books" target="_blank" style="font-size:12px; color:var(--clr-primary); font-weight:bold; display:block;">ClinicalKey Books &rsaquo;</a>
-                <a href="http://search.ebscohost.com/" target="_blank" style="font-size:12px; color:var(--clr-primary); font-weight:bold; display:block;">EBSCO Host &rsaquo;</a>
-              </div>
-            </div>
-          </div>
+          <?php endwhile; else: ?>
+             <p style="padding:20px; color:#666;">No databases found.</p>
+          <?php endif; ?>
         </div>
       </section>
 
@@ -384,27 +357,22 @@
           <div class="page-section__divider"></div>
         </div>
         <div class="resource-grid">
+          <?php
+          $q_ej = mysqli_query($conn, "SELECT * FROM e_resources WHERE category='ejournal' AND visible=1 ORDER BY sort_order ASC, created_at DESC");
+          if(mysqli_num_rows($q_ej) > 0):
+             while($row = mysqli_fetch_assoc($q_ej)):
+               $fc = strtoupper(substr($row['title'],0,1));
+          ?>
           <div class="resource-card">
-            <img src="images/opendb/thieme.png" class="resource-card__img" alt="Thieme">
+            <div class="resource-card__img" style="background:#fef3c7;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;color:#d97706;width:120px;height:80px;"><?php echo $fc; ?></div>
             <div class="resource-card__content">
-              <a href="https://www.thieme-connect.com/products/all/home.html" class="resource-card__title" target="_blank">Thieme Medical Publishers</a>
-              <p class="resource-card__text">Award-winning international medical and science publisher serving health professionals and students.</p>
+              <a href="<?php echo htmlspecialchars($row['access_url']); ?>" class="resource-card__title" target="_blank"><?php echo htmlspecialchars($row['title']); ?></a>
+              <p class="resource-card__text"><?php echo nl2br(htmlspecialchars($row['description'])); ?></p>
             </div>
           </div>
-          <div class="resource-card">
-            <img src="images/opendb/wiley.webp" class="resource-card__img" alt="Wiley">
-            <div class="resource-card__content">
-              <a href="https://onlinelibrary.wiley.com/" class="resource-card__title" target="_blank">Wiley Online Library</a>
-              <p class="resource-card__text">Extensive collection of online multidisciplinary journals, books, and research resources.</p>
-            </div>
-          </div>
-          <div class="resource-card">
-            <img src="images/opendb/jaypee.jpg" class="resource-card__img" alt="Jaypee">
-            <div class="resource-card__content">
-              <a href="https://www.jaypeedigital.com/" class="resource-card__title" target="_blank">JaypeeDigital</a>
-              <p class="resource-card__text">Access to Jaypee's vast health science journals and textbooks.</p>
-            </div>
-          </div>
+          <?php endwhile; else: ?>
+             <p style="padding:20px; color:#666;">No e-journals found.</p>
+          <?php endif; ?>
         </div>
       </section>
 
@@ -416,28 +384,23 @@
           <div class="page-section__divider"></div>
         </div>
         <div class="resource-grid">
+          <?php
+          $q_eb = mysqli_query($conn, "SELECT * FROM e_resources WHERE category='ebook' AND visible=1 ORDER BY sort_order ASC, created_at DESC");
+          if(mysqli_num_rows($q_eb) > 0):
+             while($row = mysqli_fetch_assoc($q_eb)):
+               $fc = strtoupper(substr($row['title'],0,1));
+          ?>
           <div class="resource-card">
-            <img src="images/opendb/clinicalkeyflex.jpg" class="resource-card__img" alt="ClinicalKey Flex">
+            <div class="resource-card__img" style="background:#e0e7ff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;color:#4f46e5;width:120px;height:80px;"><?php echo $fc; ?></div>
             <div class="resource-card__content">
-              <a href="https://www.clinicalkey.com/student/nursing" class="resource-card__title" target="_blank">ClinicalKey Student</a>
-              <div class="resource-card__subtitle">Medical & Nursing Collections</div>
-              <p class="resource-card__text">Interactive medical learning platform with textbooks, images, and quick-access summaries.</p>
+              <a href="<?php echo htmlspecialchars($row['access_url']); ?>" class="resource-card__title" target="_blank"><?php echo htmlspecialchars($row['title']); ?></a>
+              <?php if($row['provider']): ?><div class="resource-card__subtitle"><?php echo htmlspecialchars($row['provider']); ?></div><?php endif; ?>
+              <p class="resource-card__text"><?php echo nl2br(htmlspecialchars($row['description'])); ?></p>
             </div>
           </div>
-          <div class="resource-card">
-            <img src="images/open-access/Cambridge-logo.jpg" class="resource-card__img" alt="Cambridge">
-            <div class="resource-card__content">
-              <a href="https://www.cambridge.org/core" class="resource-card__title" target="_blank">Cambridge Core Books</a>
-              <p class="resource-card__text">Books published by Cambridge University Press.</p>
-            </div>
-          </div>
-          <div class="resource-card">
-            <img src="images/open-access/Science-direct-logo.jpg" class="resource-card__img" alt="ScienceDirect">
-            <div class="resource-card__content">
-              <a href="https://www.sciencedirect.com/" class="resource-card__title" target="_blank">ScienceDirect</a>
-              <p class="resource-card__text">Leading platform of peer-reviewed scholarly literature and book collections.</p>
-            </div>
-          </div>
+          <?php endwhile; else: ?>
+             <p style="padding:20px; color:#666;">No e-books found.</p>
+          <?php endif; ?>
         </div>
       </section>
 
@@ -585,34 +548,18 @@
           <div class="page-section__divider"></div>
         </div>
         <div class="open-access-grid">
-          <a href="https://doaj.org/" target="_blank" class="oa-card">
-            <img src="images/open-access/Doaj-logo.jpg" alt="DOAJ">
-            <span>DOAJ</span>
+          <?php
+          $q_oa = mysqli_query($conn, "SELECT * FROM e_resources WHERE category='openaccess' AND visible=1 ORDER BY sort_order ASC, created_at DESC");
+          if(mysqli_num_rows($q_oa) > 0):
+             while($row = mysqli_fetch_assoc($q_oa)):
+          ?>
+          <a href="<?php echo htmlspecialchars($row['access_url']); ?>" target="_blank" class="oa-card">
+            <div style="width:50px;height:50px;border-radius:50%;background:#dcfce7;color:#16a34a;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;margin-bottom:12px;"><?php echo strtoupper(substr($row['title'],0,1)); ?></div>
+            <span><?php echo htmlspecialchars($row['title']); ?></span>
           </a>
-          <a href="https://doabooks.org/" target="_blank" class="oa-card">
-            <img src="images/open-access/doab-logo.jpg" alt="DOAB">
-            <span>DOAB</span>
-          </a>
-          <a href="https://swayam.gov.in/" target="_blank" class="oa-card">
-            <img src="images/open-access/swayam-logo.jpg" alt="SWAYAM">
-            <span>SWAYAM</span>
-          </a>
-          <a href="https://nptel.ac.in/" target="_blank" class="oa-card">
-            <img src="images/open-access/Nptel-logo.jpg" alt="NPTEL">
-            <span>NPTEL</span>
-          </a>
-          <a href="https://openknowledge.worldbank.org/" target="_blank" class="oa-card">
-            <img src="images/open-access/Okr-logo.jpg" alt="OKR">
-            <span>Open Knowledge Repository</span>
-          </a>
-          <a href="https://ess.inflibnet.ac.in/" target="_blank" class="oa-card">
-            <img src="images/open-access/consortium-logo.jpg" alt="Consortium">
-            <span>Library Consortium</span>
-          </a>
-          <a href="https://ncert.nic.in/" target="_blank" class="oa-card">
-            <img src="images/open-access/ncert-logo.jpg" alt="NCERT">
-            <span>NCERT</span>
-          </a>
+          <?php endwhile; else: ?>
+             <p style="padding:20px; color:#666; grid-column:1/-1;">No open access resources found.</p>
+          <?php endif; ?>
         </div>
         <p class="mt-4 text-muted" style="font-size:0.9rem;">Many of these resources are sponsored by the Ministry of Education (MoE) and other government bodies.</p>
       </section>

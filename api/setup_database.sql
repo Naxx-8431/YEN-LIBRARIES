@@ -320,3 +320,45 @@ CREATE TABLE IF NOT EXISTS `hero_settings` (
 -- Insert default hero content
 INSERT INTO `hero_settings` (`tagline`, `heading`, `description`) VALUES
 ('Yenepoya (Deemed to be University)', 'Discover. Learn. Grow.', 'Explore over 53,000+ books, 2.1 million+ e-resources, and 8,000+ e-journals across six specialized campus libraries.');
+
+-- ─── 14. NEW ARRIVALS ──────────────────────────────────────
+-- Homepage New Arrivals Section
+-- ─────────────────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS `new_arrivals` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `title` VARCHAR(255) NOT NULL,
+  `author` VARCHAR(255) DEFAULT NULL,
+  `category` VARCHAR(100) DEFAULT NULL,
+  `image` VARCHAR(500) DEFAULT NULL,
+  `visible` TINYINT(1) DEFAULT 1,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- ─── 15. TRENDING PUBLICATIONS ─────────────────────────────
+-- Homepage Trending Publications / Faculty section
+-- ─────────────────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS `trending_publications` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `title` VARCHAR(500) NOT NULL,
+  `author_details` VARCHAR(255) DEFAULT NULL,
+  `publish_date` VARCHAR(100) DEFAULT NULL,
+  `link_url` VARCHAR(500) DEFAULT NULL,
+  `visible` TINYINT(1) DEFAULT 1,
+  `sort_order` INT DEFAULT 0,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- ─── 16. TRENDING NEWS ─────────────────────────────────────
+-- Homepage Trending Subjects & News
+-- ─────────────────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS `trending_news` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `title` VARCHAR(500) NOT NULL,
+  `category_tag` VARCHAR(100) DEFAULT NULL,
+  `image` VARCHAR(500) DEFAULT NULL,
+  `link_url` VARCHAR(500) DEFAULT NULL,
+  `visible` TINYINT(1) DEFAULT 1,
+  `sort_order` INT DEFAULT 0,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+

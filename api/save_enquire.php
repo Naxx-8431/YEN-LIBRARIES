@@ -60,15 +60,14 @@ if (!empty($errors)) {
 try {
     $db = getDB();
     $stmt = $db->prepare(
-        'INSERT INTO enquiries (name, email, phone, message, ip_address)
-         VALUES (:name, :email, :phone, :message, :ip)'
+        'INSERT INTO enquiries (name, email, phone, message)
+         VALUES (:name, :email, :phone, :message)'
     );
     $stmt->execute([
         ':name'    => $name,
         ':email'   => $email ?: null,
         ':phone'   => $phone,
-        ':message' => $message,
-        ':ip'      => $_SERVER['REMOTE_ADDR'] ?? null,
+        ':message' => $message
     ]);
 
     $insertId = $db->lastInsertId();

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php require_once 'db.php'; ?>
 <html lang="en">
 
 <head>
@@ -260,6 +261,20 @@
           </svg>
           Email Based Services
         </a>
+        
+        <!-- Dynamic Services Sidebar Links -->
+        <?php
+        $dyn_serv = mysqli_query($conn, "SELECT * FROM services WHERE visible=1 ORDER BY sort_order ASC, created_at DESC");
+        if($dyn_serv && mysqli_num_rows($dyn_serv) > 0):
+            while($s = mysqli_fetch_assoc($dyn_serv)):
+        ?>
+        <a href="#dyn-service-<?php echo $s['id']; ?>" class="page-sidebar__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+          <?php echo htmlspecialchars($s['title']); ?>
+        </a>
+        <?php endwhile; endif; ?>
       </nav>
     </aside>
 
@@ -607,6 +622,34 @@
           </div>
         </div>
       </section>
+
+      <!-- Dynamic Services Content -->
+      <?php
+      if($dyn_serv && mysqli_num_rows($dyn_serv) > 0):
+          mysqli_data_seek($dyn_serv, 0); // reset pointer
+          while($s = mysqli_fetch_assoc($dyn_serv)):
+      ?>
+      <section class="page-section" id="dyn-service-<?php echo $s['id']; ?>" style="display:none;">
+        <div class="page-section__header">
+          <div class="page-section__label"><?php echo htmlspecialchars($s['section']); ?></div>
+          <h2 class="page-section__title"><?php echo htmlspecialchars($s['title']); ?></h2>
+          <div class="page-section__divider"></div>
+        </div>
+        <p style="white-space: pre-line; line-height: 1.7;"><?php echo htmlspecialchars($s['description']); ?></p>
+        
+        <?php if(!empty($s['link_url'])): ?>
+        <p style="margin-top:24px;">
+          <a href="<?php echo htmlspecialchars($s['link_url']); ?>" target="_blank" class="btn btn--primary">
+            <?php echo htmlspecialchars($s['link_label'] ? $s['link_label'] : 'Access Resource'); ?>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </p>
+        <?php endif; ?>
+      </section>
+      <?php endwhile; endif; ?>
 
     </main>
   </div><!-- end inner-layout -->

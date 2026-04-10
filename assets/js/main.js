@@ -37,11 +37,11 @@
 
   /* ── Hero Carousel ───────────────────────── */
   function initHero() {
-    const track  = document.querySelector('.hero__track');
+    const track = document.querySelector('.hero__track');
     const slides = document.querySelectorAll('.hero__slide');
-    const dots   = document.querySelectorAll('.hero__dot');
-    const prev   = document.querySelector('.hero__btn--prev');
-    const next   = document.querySelector('.hero__btn--next');
+    const dots = document.querySelectorAll('.hero__dot');
+    const prev = document.querySelector('.hero__btn--prev');
+    const next = document.querySelector('.hero__btn--next');
     if (!track || slides.length === 0) return;
 
     let current = 0;
@@ -85,9 +85,9 @@
   }
 
   /* ── Enquiry Sidebar ─────────────────────── */
-    function initEnquiry() {
+  function initEnquiry() {
     const sidebar = document.getElementById('enquirySidebar');
-    const tab     = document.getElementById('enquiryTab');
+    const tab = document.getElementById('enquiryTab');
     const closeBtn = document.getElementById('enquiryClose');
     if (!sidebar || !tab) return;
     tab.addEventListener('click', () => sidebar.classList.toggle('open'));
@@ -152,12 +152,12 @@
     const links = document.querySelectorAll('.page-sidebar__link');
     if (!links.length) return;
     const sections = document.querySelectorAll('.page-section');
-    
+
     // Default: Show ONLY the active section
     function showSection(hash) {
       if (!hash) hash = '#default-view';
       let found = false;
-      
+
       // Highlight correct link
       links.forEach(l => {
         const isActive = l.getAttribute('href') === hash;
@@ -173,15 +173,15 @@
           s.style.display = 'none';
         }
       });
-      
+
       // Fallback
       if (!found && sections.length) {
         // If hash wasn't found, default to the first section (or default-view if we want)
         const defaultSec = document.getElementById('default-view') || sections[0];
         if (defaultSec) {
-            defaultSec.style.display = 'block';
-            const link = document.querySelector(`.page-sidebar__link[href="#${defaultSec.id}"]`);
-            if (link) link.classList.add('active');
+          defaultSec.style.display = 'block';
+          const link = document.querySelector(`.page-sidebar__link[href="#${defaultSec.id}"]`);
+          if (link) link.classList.add('active');
         }
       }
     }
@@ -193,15 +193,15 @@
     links.forEach(l => l.addEventListener('click', e => {
       e.preventDefault();
       const hash = l.getAttribute('href');
-      
+
       try {
         history.pushState(null, '', hash);
       } catch (err) {
         // Ignored. pushState throws a DOMException on file:// URLs locally
       }
-      
+
       showSection(hash);
-      
+
       // Optionally scroll to top of the inner layout or keep it sticky
       const innerLayout = document.querySelector('.inner-layout');
       if (innerLayout) {
@@ -235,12 +235,12 @@
   function initHeaderSearch() {
     const searchContainer = document.getElementById('headerSearchContainer');
     const searchInput = document.getElementById('headerSearchInput');
-    
+
     if (!searchContainer || !searchInput) return;
 
     const placeholders = ['Search for books...', 'Search for events...', 'Search for journals...', 'Search library catalogue...'];
     let currentIndex = 0;
-    
+
     setInterval(() => {
       // Only swap if it is currently expanded
       if (searchContainer.matches(':hover') || searchContainer.matches(':focus-within')) {
@@ -252,7 +252,7 @@
     searchContainer.addEventListener('click', (e) => {
       // Don't redirect if they just focused the input text box
       // If we want it to act strictly as a link:
-      window.location.href = 'index.html#opac';
+      window.location.href = 'index.php#opac';
     });
   }
 

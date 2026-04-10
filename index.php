@@ -1,3 +1,4 @@
+<?php require_once 'db.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -358,23 +359,27 @@
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)"
                         stroke-width="2.5">
                         <path d="M20 6L9 17l-5-5" />
-                      </svg> 600+ Full-text Journals</li>
+                      </svg> 600+ Full-text Journals
+                    </li>
                     <li
                       style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)"
                         stroke-width="2.5">
                         <path d="M20 6L9 17l-5-5" />
-                      </svg> 1,100+ Medical Books</li>
+                      </svg> 1,100+ Medical Books
+                    </li>
                     <li
                       style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)"
                         stroke-width="2.5">
                         <path d="M20 6L9 17l-5-5" />
-                      </svg> 2,500+ Surgical Videos</li>
+                      </svg> 2,500+ Surgical Videos
+                    </li>
                   </ul>
                   <div style="margin-top: 24px; padding-top: 16px; border-top: 1px dashed var(--clr-border);">
                     <p style="font-size: 11px; color: var(--clr-text-muted); line-height: 1.4;">Provided by
-                      <strong>Elsevier Health</strong> for Yenepoya students and clinical faculty.</p>
+                      <strong>Elsevier Health</strong> for Yenepoya students and clinical faculty.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -412,19 +417,22 @@
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)"
                         stroke-width="2.5">
                         <path d="M20 6L9 17l-5-5" />
-                      </svg> 4,500+ Scholarly Journals</li>
+                      </svg> 4,500+ Scholarly Journals
+                    </li>
                     <li
                       style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)"
                         stroke-width="2.5">
                         <path d="M20 6L9 17l-5-5" />
-                      </svg> 30,000+ Dissertations</li>
+                      </svg> 30,000+ Dissertations
+                    </li>
                     <li
                       style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-accent)"
                         stroke-width="2.5">
                         <path d="M20 6L9 17l-5-5" />
-                      </svg> Evidence-based Reports</li>
+                      </svg> Evidence-based Reports
+                    </li>
                   </ul>
                   <div style="margin-top: 24px; display: flex; align-items: center; gap: 10px;">
                     <div
@@ -432,7 +440,8 @@
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="3">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                      </svg></div>
+                      </svg>
+                    </div>
                     <span style="font-size: 12px; font-weight: 600;">Secure Remote Access Enabled</span>
                   </div>
                 </div>
@@ -471,19 +480,22 @@
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-gold)"
                         stroke-width="2.5">
                         <path d="M20 6L9 17l-5-5" />
-                      </svg> 2,000+ Clinical E-books</li>
+                      </svg> 2,000+ Clinical E-books
+                    </li>
                     <li
                       style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-gold)"
                         stroke-width="2.5">
                         <path d="M20 6L9 17l-5-5" />
-                      </svg> Speciality Specific Journals</li>
+                      </svg> Speciality Specific Journals
+                    </li>
                     <li
                       style="font-size: 13px; display: flex; align-items: center; gap: 8px; color: var(--clr-text-muted);">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clr-gold)"
                         stroke-width="2.5">
                         <path d="M20 6L9 17l-5-5" />
-                      </svg> Step-by-step Procedures</li>
+                      </svg> Step-by-step Procedures
+                    </li>
                   </ul>
                   <a href="https://www.jaypeedigital.com/" target="_blank"
                     style="margin-top: 24px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--clr-primary); text-decoration: underline; text-underline-offset: 4px;">Explore
@@ -867,205 +879,65 @@
             </div>
 
             <div class="faculty-pubs">
-              <a href="repository.php#publications" class="pub-card">
-                <div class="pub-date">Mar 2026</div>
-                <div class="pub-title">Advances in Maxillofacial Surgery Techniques</div>
-                <div class="pub-author">Dr. Rajesh Shetty, Dental College</div>
-              </a>
-              <a href="repository.php#publications" class="pub-card">
-                <div class="pub-date">Feb 2026</div>
-                <div class="pub-title">Efficacy of Ayurvedic Formulations in Post-COVID Care</div>
-                <div class="pub-author">Dr. Asha K, Ayurveda Medical College</div>
-              </a>
-              <a href="repository.php#publications" class="pub-card">
-                <div class="pub-date">Jan 2026</div>
-                <div class="pub-title">Nanotechnology in Targeted Drug Delivery</div>
-                <div class="pub-author">Prof. Suresh Rao, Pharmacy College</div>
-              </a>
+              <?php
+              $tpubs = mysqli_query($conn, "SELECT * FROM trending_publications WHERE visible=1 ORDER BY sort_order ASC, created_at DESC LIMIT 3");
+              while ($pub = mysqli_fetch_assoc($tpubs)):
+                ?>
+                <a href="<?php echo htmlspecialchars($pub['link_url'] ? $pub['link_url'] : 'repository.php#publications'); ?>"
+                  class="pub-card">
+                  <div class="pub-date"><?php echo htmlspecialchars($pub['publish_date']); ?></div>
+                  <div class="pub-title"><?php echo htmlspecialchars($pub['title']); ?></div>
+                  <div class="pub-author"><?php echo htmlspecialchars($pub['author_details']); ?></div>
+                </a>
+              <?php endwhile; ?>
             </div>
           </div>
 
           <!-- Edzter Trending News -->
           <div class="academic-col">
-            <div class="panel-header">
-              <div class="panel-title" style="display:flex;align-items:center;gap:8px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
-                </svg>
-                Trending Subjects & News (Edzter)
+            <div>
+              <div class="panel-header">
+                <div class="panel-title" style="display:flex;align-items:center;gap:8px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--clr-primary)"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                  Upcoming Events
+                </div>
+                <a href="events.php" class="panel-link">
+                  View All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
               </div>
-              <a href="https://edzter.com/" target="_blank" class="panel-link">Open Edzter →</a>
-            </div>
-
-            <div class="edzter-feed">
-              <a href="e-resources.php#newspapers-magazines" class="edzter-item">
-                <div class="edzter-thumb"><img src="images/edzter/Edzter Magazine Cover.webp"
-                    onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23283B6A%22 width=%22100%22 height=%22100%22/></svg>'"
-                    alt="News"></div>
-                <div class="edzter-content">
-                  <div class="edzter-tag">Health & Medicine</div>
-                  <div class="edzter-title">New Breakthrough in Oncology Treatments Published in Lancet</div>
-                </div>
-              </a>
-              <a href="e-resources.php#newspapers-magazines" class="edzter-item">
-                <div class="edzter-thumb"><img src="images/edzter/Newspaper clipping.webp"
-                    onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23283B6A%22 width=%22100%22 height=%22100%22/></svg>'"
-                    alt="News"></div>
-                <div class="edzter-content">
-                  <div class="edzter-tag">University News</div>
-                  <div class="edzter-title">Yenepoya Ranked Top 100 in NIRF National Framework</div>
-                </div>
-              </a>
-              <a href="e-resources.php#newspapers-magazines" class="edzter-item">
-                <div class="edzter-thumb"><img src="images/edzter/Edzter Magazine Cover.webp"
-                    onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23283B6A%22 width=%22100%22 height=%22100%22/></svg>'"
-                    alt="News"></div>
-                <div class="edzter-content">
-                  <div class="edzter-tag">Technology & Science</div>
-                  <div class="edzter-title">AI's Role in Diagnosing Rare Diseases Faster</div>
-                </div>
-              </a>
+              <div class="events-list">
+                <?php
+                $teve = mysqli_query($conn, "SELECT * FROM events WHERE status='published' ORDER BY event_date ASC LIMIT 3");
+                while ($evt = mysqli_fetch_assoc($teve)):
+                  $d = strtotime($evt['event_date']);
+                  ?>
+                  <div class="event-item">
+                    <div class="event-date">
+                      <span class="event-date__day"><?php echo date('d', $d); ?></span>
+                      <span class="event-date__mon"><?php echo strtoupper(date('M', $d)); ?></span>
+                    </div>
+                    <div class="event-info">
+                      <div class="event-title"><?php echo htmlspecialchars($evt['title']); ?></div>
+                      <div class="event-desc">
+                        <?php echo htmlspecialchars(strlen($evt['description']) > 70 ? substr($evt['description'], 0, 70) . '...' : $evt['description']); ?>
+                      </div>
+                    </div>
+                  </div>
+                <?php endwhile; ?>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- ══════════════ ANNOUNCEMENTS ══════════════ -->
-    <section class="section section--alt announcements">
-      <div class="container">
-        <div class="announcements__grid">
-
-          <!-- New Arrivals -->
-          <div>
-            <div class="panel-header">
-              <div class="panel-title" style="display:flex;align-items:center;gap:8px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--clr-primary)" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-                </svg>
-                New Arrivals
-              </div>
-              <a href="services.php#new-arrivals" class="panel-link">
-                View All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-            <div class="arrivals-list">
-
-              <div class="arrival-item">
-                <div class="arrival-thumb">
-                  <img src="images/e-books/ydc-e-book3.jpg" alt="Book"
-                    onerror="this.parentElement.style.background='#dde2f0'">
-                </div>
-                <div class="arrival-info">
-                  <div class="arrival-title">Harrison's Principles of Internal Medicine, 21st Edition</div>
-                  <div class="arrival-author">Fauci, Kasper, Hauser et al.</div>
-                  <div class="arrival-meta">
-                    <span class="badge badge--accent">Medicine</span>
-                    <span class="badge badge--gold">New</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="arrival-item">
-                <div class="arrival-thumb">
-                  <img src="images/e-books/ydc-e-book2.jpg" alt="Book"
-                    onerror="this.parentElement.style.background='#dde2f0'">
-                </div>
-                <div class="arrival-info">
-                  <div class="arrival-title">Gray's Anatomy for Students, 4th Edition</div>
-                  <div class="arrival-author">Drake, Vogl &amp; Mitchell</div>
-                  <div class="arrival-meta">
-                    <span class="badge badge--accent">Anatomy</span>
-                    <span class="badge badge--gold">New</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="arrival-item">
-                <div class="arrival-thumb">
-                  <img src="images/e-books/ydc-e-book1.jpg" alt="Book"
-                    onerror="this.parentElement.style.background='#dde2f0'">
-                </div>
-                <div class="arrival-info">
-                  <div class="arrival-title">Pharmacology and Pharmacotherapeutics</div>
-                  <div class="arrival-author">Satoskar, Bhandarkar &amp; Ainapure</div>
-                  <div class="arrival-meta">
-                    <span class="badge badge--accent">Pharmacy</span>
-                    <span class="badge badge--gold">New</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Events -->
-          <div>
-            <div class="panel-header">
-              <div class="panel-title" style="display:flex;align-items:center;gap:8px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--clr-primary)" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                  <line x1="16" y1="2" x2="16" y2="6" />
-                  <line x1="8" y1="2" x2="8" y2="6" />
-                  <line x1="3" y1="10" x2="21" y2="10" />
-                </svg>
-                Upcoming Events
-              </div>
-              <a href="events.php" class="panel-link">
-                View All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-            <div class="events-list">
-
-              <div class="event-item">
-                <div class="event-date">
-                  <span class="event-date__day">20</span>
-                  <span class="event-date__mon">MAR</span>
-                </div>
-                <div class="event-info">
-                  <div class="event-title">Web of Science Training Program</div>
-                  <div class="event-desc">Online session — for faculty, researchers &amp; PG students. 2:15 PM.</div>
-                </div>
-              </div>
-
-              <div class="event-item">
-                <div class="event-date">
-                  <span class="event-date__day">25</span>
-                  <span class="event-date__mon">MAR</span>
-                </div>
-                <div class="event-info">
-                  <div class="event-title">User Orientation Program 2026</div>
-                  <div class="event-desc">Library tour &amp; e-resources orientation for UG first-year students.</div>
-                </div>
-              </div>
-
-              <div class="event-item">
-                <div class="event-date">
-                  <span class="event-date__day">01</span>
-                  <span class="event-date__mon">APR</span>
-                </div>
-                <div class="event-info">
-                  <div class="event-title">Books Exhibition 2026</div>
-                  <div class="event-desc">Annual book exhibition with latest titles from major publishers.</div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-
   </main>
 
   <!-- ═══════════════ FOOTER ════════════════════ -->
