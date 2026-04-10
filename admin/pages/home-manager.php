@@ -33,13 +33,7 @@ function handleImageUpload($file, $prefix)
 }
 
 // ─── Handle Deletions ─────────────────────────────────────────
-if (isset($_GET['delete_arrival'])) {
-  $id = (int) $_GET['delete_arrival'];
-  if (mysqli_query($conn, "DELETE FROM new_arrivals WHERE id = $id")) {
-    $message = "Book removed from New Arrivals.";
-    $msg_type = "success";
-  }
-}
+
 if (isset($_GET['delete_pub'])) {
   $id = (int) $_GET['delete_pub'];
   if (mysqli_query($conn, "DELETE FROM trending_publications WHERE id = $id")) {
@@ -47,13 +41,7 @@ if (isset($_GET['delete_pub'])) {
     $msg_type = "success";
   }
 }
-if (isset($_GET['delete_news'])) {
-  $id = (int) $_GET['delete_news'];
-  if (mysqli_query($conn, "DELETE FROM trending_news WHERE id = $id")) {
-    $message = "News item removed.";
-    $msg_type = "success";
-  }
-}
+
 
 // ─── Handle Updates / Inserts ─────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -84,28 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
   }
 
-  // 2. New Arrivals Add
-  if (isset($_POST['add_arrival'])) {
-    $title = clean($conn, $_POST['title']);
-    $author = clean($conn, $_POST['author']);
-    $category = clean($conn, $_POST['category']);
-    $visible = isset($_POST['visible']) ? 1 : 0;
-
-    $image_sql = "NULL";
-    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-      $path = handleImageUpload($_FILES['image'], 'book');
-      if ($path)
-        $image_sql = "'$path'";
-    }
-
-    $query = "INSERT INTO new_arrivals (title, author, category, image, visible) 
-                  VALUES ('$title', '$author', '$category', $image_sql, $visible)";
-    mysqli_query($conn, $query);
-    $message = "New Arrival added successfully!";
-    $msg_type = "success";
-  }
-
-  // 3. Trending Publications Add
+  // 2. Trending Publications Add
   if (isset($_POST['add_pub'])) {
     $title = clean($conn, $_POST['title']);
     $author_details = clean($conn, $_POST['author_details']);
@@ -119,36 +86,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $message = "Trending Publication added!";
     $msg_type = "success";
   }
-
-  // 4. Trending News Add
-  if (isset($_POST['add_news'])) {
-    $title = clean($conn, $_POST['title']);
-    $category_tag = clean($conn, $_POST['category_tag']);
-    $link_url = clean($conn, $_POST['link_url']);
-    $visible = isset($_POST['visible']) ? 1 : 0;
-
-    $image_sql = "NULL";
-    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-      $path = handleImageUpload($_FILES['image'], 'news');
-      if ($path)
-        $image_sql = "'$path'";
-    }
-
-    $query = "INSERT INTO trending_news (title, category_tag, link_url, image, visible) 
-                  VALUES ('$title', '$category_tag', '$link_url', $image_sql, $visible)";
-    mysqli_query($conn, $query);
-    $message = "Trending News added!";
-    $msg_type = "success";
-  }
 }
 
 // ─── Fetch Data ───────────────────────────────────────────────
 $hero_query = mysqli_query($conn, "SELECT * FROM hero_settings LIMIT 1");
 $hero = mysqli_fetch_assoc($hero_query);
 
-$arrivals_query = mysqli_query($conn, "SELECT * FROM new_arrivals ORDER BY created_at DESC");
 $pubs_query = mysqli_query($conn, "SELECT * FROM trending_publications ORDER BY sort_order ASC, created_at DESC");
-$news_query = mysqli_query($conn, "SELECT * FROM trending_news ORDER BY sort_order ASC, created_at DESC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -195,11 +139,7 @@ $news_query = mysqli_query($conn, "SELECT * FROM trending_news ORDER BY sort_ord
             <line x1="8" y1="2" x2="8" y2="6" />
             <line x1="3" y1="10" x2="21" y2="10" />
           </svg>Events</a>
-        <a href="services-manager.php" class="sidebar__link active"><svg xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path
-              d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-          </svg>Services</a>
+        
         <a href="e-resources-manager.php" class="sidebar__link"><svg xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
@@ -323,44 +263,6 @@ $news_query = mysqli_query($conn, "SELECT * FROM trending_news ORDER BY sort_ord
           </div>
         </div>
 
-        <!-- New Arrivals -->
-        <div class="card mb-3">
-          <div class="card__header">
-            <div class="card__title">New Arrivals</div>
-            <button class="btn btn--sm btn--outline" onclick="openModal('addArrivalModal')">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <line x1="12" y1="5" x2="12" y2="19" />
-                <line x1="5" y1="12" x2="19" y2="12" />
-              </svg>
-              Add Book
-            </button>
-          </div>
-          <div class="card__body card__body--flush">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Book Title</th>
-                  <th>Author</th>
-                  <th>Category</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php while ($row = mysqli_fetch_assoc($arrivals_query)): ?>
-                  <tr>
-                    <td class="cell-title"><?php echo htmlspecialchars($row['title']); ?></td>
-                    <td><?php echo htmlspecialchars($row['author']); ?></td>
-                    <td><span class="badge badge--info"><?php echo htmlspecialchars($row['category']); ?></span></td>
-                    <td><a href="?delete_arrival=<?php echo $row['id']; ?>" onclick="return confirm('Delete?')"
-                        class="btn btn--sm btn--ghost">🗑️</a></td>
-                  </tr>
-                <?php endwhile; ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
         <!-- Trending Publications -->
         <div class="card mb-3">
           <div class="card__header">
@@ -399,49 +301,7 @@ $news_query = mysqli_query($conn, "SELECT * FROM trending_news ORDER BY sort_ord
           </div>
         </div>
 
-        <!-- Trending News -->
-        <div class="card mb-3">
-          <div class="card__header">
-            <div class="card__title">Trending Subjects & News</div>
-            <button class="btn btn--sm btn--outline" onclick="openModal('addNewsModal')">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <line x1="12" y1="5" x2="12" y2="19" />
-                <line x1="5" y1="12" x2="19" y2="12" />
-              </svg>
-              Add News
-            </button>
-          </div>
-          <div class="card__body card__body--flush">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Category</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php while ($row = mysqli_fetch_assoc($news_query)): ?>
-                  <tr>
-                    <td class="cell-title"><?php echo htmlspecialchars($row['title']); ?></td>
-                    <td><span class="badge badge--accent"><?php echo htmlspecialchars($row['category_tag']); ?></span>
-                    </td>
-                    <td><a href="?delete_news=<?php echo $row['id']; ?>" onclick="return confirm('Delete?')"
-                        class="btn btn--sm btn--ghost">🗑️</a></td>
-                  </tr>
-                <?php endwhile; ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Modals -->
-  <div class="modal-overlay" id="addArrivalModal">
+        <div class="modal-overlay" id="addPubModal">
     <div class="modal" style="max-width:520px;">
       <div class="modal__header">
         <h2 class="modal__title">Add New Arrival</h2>
@@ -498,37 +358,6 @@ $news_query = mysqli_query($conn, "SELECT * FROM trending_news ORDER BY sort_ord
         <div class="modal__footer">
           <button type="button" class="btn btn--ghost" onclick="closeModal('addPubModal')">Cancel</button>
           <button type="submit" name="add_pub" class="btn btn--primary">Add</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="addNewsModal">
-    <div class="modal" style="max-width:520px;">
-      <div class="modal__header">
-        <h2 class="modal__title">Add Trending News</h2>
-        <button class="modal__close" onclick="closeModal('addNewsModal')"><svg xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg></button>
-      </div>
-      <form method="POST" action="" enctype="multipart/form-data">
-        <div class="modal__body">
-          <div class="form-group"><label class="form-label">Title <span>*</span></label><input type="text" name="title"
-              class="form-input" required></div>
-          <div class="form-group"><label class="form-label">Category / Tag</label><input type="text" name="category_tag"
-              class="form-input" placeholder="e.g. Technology & Science"></div>
-          <div class="form-group"><label class="form-label">URL (Optional)</label><input type="text" name="link_url"
-              class="form-input" value="e-resources.php#newspapers-magazines"></div>
-          <div class="form-group"><label class="form-label">Image</label><input type="file" name="image"
-              class="form-input" accept="image/*"></div>
-          <div class="form-group"><label class="form-label"><input type="checkbox" name="visible" checked>
-              Visible</label></div>
-        </div>
-        <div class="modal__footer">
-          <button type="button" class="btn btn--ghost" onclick="closeModal('addNewsModal')">Cancel</button>
-          <button type="submit" name="add_news" class="btn btn--primary">Add</button>
         </div>
       </form>
     </div>

@@ -1452,3 +1452,65 @@ img { max-width: 100%; display: block; }
 }
 
 .sidebar-overlay.open { display: block; }
+
+/* ═══════════════════════════════════════════════════════
+   TABLE TABS
+   ═══════════════════════════════════════════════════════ */
+
+.table-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--admin-border);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.table-tabs::-webkit-scrollbar { display: none; }
+
+.table-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--admin-text-secondary);
+  border-radius: var(--radius-full);
+  background: transparent;
+  transition: all var(--transition);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.table-tab:hover {
+  background: var(--admin-surface-alt);
+  color: var(--admin-text);
+}
+
+.table-tab.active {
+  background: var(--admin-primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.table-tab__count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--admin-border);
+  color: var(--admin-text);
+  font-size: 11px;
+  font-weight: 700;
+  transition: background var(--transition), color var(--transition);
+}
+
+.table-tab.active .table-tab__count {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}

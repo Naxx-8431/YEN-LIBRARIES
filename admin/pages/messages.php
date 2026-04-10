@@ -41,6 +41,27 @@ if (isset($_GET['markread'])) {
   $msg_type = "success";
 }
 
+// ─── Handle Approve / Reject ────────────────────────────────
+if (isset($_GET['status_update']) && isset($_GET['id']) && isset($_GET['table'])) {
+  $id = (int) $_GET['id'];
+  $table = clean($conn, $_GET['table']); // Sanitize table name
+  $new_status = $_GET['status_update'] === 'approve' ? 'approved' : 'rejected';
+  
+  // Security: only allow these two tables
+  $allowed_tables = ['book_recommendations', 'journal_recommendations'];
+  if (in_array($table, $allowed_tables)) {
+    $query = "UPDATE `$table` SET status = '$new_status' WHERE id = $id";
+    if (mysqli_query($conn, $query)) {
+      $message = ucfirst($new_status) . " successfully!";
+      $msg_type = "success";
+    } else {
+      // Debugging help as requested
+      $message = "Error updating status: " . mysqli_error($conn);
+      $msg_type = "error";
+    }
+  }
+}
+
 // ─── Fetch all messages ─────────────────────────────────────
 $tab = $_GET['tab'] ?? 'contacts';
 
@@ -109,11 +130,7 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
             <line x1="8" y1="2" x2="8" y2="6" />
             <line x1="3" y1="10" x2="21" y2="10" />
           </svg>Events</a>
-        <a href="services-manager.php" class="sidebar__link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2">
-            <path
-              d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-          </svg>Services</a>
+        
         <a href="e-resources-manager.php" class="sidebar__link"><svg xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
@@ -251,11 +268,23 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
                       <td><?php echo htmlspecialchars($row['author']); ?></td>
                       <td><?php echo htmlspecialchars($row['publisher']); ?></td>
                       <td><?php echo htmlspecialchars($row['requester_name']); ?></td>
-                      <td><span
-                          class="badge badge--<?php echo $row['status'] == 'pending' ? 'pending' : 'active'; ?>"><?php echo ucfirst($row['status']); ?></span>
+                      <td>
+                        <?php 
+                          // Set color based on status (pending = yellow, approved = green, rejected = red)
+                          $badge_class = 'pending';
+                          if (strtolower($row['status']) == 'approved') $badge_class = 'active';
+                          if (strtolower($row['status']) == 'rejected') $badge_class = 'inactive';
+                        ?>
+                        <span class="badge badge--<?php echo $badge_class; ?>"><?php echo ucfirst($row['status']); ?></span>
                       </td>
-                      <td><a href="messages.php?tab=books&delete=<?php echo $row['id']; ?>&table=book_recommendations"
-                          class="btn btn--ghost btn--sm" onclick="return confirm('Delete?');">🗑️</a></td>
+                      <td>
+                        <?php if (strtolower($row['status']) == 'pending'): ?>
+                          <a href="messages.php?tab=books&id=<?php echo $row['id']; ?>&table=book_recommendations&status_update=approve" class="btn btn--ghost btn--sm" title="Approve">✅</a>
+                          <a href="messages.php?tab=books&id=<?php echo $row['id']; ?>&table=book_recommendations&status_update=reject" class="btn btn--ghost btn--sm" title="Reject">❌</a>
+                        <?php endif; ?>
+                        <a href="messages.php?tab=books&delete=<?php echo $row['id']; ?>&table=book_recommendations"
+                          class="btn btn--ghost btn--sm" onclick="return confirm('Delete?');">🗑️</a>
+                      </td>
                     <?php elseif ($tab == 'journals'): ?>
                       <td class="cell-title"><?php echo htmlspecialchars($row['title']); ?></td>
                       <td><?php echo htmlspecialchars($row['publisher']); ?></td>
@@ -267,11 +296,23 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
                           data-msg="<?php echo htmlspecialchars($row['description']); ?>"
                           onclick="viewFullMessage(this)">Read More</button>
                       </td>
-                      <td><span
-                          class="badge badge--<?php echo $row['status'] == 'pending' ? 'pending' : 'active'; ?>"><?php echo ucfirst($row['status']); ?></span>
+                      <td>
+                        <?php 
+                          // Set color based on status (pending = yellow, approved = green, rejected = red)
+                          $badge_class = 'pending';
+                          if (strtolower($row['status']) == 'approved') $badge_class = 'active';
+                          if (strtolower($row['status']) == 'rejected') $badge_class = 'inactive';
+                        ?>
+                        <span class="badge badge--<?php echo $badge_class; ?>"><?php echo ucfirst($row['status']); ?></span>
                       </td>
-                      <td><a href="messages.php?tab=journals&delete=<?php echo $row['id']; ?>&table=journal_recommendations"
-                          class="btn btn--ghost btn--sm" onclick="return confirm('Delete?');">🗑️</a></td>
+                      <td>
+                        <?php if (strtolower($row['status']) == 'pending'): ?>
+                          <a href="messages.php?tab=journals&id=<?php echo $row['id']; ?>&table=journal_recommendations&status_update=approve" class="btn btn--ghost btn--sm" title="Approve">✅</a>
+                          <a href="messages.php?tab=journals&id=<?php echo $row['id']; ?>&table=journal_recommendations&status_update=reject" class="btn btn--ghost btn--sm" title="Reject">❌</a>
+                        <?php endif; ?>
+                        <a href="messages.php?tab=journals&delete=<?php echo $row['id']; ?>&table=journal_recommendations"
+                          class="btn btn--ghost btn--sm" onclick="return confirm('Delete?');">🗑️</a>
+                      </td>
                     <?php else: ?>
                       <td class="cell-title"><?php echo htmlspecialchars($row['name']); ?></td>
                       <td><?php echo htmlspecialchars($row['phone']); ?></td>

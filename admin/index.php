@@ -36,8 +36,6 @@ $events_count = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total
 // Count e-resources
 $eresources_count = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM e_resources"))['total'];
 
-// Count services
-$services_count = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM services"))['total'];
 
 // Count gallery photos
 $gallery_count = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM gallery_images"))['total'];
@@ -110,14 +108,7 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
           </svg>
           Events
         </a>
-        <a href="pages/services-manager.php" class="sidebar__link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2">
-            <path
-              d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-          </svg>
-          Services
-        </a>
+        
         <a href="pages/e-resources-manager.php" class="sidebar__link">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2">
@@ -324,19 +315,7 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
               <div class="stat-card__label">E-Resources</div>
             </div>
           </div>
-          <div class="stat-card">
-            <div class="stat-card__icon stat-card__icon--primary">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2">
-                <path
-                  d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-              </svg>
-            </div>
-            <div class="stat-card__content">
-              <div class="stat-card__number"><?php echo $services_count; ?></div>
-              <div class="stat-card__label">Services</div>
-            </div>
-          </div>
+
           <div class="stat-card">
             <div class="stat-card__icon stat-card__icon--danger">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"

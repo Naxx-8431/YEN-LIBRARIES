@@ -919,7 +919,7 @@
                 while ($evt = mysqli_fetch_assoc($teve)):
                   $d = strtotime($evt['event_date']);
                   ?>
-                  <div class="event-item">
+                  <a href="events.php?id=<?php echo $evt['id']; ?>" class="event-item" style="text-decoration:none; color:inherit; display:flex;">
                     <div class="event-date">
                       <span class="event-date__day"><?php echo date('d', $d); ?></span>
                       <span class="event-date__mon"><?php echo strtoupper(date('M', $d)); ?></span>
@@ -930,7 +930,7 @@
                         <?php echo htmlspecialchars(strlen($evt['description']) > 70 ? substr($evt['description'], 0, 70) . '...' : $evt['description']); ?>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 <?php endwhile; ?>
               </div>
             </div>
