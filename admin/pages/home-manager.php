@@ -110,13 +110,7 @@ $pubs_query = mysqli_query($conn, "SELECT * FROM trending_publications ORDER BY 
   <div class="admin-layout">
     <aside class="sidebar" id="sidebar">
       <div class="sidebar__brand">
-        <div class="sidebar__brand-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-            <path d="M8 7h6" />
-            <path d="M8 11h8" />
-          </svg></div>
-        <div class="sidebar__brand-text">Yenepoya Libraries<small>Admin Panel</small></div>
+        <img src="../../images/logo/Central-Library-logo.png" alt="logo">
       </div>
       <nav class="sidebar__group">
         <div class="sidebar__group-label">Navigation</div>
@@ -139,7 +133,7 @@ $pubs_query = mysqli_query($conn, "SELECT * FROM trending_publications ORDER BY 
             <line x1="8" y1="2" x2="8" y2="6" />
             <line x1="3" y1="10" x2="21" y2="10" />
           </svg>Events</a>
-        
+
         <a href="e-resources-manager.php" class="sidebar__link"><svg xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
@@ -150,9 +144,10 @@ $pubs_query = mysqli_query($conn, "SELECT * FROM trending_publications ORDER BY 
             fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>Messages</a>
-        
+
         <a href="notifications-manager.php" class="sidebar__link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
           </svg>
@@ -181,13 +176,15 @@ $pubs_query = mysqli_query($conn, "SELECT * FROM trending_publications ORDER BY 
         </div>
         <div class="topbar__right">
           <a href="notifications-manager.php" class="topbar__btn" title="Notifications" style="margin-right:12px;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
               <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
               <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
             </svg>
           </a>
           <a href="../logout.php" class="topbar__logout">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
               <polyline points="16 17 21 12 16 7"></polyline>
               <line x1="21" y1="12" x2="9" y2="12"></line>
@@ -317,7 +314,13 @@ $pubs_query = mysqli_query($conn, "SELECT * FROM trending_publications ORDER BY 
                     <td><?php echo htmlspecialchars($row['author_details']); ?></td>
                     <td><?php echo htmlspecialchars($row['publish_date']); ?></td>
                     <td><a href="?delete_pub=<?php echo $row['id']; ?>" onclick="return confirm('Delete?')"
-                        class="btn btn--sm btn--ghost">🗑️</a></td>
+                        class="btn btn--sm btn--ghost"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                          fill="currentColor" viewBox="0 0 16 16">
+                          <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                          <path fill-rule="evenodd"
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        </svg></a></td>
                   </tr>
                 <?php endwhile; ?>
               </tbody>
@@ -325,69 +328,71 @@ $pubs_query = mysqli_query($conn, "SELECT * FROM trending_publications ORDER BY 
           </div>
         </div>
 
+        <div class="modal-overlay" id="addArrivalModal">
+          <div class="modal" style="max-width:520px;">
+            <div class="modal__header">
+              <h2 class="modal__title">Add New Arrival</h2>
+              <button class="modal__close" onclick="closeModal('addArrivalModal')"><svg
+                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg></button>
+            </div>
+            <form method="POST" action="" enctype="multipart/form-data">
+              <div class="modal__body">
+                <div class="form-group"><label class="form-label">Book Title <span>*</span></label><input type="text"
+                    name="title" class="form-input" required></div>
+                <div class="form-group"><label class="form-label">Author</label><input type="text" name="author"
+                    class="form-input"></div>
+                <div class="form-group"><label class="form-label">Category</label><input type="text" name="category"
+                    class="form-input"></div>
+                <div class="form-group"><label class="form-label">Cover Image</label><input type="file" name="image"
+                    class="form-input" accept="image/*"></div>
+                <div class="form-group"><label class="form-label"><input type="checkbox" name="visible" checked> Visible
+                    on
+                    Website</label></div>
+              </div>
+              <div class="modal__footer">
+                <button type="button" class="btn btn--ghost" onclick="closeModal('addArrivalModal')">Cancel</button>
+                <button type="submit" name="add_arrival" class="btn btn--primary">Add Book</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
         <div class="modal-overlay" id="addPubModal">
-    <div class="modal" style="max-width:520px;">
-      <div class="modal__header">
-        <h2 class="modal__title">Add New Arrival</h2>
-        <button class="modal__close" onclick="closeModal('addArrivalModal')"><svg xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg></button>
-      </div>
-      <form method="POST" action="" enctype="multipart/form-data">
-        <div class="modal__body">
-          <div class="form-group"><label class="form-label">Book Title <span>*</span></label><input type="text"
-              name="title" class="form-input" required></div>
-          <div class="form-group"><label class="form-label">Author</label><input type="text" name="author"
-              class="form-input"></div>
-          <div class="form-group"><label class="form-label">Category</label><input type="text" name="category"
-              class="form-input"></div>
-          <div class="form-group"><label class="form-label">Cover Image</label><input type="file" name="image"
-              class="form-input" accept="image/*"></div>
-          <div class="form-group"><label class="form-label"><input type="checkbox" name="visible" checked> Visible on
-              Website</label></div>
+          <div class="modal" style="max-width:520px;">
+            <div class="modal__header">
+              <h2 class="modal__title">Add Publication</h2>
+              <button class="modal__close" onclick="closeModal('addPubModal')"><svg xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg></button>
+            </div>
+            <form method="POST" action="">
+              <div class="modal__body">
+                <div class="form-group"><label class="form-label">Title <span>*</span></label><input type="text"
+                    name="title" class="form-input" required></div>
+                <div class="form-group"><label class="form-label">Author & Department</label><input type="text"
+                    name="author_details" class="form-input"></div>
+                <div class="form-group"><label class="form-label">Date (e.g. Mar 2026)</label><input type="text"
+                    name="publish_date" class="form-input"></div>
+                <div class="form-group"><label class="form-label">URL (Optional)</label><input type="text"
+                    name="link_url" class="form-input" value="repository.php#publications"></div>
+                <div class="form-group"><label class="form-label"><input type="checkbox" name="visible" checked>
+                    Visible</label></div>
+              </div>
+              <div class="modal__footer">
+                <button type="button" class="btn btn--ghost" onclick="closeModal('addPubModal')">Cancel</button>
+                <button type="submit" name="add_pub" class="btn btn--primary">Add</button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="modal__footer">
-          <button type="button" class="btn btn--ghost" onclick="closeModal('addArrivalModal')">Cancel</button>
-          <button type="submit" name="add_arrival" class="btn btn--primary">Add Book</button>
-        </div>
-      </form>
-    </div>
-  </div>
 
-  <div class="modal-overlay" id="addPubModal">
-    <div class="modal" style="max-width:520px;">
-      <div class="modal__header">
-        <h2 class="modal__title">Add Publication</h2>
-        <button class="modal__close" onclick="closeModal('addPubModal')"><svg xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg></button>
-      </div>
-      <form method="POST" action="">
-        <div class="modal__body">
-          <div class="form-group"><label class="form-label">Title <span>*</span></label><input type="text" name="title"
-              class="form-input" required></div>
-          <div class="form-group"><label class="form-label">Author & Department</label><input type="text"
-              name="author_details" class="form-input"></div>
-          <div class="form-group"><label class="form-label">Date (e.g. Mar 2026)</label><input type="text"
-              name="publish_date" class="form-input"></div>
-          <div class="form-group"><label class="form-label">URL (Optional)</label><input type="text" name="link_url"
-              class="form-input" value="repository.php#publications"></div>
-          <div class="form-group"><label class="form-label"><input type="checkbox" name="visible" checked>
-              Visible</label></div>
-        </div>
-        <div class="modal__footer">
-          <button type="button" class="btn btn--ghost" onclick="closeModal('addPubModal')">Cancel</button>
-          <button type="submit" name="add_pub" class="btn btn--primary">Add</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <script src="../assets/js/admin.js"></script>
+        <script src="../assets/js/admin.js"></script>
 </body>
 
 </html>

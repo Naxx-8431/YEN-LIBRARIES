@@ -67,18 +67,7 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
     <!-- ═══ SIDEBAR ═══ -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar__brand">
-        <div class="sidebar__brand-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-            <path d="M8 7h6" />
-            <path d="M8 11h8" />
-          </svg>
-        </div>
-        <div class="sidebar__brand-text">
-          Yenepoya Libraries
-          <small>Admin Panel</small>
-        </div>
+        <img src="../images/logo/Central-Library-logo.png" alt="logo">
       </div>
 
       <nav class="sidebar__group">
@@ -108,7 +97,7 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
           </svg>
           Events
         </a>
-        
+
         <a href="pages/e-resources-manager.php" class="sidebar__link">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2">
@@ -125,11 +114,14 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
           </svg>
           Messages
           <?php if ($unread_count > 0): ?>
-            <span class="sidebar__link-badge"><?php echo $unread_count; ?></span>
+          <span class="sidebar__link-badge">
+            <?php echo $unread_count; ?>
+          </span>
           <?php endif; ?>
         </a>
         <a href="pages/notifications-manager.php" class="sidebar__link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
           </svg>
@@ -165,8 +157,10 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
         </div>
         <div class="topbar__right">
           <!-- Logout now destroys PHP session -->
-          <a href="pages/notifications-manager.php" class="topbar__btn" title="Notifications" style="margin-right:12px;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <a href="pages/notifications-manager.php" class="topbar__btn" title="Notifications"
+            style="margin-right:12px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
               <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
               <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
             </svg>
@@ -188,7 +182,9 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
         <!-- Page Header -->
         <div class="page-header">
           <div class="page-header__left">
-            <h1>Welcome back, <?php echo htmlspecialchars($admin_name); ?></h1>
+            <h1>Welcome back,
+              <?php echo htmlspecialchars($admin_name); ?>
+            </h1>
             <p>Here's what's happening with your library website</p>
           </div>
         </div>
@@ -203,7 +199,9 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
               </svg>
             </div>
             <div class="stat-card__content">
-              <div class="stat-card__number"><?php echo $contacts_count; ?></div>
+              <div class="stat-card__number">
+                <?php echo $contacts_count; ?>
+              </div>
               <div class="stat-card__label">Contact Messages</div>
             </div>
           </div>
@@ -215,7 +213,9 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
               </svg>
             </div>
             <div class="stat-card__content">
-              <div class="stat-card__number"><?php echo $books_count; ?></div>
+              <div class="stat-card__number">
+                <?php echo $books_count; ?>
+              </div>
               <div class="stat-card__label">Book Recommendations</div>
             </div>
           </div>
@@ -228,7 +228,9 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
               </svg>
             </div>
             <div class="stat-card__content">
-              <div class="stat-card__number"><?php echo $journals_count; ?></div>
+              <div class="stat-card__number">
+                <?php echo $journals_count; ?>
+              </div>
               <div class="stat-card__label">Journal Recommendations</div>
             </div>
           </div>
@@ -243,7 +245,9 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
               </svg>
             </div>
             <div class="stat-card__content">
-              <div class="stat-card__number"><?php echo $events_count; ?></div>
+              <div class="stat-card__number">
+                <?php echo $events_count; ?>
+              </div>
               <div class="stat-card__label">Total Events</div>
             </div>
           </div>
@@ -260,16 +264,21 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
             <div class="card__body">
               <ul class="activity-list">
                 <?php while ($msg = mysqli_fetch_assoc($recent_result)): ?>
-                  <li class="activity-item">
-                    <div class="activity-item__dot activity-item__dot--blue"></div>
-                    <div>
-                      <div class="activity-item__text">
-                        <strong><?php echo htmlspecialchars($msg['subject']); ?></strong>
-                        from <?php echo htmlspecialchars($msg['name']); ?>
-                      </div>
-                      <div class="activity-item__time"><?php echo date('d M Y', strtotime($msg['created_at'])); ?></div>
+                <li class="activity-item">
+                  <div class="activity-item__dot activity-item__dot--blue"></div>
+                  <div>
+                    <div class="activity-item__text">
+                      <strong>
+                        <?php echo htmlspecialchars($msg['subject']); ?>
+                      </strong>
+                      from
+                      <?php echo htmlspecialchars($msg['name']); ?>
                     </div>
-                  </li>
+                    <div class="activity-item__time">
+                      <?php echo date('d M Y', strtotime($msg['created_at'])); ?>
+                    </div>
+                  </div>
+                </li>
                 <?php endwhile; ?>
               </ul>
             </div>
@@ -305,7 +314,9 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
                 </svg>
                 View Messages
                 <?php if ($unread_count > 0): ?>
-                  <span class="badge badge--pending" style="margin-left:auto;"><?php echo $unread_count; ?> new</span>
+                <span class="badge badge--pending" style="margin-left:auto;">
+                  <?php echo $unread_count; ?> new
+                </span>
                 <?php endif; ?>
               </a>
             </div>
@@ -324,7 +335,9 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
               </svg>
             </div>
             <div class="stat-card__content">
-              <div class="stat-card__number"><?php echo $eresources_count; ?></div>
+              <div class="stat-card__number">
+                <?php echo $eresources_count; ?>
+              </div>
               <div class="stat-card__label">E-Resources</div>
             </div>
           </div>
@@ -339,7 +352,9 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
               </svg>
             </div>
             <div class="stat-card__content">
-              <div class="stat-card__number"><?php echo $gallery_count; ?></div>
+              <div class="stat-card__number">
+                <?php echo $gallery_count; ?>
+              </div>
               <div class="stat-card__label">Gallery Photos</div>
             </div>
           </div>

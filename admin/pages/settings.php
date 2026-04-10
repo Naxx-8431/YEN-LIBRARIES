@@ -90,13 +90,7 @@ $current_username = $_SESSION['admin_username'];
   <div class="admin-layout">
     <aside class="sidebar" id="sidebar">
       <div class="sidebar__brand">
-        <div class="sidebar__brand-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-            <path d="M8 7h6" />
-            <path d="M8 11h8" />
-          </svg></div>
-        <div class="sidebar__brand-text">Yenepoya Libraries<small>Admin Panel</small></div>
+        <img src="../../images/logo/Central-Library-logo.png" alt="logo">
       </div>
       <nav class="sidebar__group">
         <div class="sidebar__group-label">Navigation</div>
@@ -119,7 +113,7 @@ $current_username = $_SESSION['admin_username'];
             <line x1="8" y1="2" x2="8" y2="6" />
             <line x1="3" y1="10" x2="21" y2="10" />
           </svg>Events</a>
-        
+
         <a href="e-resources-manager.php" class="sidebar__link"><svg xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
@@ -131,7 +125,8 @@ $current_username = $_SESSION['admin_username'];
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>Messages</a>
         <a href="notifications-manager.php" class="sidebar__link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
           </svg>
@@ -157,18 +152,21 @@ $current_username = $_SESSION['admin_username'];
             </svg></button>
           <h1 class="topbar__title">Settings</h1>
         </div>
-        <div class="topbar__right"><a href="notifications-manager.php" class="topbar__btn" title="Notifications" style="margin-right:12px;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="topbar__right"><a href="notifications-manager.php" class="topbar__btn" title="Notifications"
+            style="margin-right:12px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
               <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
               <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
             </svg>
           </a>
-          <a href="../logout.php" class="topbar__logout"><svg
-              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <a href="../logout.php" class="topbar__logout"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
               <polyline points="16 17 21 12 16 7" />
               <line x1="21" y1="12" x2="9" y2="12" />
-            </svg>Logout</a></div>
+            </svg>Logout</a>
+        </div>
       </header>
 
       <div class="admin-content">

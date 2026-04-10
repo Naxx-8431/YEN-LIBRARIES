@@ -46,7 +46,7 @@ if (isset($_GET['status_update']) && isset($_GET['id']) && isset($_GET['table'])
   $id = (int) $_GET['id'];
   $table = clean($conn, $_GET['table']); // Sanitize table name
   $new_status = $_GET['status_update'] === 'approve' ? 'approved' : 'rejected';
-  
+
   // Security: only allow these two tables
   $allowed_tables = ['book_recommendations', 'journal_recommendations'];
   if (in_array($table, $allowed_tables)) {
@@ -101,13 +101,7 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
   <div class="admin-layout">
     <aside class="sidebar" id="sidebar">
       <div class="sidebar__brand">
-        <div class="sidebar__brand-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-            <path d="M8 7h6" />
-            <path d="M8 11h8" />
-          </svg></div>
-        <div class="sidebar__brand-text">Yenepoya Libraries<small>Admin Panel</small></div>
+        <img src="../../images/logo/Central-Library-logo.png" alt="logo">
       </div>
       <nav class="sidebar__group">
         <div class="sidebar__group-label">Navigation</div>
@@ -130,7 +124,7 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
             <line x1="8" y1="2" x2="8" y2="6" />
             <line x1="3" y1="10" x2="21" y2="10" />
           </svg>Events</a>
-        
+
         <a href="e-resources-manager.php" class="sidebar__link"><svg xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
@@ -142,7 +136,8 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>Messages</a>
         <a href="notifications-manager.php" class="sidebar__link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
           </svg>
@@ -168,18 +163,21 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
             </svg></button>
           <h1 class="topbar__title">Messages</h1>
         </div>
-        <div class="topbar__right"><a href="notifications-manager.php" class="topbar__btn" title="Notifications" style="margin-right:12px;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="topbar__right"><a href="notifications-manager.php" class="topbar__btn" title="Notifications"
+            style="margin-right:12px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
               <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
               <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
             </svg>
           </a>
-          <a href="../logout.php" class="topbar__logout"><svg
-              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <a href="../logout.php" class="topbar__logout"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
               <polyline points="16 17 21 12 16 7" />
               <line x1="21" y1="12" x2="9" y2="12" />
-            </svg>Logout</a></div>
+            </svg>Logout</a>
+        </div>
       </header>
 
       <div class="admin-content">
@@ -274,7 +272,13 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
                         <?php endif; ?>
                         <a href="messages.php?tab=contacts&delete=<?php echo $row['id']; ?>&table=contacts"
                           class="btn btn--ghost btn--sm" title="Delete"
-                          onclick="return confirm('Delete this message?');">🗑️</a>
+                          onclick="return confirm('Delete this message?');"><svg xmlns="http://www.w3.org/2000/svg"
+                            width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path
+                              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                          </svg></a>
                       </td>
                     <?php elseif ($tab == 'books'): ?>
                       <td class="cell-title"><?php echo htmlspecialchars($row['title']); ?></td>
@@ -282,21 +286,40 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
                       <td><?php echo htmlspecialchars($row['publisher']); ?></td>
                       <td><?php echo htmlspecialchars($row['requester_name']); ?></td>
                       <td>
-                        <?php 
-                          // Set color based on status (pending = yellow, approved = green, rejected = red)
-                          $badge_class = 'pending';
-                          if (strtolower($row['status']) == 'approved') $badge_class = 'active';
-                          if (strtolower($row['status']) == 'rejected') $badge_class = 'inactive';
+                        <?php
+                        // Set color based on status (pending = yellow, approved = green, rejected = red)
+                        $badge_class = 'pending';
+                        if (strtolower($row['status']) == 'approved')
+                          $badge_class = 'active';
+                        if (strtolower($row['status']) == 'rejected')
+                          $badge_class = 'inactive';
                         ?>
                         <span class="badge badge--<?php echo $badge_class; ?>"><?php echo ucfirst($row['status']); ?></span>
                       </td>
                       <td>
                         <?php if (strtolower($row['status']) == 'pending'): ?>
-                          <a href="messages.php?tab=books&id=<?php echo $row['id']; ?>&table=book_recommendations&status_update=approve" class="btn btn--ghost btn--sm" title="Approve">✅</a>
-                          <a href="messages.php?tab=books&id=<?php echo $row['id']; ?>&table=book_recommendations&status_update=reject" class="btn btn--ghost btn--sm" title="Reject">❌</a>
+                          <a href="messages.php?tab=books&id=<?php echo $row['id']; ?>&table=book_recommendations&status_update=approve"
+                            class="btn btn--ghost btn--sm" title="Approve"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                              height="16" fill="currentColor" viewBox="0 0 16 16">
+                              <path
+                                d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+                            </svg></a>
+                          <a href="messages.php?tab=books&id=<?php echo $row['id']; ?>&table=book_recommendations&status_update=reject"
+                            class="btn btn--ghost btn--sm" title="Reject"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                              height="16" fill="currentColor" viewBox="0 0 16 16">
+                              <path
+                                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                            </svg></a>
                         <?php endif; ?>
                         <a href="messages.php?tab=books&delete=<?php echo $row['id']; ?>&table=book_recommendations"
-                          class="btn btn--ghost btn--sm" onclick="return confirm('Delete?');">🗑️</a>
+                          class="btn btn--ghost btn--sm" onclick="return confirm('Delete?');"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                          </svg></a>
                       </td>
                     <?php elseif ($tab == 'journals'): ?>
                       <td class="cell-title"><?php echo htmlspecialchars($row['title']); ?></td>
@@ -310,21 +333,40 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
                           onclick="viewFullMessage(this)">Read More</button>
                       </td>
                       <td>
-                        <?php 
-                          // Set color based on status (pending = yellow, approved = green, rejected = red)
-                          $badge_class = 'pending';
-                          if (strtolower($row['status']) == 'approved') $badge_class = 'active';
-                          if (strtolower($row['status']) == 'rejected') $badge_class = 'inactive';
+                        <?php
+                        // Set color based on status (pending = yellow, approved = green, rejected = red)
+                        $badge_class = 'pending';
+                        if (strtolower($row['status']) == 'approved')
+                          $badge_class = 'active';
+                        if (strtolower($row['status']) == 'rejected')
+                          $badge_class = 'inactive';
                         ?>
                         <span class="badge badge--<?php echo $badge_class; ?>"><?php echo ucfirst($row['status']); ?></span>
                       </td>
                       <td>
                         <?php if (strtolower($row['status']) == 'pending'): ?>
-                          <a href="messages.php?tab=journals&id=<?php echo $row['id']; ?>&table=journal_recommendations&status_update=approve" class="btn btn--ghost btn--sm" title="Approve">✅</a>
-                          <a href="messages.php?tab=journals&id=<?php echo $row['id']; ?>&table=journal_recommendations&status_update=reject" class="btn btn--ghost btn--sm" title="Reject">❌</a>
+                          <a href="messages.php?tab=journals&id=<?php echo $row['id']; ?>&table=journal_recommendations&status_update=approve"
+                            class="btn btn--ghost btn--sm" title="Approve"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                              height="16" fill="currentColor" viewBox="0 0 16 16">
+                              <path
+                                d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+                            </svg></a>
+                          <a href="messages.php?tab=journals&id=<?php echo $row['id']; ?>&table=journal_recommendations&status_update=reject"
+                            class="btn btn--ghost btn--sm" title="Reject"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                              height="16" fill="currentColor" viewBox="0 0 16 16">
+                              <path
+                                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                            </svg></a>
                         <?php endif; ?>
                         <a href="messages.php?tab=journals&delete=<?php echo $row['id']; ?>&table=journal_recommendations"
-                          class="btn btn--ghost btn--sm" onclick="return confirm('Delete?');">🗑️</a>
+                          class="btn btn--ghost btn--sm" onclick="return confirm('Delete?');"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                          </svg></a>
                       </td>
                     <?php else: ?>
                       <td class="cell-title"><?php echo htmlspecialchars($row['name']); ?></td>
@@ -339,7 +381,14 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
                       <td><?php echo date('d M Y', strtotime($row['created_at'])); ?></td>
                       <td><span class="badge badge--info"><?php echo ucfirst($row['status']); ?></span></td>
                       <td><a href="messages.php?tab=enquiries&delete=<?php echo $row['id']; ?>&table=enquiries"
-                          class="btn btn--ghost btn--sm" onclick="return confirm('Delete?');">🗑️</a></td>
+                          class="btn btn--ghost btn--sm" onclick="return confirm('Delete?');"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                          </svg></a></td>
                     <?php endif; ?>
                   </tr>
                 <?php endwhile; ?>
