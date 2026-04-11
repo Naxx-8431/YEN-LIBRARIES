@@ -1127,9 +1127,9 @@
       <div class="chat-msg bot">Hello! I'm YEN-Bot, your virtual library assistant. I can help you find books, OPAC
         links, or remote access details. What do you need today?</div>
     </div>
-    <form class="chat-footer" onsubmit="event.preventDefault(); document.getElementById('chatInput').value='';">
+    <form class="chat-footer" id="chatForm">
       <input type="text" id="chatInput" placeholder="Type your message..." autocomplete="off">
-      <button type="submit">
+      <button type="submit" id="chatSendBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="22" y1="2" x2="11" y2="13" />
           <polygon points="22 2 15 22 11 13 2 9 22 2" />
@@ -1157,6 +1157,88 @@
         setTimeout(() => input.focus(), 300);
       }
     }
+
+    // ═══════════════════════════════════════════════════════
+    // YEN-Bot — Dynamic Chat Engine
+    // ═══════════════════════════════════════════════════════
+
+    const chatBody = document.getElementById('chatBody');
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    const chatSendBtn = document.getElementById('chatSendBtn');
+
+    // ── Add a message bubble to the chat ──
+    function appendMessage(text, sender) {
+      const msg = document.createElement('div');
+      msg.className = `chat-msg ${sender}`;
+
+      // Convert markdown-style formatting to HTML
+      let formatted = text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')       // **bold**
+        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color:#6366f1;text-decoration:underline;">$1</a>')  // [links](url)
+        .replace(/\n/g, '<br>')                                  // newlines
+        .replace(/• /g, '&bull; ');                               // bullet points
+
+      msg.innerHTML = formatted;
+      chatBody.appendChild(msg);
+      chatBody.scrollTop = chatBody.scrollHeight;
+      return msg;
+    }
+
+    // ── Show typing indicator ──
+    function showTyping() {
+      const typing = document.createElement('div');
+      typing.className = 'chat-msg bot chat-typing';
+      typing.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+      typing.id = 'typingIndicator';
+      chatBody.appendChild(typing);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function hideTyping() {
+      const typing = document.getElementById('typingIndicator');
+      if (typing) typing.remove();
+    }
+
+    // ── Send message to backend ──
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const message = chatInput.value.trim();
+      if (!message) return;
+
+      // Show user message
+      appendMessage(message, 'user');
+      chatInput.value = '';
+      chatSendBtn.disabled = true;
+      chatInput.disabled = true;
+
+      // Show typing indicator
+      showTyping();
+
+      try {
+        const response = await fetch('api/chatbot.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: message })
+        });
+
+        const data = await response.json();
+        hideTyping();
+
+        if (data.error) {
+          appendMessage('Sorry, something went wrong. Please try again.', 'bot');
+        } else {
+          appendMessage(data.reply, 'bot');
+        }
+      } catch (error) {
+        hideTyping();
+        appendMessage('I\'m having trouble connecting. Please check your internet and try again.', 'bot');
+      }
+
+      chatSendBtn.disabled = false;
+      chatInput.disabled = false;
+      chatInput.focus();
+    });
   </script>
   <script src="assets/js/main.js"></script>
 </body>
