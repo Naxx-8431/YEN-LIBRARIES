@@ -652,6 +652,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_journal'])) {
 
   <script src="assets/js/main.js"></script>
   
+  <!-- ═══════════════ SIDEBAR ENQUIRY ═══════════ -->
+  <?php include 'components/enquiry.php'; ?>
+
   <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
   <?php include 'components/notifications.php'; ?>
 

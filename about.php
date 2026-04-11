@@ -1642,6 +1642,8 @@
 
 
   <script src="assets/js/main.js"></script>
+  <!-- ═══════════════ SIDEBAR ENQUIRY ═══════════ -->
+  <?php include 'components/enquiry.php'; ?>
 
   <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
   <?php include 'components/notifications.php'; ?>
