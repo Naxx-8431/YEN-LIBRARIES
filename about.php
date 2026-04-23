@@ -1,3 +1,13 @@
+<?php
+require_once 'db.php';
+require_once 'includes/library_helpers.php';
+
+// Fetch all active libraries (single query)
+$about_libraries = getActiveLibraries($conn);
+
+// Pre-fetch ALL gallery images in one query, grouped by library_id
+$all_gallery = getAllGalleryImages($conn);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -109,46 +119,12 @@
     <aside class="page-sidebar" aria-label="About section navigation">
       <div class="page-sidebar__title">Libraries</div>
       <nav class="page-sidebar__nav">
-        <a href="#central-library" class="page-sidebar__link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg>
-          Central Library
+        <?php foreach ($about_libraries as $lib): ?>
+        <a href="#<?php echo htmlspecialchars($lib['slug']); ?>" class="page-sidebar__link">
+          <?php echo getLibraryIconSvg($lib['icon_name']); ?>
+          <?php echo htmlspecialchars($lib['library_name']); ?>
         </a>
-        <a href="#ayurveda-library" class="page-sidebar__link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          </svg>
-          Ayurveda Library
-        </a>
-        <a href="#homeopathy-library" class="page-sidebar__link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-          </svg>
-          Homoeopathy Library
-        </a>
-        <a href="#allied-library" class="page-sidebar__link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M3 9h18M9 21V9" />
-          </svg>
-          Allied Health Library
-        </a>
-        <a href="#yiascm-library" class="page-sidebar__link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-            <path d="M6 12v5c3 3 9 3 12 0v-5" />
-          </svg>
-          YIASCM Library
-        </a>
-        <a href="#pharmacy-library" class="page-sidebar__link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path
-              d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18" />
-          </svg>
-          Pharmacy Library
-        </a>
+        <?php endforeach; ?>
 
         <div class="page-sidebar__divider"></div>
         <div class="page-sidebar__title">Information</div>
@@ -218,437 +194,56 @@
     <!-- MAIN CONTENT -->
     <main class="page-content" id="main">
 
-      <!-- ══ CENTRAL LIBRARY ══ -->
-      <section class="page-section" id="central-library">
+      <!-- ══ DYNAMIC LIBRARY SECTIONS ══ -->
+      <?php foreach ($about_libraries as $lib): ?>
+      <section class="page-section" id="<?php echo htmlspecialchars($lib['slug']); ?>">
         <div class="page-section__header">
-          <div class="page-section__label">Our Libraries</div>
-          <h2 class="page-section__title">Central Library</h2>
+          <div class="page-section__label"><?php echo htmlspecialchars($lib['section_label']); ?></div>
+          <h2 class="page-section__title"><?php echo htmlspecialchars($lib['library_name']); ?></h2>
           <div class="page-section__divider"></div>
         </div>
-        <p>The Central library of the University is an indispensable part in the research and education programmes
-          providing vital support to the students, research scholars and faculty members in their academic pursuit. The
-          Central Library is housed in an independent building with good ambience and lighting. The library has
-          developed an impressive collection of various library resources in print and electronic format incorporating
-          latest digital technologies.</p>
-        <p>The library operations are computerized with an <strong>Integrated Library Management System (Koha)</strong>.
-          A Biometric Access Control system in the library regulates the access of users. It strives to deliver the best
-          possible library and information services to its faculty members, research scholars and students. A
-          comprehensive CCTV surveillance system and dedicated UPS ensures security and uninterrupted service.</p>
 
-        <div class="info-grid">
-          <div class="info-box">
-            <div class="info-box__label">Established</div>
-            <div class="info-box__value">1992</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Books</div>
-            <div class="info-box__value">60,647+</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Print Journals</div>
-            <div class="info-box__value">189</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Back Volumes</div>
-            <div class="info-box__value">9,838</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Theses &amp; Dissertations</div>
-            <div class="info-box__value">2,977</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">E-Journals</div>
-            <div class="info-box__value">13,000+</div>
-          </div>
-        </div>
+        <?php
+        // Full description may contain HTML (e.g. <strong> tags), so we don't escape it
+        // It's admin-entered content stored in the database
+        echo '<p>' . str_replace("\n\n", '</p><p>', $lib['full_description']) . '</p>';
+        ?>
 
-        <!-- Working Hours -->
-        <h3 style="margin-top:28px;margin-bottom:10px;font-size:16px;font-weight:700;color:var(--clr-primary);">Library
-          Working Hours</h3>
-        <table class="hours-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Week Days</th>
-              <th>Sundays &amp; Holidays</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Working Hours</strong></td>
-              <td>09.00 am to 12.00 Midnight</td>
-              <td>09.00 am to 12.00 Midnight</td>
-            </tr>
-            <tr>
-              <td><strong>Issue / Returns</strong></td>
-              <td>09.00 am to 08.00 pm</td>
-              <td>09.00 am to 12.30 pm</td>
-            </tr>
-            <tr>
-              <td><strong>Reprography</strong></td>
-              <td>09.30 am to 11.00 pm</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><strong>During Examinations</strong></td>
-              <td colspan="2" style="text-align:center;">09.00 am to 12.00 Midnight</td>
-            </tr>
-          </tbody>
-        </table>
+        <?php
+        // Info boxes (only renders fields that have data)
+        echo renderInfoBoxes($lib);
+        ?>
 
-        <!-- Photo Gallery -->
+        <?php
+        // Working hours table (from structured JSON)
+        echo renderWorkingHoursTable($lib['working_hours']);
+        ?>
+
+        <?php
+        // Photo gallery (using pre-fetched data — no query in loop)
+        $lib_gallery = isset($all_gallery[$lib['id']]) ? $all_gallery[$lib['id']] : [];
+        if (!empty($lib_gallery)):
+        ?>
         <div class="photo-gallery">
           <div class="photo-gallery__label">Library Facilities — Scroll to View More</div>
           <div class="photo-gallery__track">
+            <?php foreach ($lib_gallery as $img): ?>
             <div class="photo-gallery__item">
-              <img src="assets/images/about/about-central2.webp" alt="Biometric Access Control">
-              <div class="photo-gallery__caption">Biometric Access Control</div>
+              <img src="<?php echo htmlspecialchars($img['image_path']); ?>" alt="<?php echo htmlspecialchars($img['caption']); ?>">
+              <div class="photo-gallery__caption"><?php echo htmlspecialchars($img['caption']); ?></div>
             </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-central3.webp" alt="Property Counter">
-              <div class="photo-gallery__caption">Property Counter</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-central4.webp" alt="Undergraduate Reading Hall">
-              <div class="photo-gallery__caption">Undergraduate Reading Hall</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-central5.webp" alt="Undergraduate Reading Hall">
-              <div class="photo-gallery__caption">Undergraduate Reading Hall</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-central6.webp" alt="Reprography Section">
-              <div class="photo-gallery__caption">Reprography Section</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-central7.webp" alt="Newspaper Reading Area">
-              <div class="photo-gallery__caption">Newspaper Reading Area</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-central8.webp" alt="Circulation Services">
-              <div class="photo-gallery__caption">Circulation Services</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-central9.webp" alt="Postgraduate Books Section">
-              <div class="photo-gallery__caption">Postgraduate Books Section</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-central10.webp" alt="New Book Display Section">
-              <div class="photo-gallery__caption">New Book Display Section</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-central12.webp" alt="Digital Library Facility">
-              <div class="photo-gallery__caption">Digital Library Facility</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-central14.webp" alt="Periodicals Section">
-              <div class="photo-gallery__caption">Periodicals Section</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-central15.webp" alt="Journal Archival Section">
-              <div class="photo-gallery__caption">Journal Archival Section</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-central16.webp" alt="Audio-Visual Facility">
-              <div class="photo-gallery__caption">Audio-Visual Facility</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-central17.webp" alt="E-learning Centre">
-              <div class="photo-gallery__caption">E-learning Centre</div>
-            </div>
+            <?php endforeach; ?>
           </div>
         </div>
+        <?php endif; ?>
 
+        <?php if (!empty($lib['contact_info'])): ?>
         <div class="callout" style="margin-top:20px;">
-          <strong>Contact:</strong> Mr. Khalid B. P. (Chief Librarian) &nbsp;|&nbsp;
-          <a href="mailto:library@yenepoya.edu.in" style="color:var(--clr-primary);">library@yenepoya.edu.in</a>
-          &nbsp;|&nbsp;
-          Ext: 2067 / 5085
+          <?php echo $lib['contact_info']; ?>
         </div>
+        <?php endif; ?>
       </section>
-
-      <!-- ══ AYURVEDA LIBRARY ══ -->
-      <section class="page-section" id="ayurveda-library">
-        <div class="page-section__header">
-          <div class="page-section__label">Constituent Library</div>
-          <h2 class="page-section__title">Ayurveda Medical College Library</h2>
-          <div class="page-section__divider"></div>
-        </div>
-        <p>The Yenepoya Ayurveda Medical College Library was established in the year 2018. Library resources include
-          books in Ayurveda and basic medical science. It subscribes to print journals and newspapers. The
-          infrastructure includes stack area for books, reading area and newspapers section. The Digital library is
-          equipped with computers for online browsing. There are departmental libraries in individual departments with
-          books for ready reference for faculty members.</p>
-
-        <div class="info-grid">
-          <div class="info-box">
-            <div class="info-box__label">Established</div>
-            <div class="info-box__value">2018</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Books</div>
-            <div class="info-box__value">8,338</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Journals</div>
-            <div class="info-box__value">8</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Back Volumes</div>
-            <div class="info-box__value">27</div>
-          </div>
-        </div>
-
-        <h3 style="margin-top:24px;margin-bottom:10px;font-size:16px;font-weight:700;color:var(--clr-primary);">Working
-          Hours</h3>
-        <table class="hours-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Week Days</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Working Hours</strong></td>
-              <td>09.00 am to 05.00 pm</td>
-            </tr>
-            <tr>
-              <td><strong>Issue / Returns</strong></td>
-              <td>09.00 am to 05.00 pm</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="photo-gallery">
-          <div class="photo-gallery__label">Library Facilities — Scroll to View More</div>
-          <div class="photo-gallery__track">
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-ayurveda1.webp" alt="Circulation Desk">
-              <div class="photo-gallery__caption">Circulation Desk</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-ayurveda2.webp" alt="Digital Library">
-              <div class="photo-gallery__caption">Digital Library</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-ayurveda3.webp" alt="Periodicals Section">
-              <div class="photo-gallery__caption">Periodicals Section</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-ayurveda4.webp" alt="Periodicals Section">
-              <div class="photo-gallery__caption">Periodicals Section</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="callout" style="margin-top:20px;">
-          <strong>Address:</strong> Yenepoya Ayurveda Medical College and Hospital, Naringana, Deralakatte (Post),
-          Mangaluru 575018 &nbsp;|&nbsp;
-          <a href="mailto:libraryayurveda@yenepoya.edu.in"
-            style="color:var(--clr-primary);">libraryayurveda@yenepoya.edu.in</a>
-        </div>
-      </section>
-
-      <!-- ══ HOMOEOPATHY LIBRARY ══ -->
-      <section class="page-section" id="homeopathy-library">
-        <div class="page-section__header">
-          <div class="page-section__label">Constituent Library</div>
-          <h2 class="page-section__title">Homoeopathy Medical College Library</h2>
-          <div class="page-section__divider"></div>
-        </div>
-        <p>The Yenepoya Homoeopathy Medical College Library was established in 2018 to meet the academic and research
-          needs of YHCH students and faculty. The collection includes titles in Organon of Medicine, Materia Medica,
-          Repertory, Pharmacy, and allied health science subjects. The library is well-equipped for students pursuing
-          BHMS and post-graduate programmes.</p>
-
-        <div class="info-grid">
-          <div class="info-box">
-            <div class="info-box__label">Established</div>
-            <div class="info-box__value">2018</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Books</div>
-            <div class="info-box__value">4,780+</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Campus</div>
-            <div class="info-box__value">YHCH</div>
-          </div>
-        </div>
-
-        <div class="photo-gallery">
-          <div class="photo-gallery__label">Library Facilities — Scroll to View More</div>
-          <div class="photo-gallery__track">
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-homeopathy1.webp" alt="Stack Area">
-              <div class="photo-gallery__caption">Stack Area</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-homeopathy2.webp" alt="Reading Area">
-              <div class="photo-gallery__caption">Reading Area</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-homeopathy3.webp" alt="Library Interior">
-              <div class="photo-gallery__caption">Library Interior</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-homeopathy4.webp" alt="Library Interior">
-              <div class="photo-gallery__caption">Library Interior</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══ ALLIED HEALTH LIBRARY ══ -->
-      <section class="page-section" id="allied-library">
-        <div class="page-section__header">
-          <div class="page-section__label">Constituent Library</div>
-          <h2 class="page-section__title">School of Allied Health Science Library</h2>
-          <div class="page-section__divider"></div>
-        </div>
-        <p>Established in 2020, the Allied Health Sciences Library caters to students and faculty of the Faculty of
-          Allied Health Care Professions (FAHCP). The collection covers Physiotherapy, Medical Laboratory Technology,
-          Respiratory Therapy, Radiography, and related disciplines. The library is equipped with modern study
-          facilities and provides access to the University's subscribed online databases.</p>
-
-        <div class="info-grid">
-          <div class="info-box">
-            <div class="info-box__label">Established</div>
-            <div class="info-box__value">2020</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Campus</div>
-            <div class="info-box__value">FAHCP</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Subject Area</div>
-            <div class="info-box__value">Allied Health Sciences</div>
-          </div>
-        </div>
-
-        <div class="photo-gallery">
-          <div class="photo-gallery__label">Library Facilities — Scroll to View More</div>
-          <div class="photo-gallery__track">
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-allied1.webp" alt="Stack Area">
-              <div class="photo-gallery__caption">Stack Area</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-allied2.webp" alt="Reading Area">
-              <div class="photo-gallery__caption">Reading Area</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-allied3.webp" alt="Library Interior">
-              <div class="photo-gallery__caption">Library Interior</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-allied4.webp" alt="Library Interior">
-              <div class="photo-gallery__caption">Library Interior</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══ YIASCM LIBRARY ══ -->
-      <section class="page-section" id="yiascm-library">
-        <div class="page-section__header">
-          <div class="page-section__label">Constituent Library</div>
-          <h2 class="page-section__title">YIASCM Degree College Library</h2>
-          <div class="page-section__divider"></div>
-        </div>
-        <p>The Yenepoya Institute of Arts, Science, Commerce and Management (YIASCM) Library is located at Balmatta,
-          Mangalore. Established in 2014, it serves undergraduate students pursuing courses in Arts, Science, Commerce,
-          and Business Management. The library has a comprehensive collection of textbooks, reference materials and
-          periodicals aligned with the Mangalore University curriculum.</p>
-
-        <div class="info-grid">
-          <div class="info-box">
-            <div class="info-box__label">Established</div>
-            <div class="info-box__value">2014</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Location</div>
-            <div class="info-box__value">Balmatta, Mangalore</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Subject Area</div>
-            <div class="info-box__value">Arts · Science · Commerce · Management</div>
-          </div>
-        </div>
-
-        <div class="photo-gallery">
-          <div class="photo-gallery__label">Library Facilities — Scroll to View More</div>
-          <div class="photo-gallery__track">
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-degree1.webp" alt="Library Interior">
-              <div class="photo-gallery__caption">Library Interior</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-degree2.webp" alt="Reading Area">
-              <div class="photo-gallery__caption">Reading Area</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-degree3.webp" alt="Stack Area">
-              <div class="photo-gallery__caption">Stack Area</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-degree4.webp" alt="Library Facility">
-              <div class="photo-gallery__caption">Library Facility</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══ PHARMACY LIBRARY ══ -->
-      <section class="page-section" id="pharmacy-library">
-        <div class="page-section__header">
-          <div class="page-section__label">Constituent Library</div>
-          <h2 class="page-section__title">Pharmacy College Library</h2>
-          <div class="page-section__divider"></div>
-        </div>
-        <p>The Yenepoya Pharmacy College Library (YPCRC) serves students and faculty pursuing Pharm.D, B.Pharm, and
-          M.Pharm programmes. The collection includes pharmaceutical sciences, pharmacology, medicinal chemistry,
-          pharmacognosy, pharmaceutics, and clinical pharmacy resources. The library provides access to subscribed
-          databases relevant to pharmacy education and research.</p>
-
-        <div class="info-grid">
-          <div class="info-box">
-            <div class="info-box__label">Campus</div>
-            <div class="info-box__value">YPCRC</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Programmes</div>
-            <div class="info-box__value">B.Pharm · M.Pharm · Pharm.D</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box__label">Subject Area</div>
-            <div class="info-box__value">Pharmaceutical Sciences</div>
-          </div>
-        </div>
-
-        <div class="photo-gallery">
-          <div class="photo-gallery__label">Library Facilities — Scroll to View More</div>
-          <div class="photo-gallery__track">
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-pharmacy1.webp" alt="Library Interior">
-              <div class="photo-gallery__caption">Library Interior</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-pharmacy2.webp" alt="Stack Area">
-              <div class="photo-gallery__caption">Stack Area</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-pharmacy3.webp" alt="Reading Area">
-              <div class="photo-gallery__caption">Reading Area</div>
-            </div>
-            <div class="photo-gallery__item">
-              <img src="assets/images/about/about-pharmacy4.webp" alt="Library Facility">
-              <div class="photo-gallery__caption">Library Facility</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <?php endforeach; ?>
 
       <!-- ══ VISION & MISSION ══ -->
       <section class="page-section" id="vision-mission">
@@ -1631,6 +1226,9 @@
 
   <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
   <?php include 'components/notifications.php'; ?>
+
+  <!-- ═══════════════ AI CHATBOT ═══════════════════ -->
+  <?php include 'components/chatbot.php'; ?>
 
   <script src="assets/js/main.js"></script>
   <script src="assets/js/enhancements.js"></script>

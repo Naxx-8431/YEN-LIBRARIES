@@ -40,8 +40,8 @@ $eresources_count = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as t
 // Count upcoming events
 $upcoming_events_count = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM events WHERE event_date >= CURDATE()"))['total'];
 
-// Count unread messages (for badge)
-$unread_count = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM contacts WHERE status = 'unread'"))['total'];
+// Count messages
+$unread_count = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM contacts"))['total'];
 
 // ─── Fetch recent activity (latest 5 messages) ─────────────
 $recent_query = "SELECT name, subject, created_at FROM contacts ORDER BY created_at DESC LIMIT 5";
@@ -87,6 +87,11 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
             <polyline points="9 22 9 12 15 12 15 22" />
           </svg>Homepage</a>
+        <a href="pages/libraries-manager.php" class="sidebar__link"><svg xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          </svg>Libraries</a>
         <a href="pages/events-manager.php" class="sidebar__link">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2">
@@ -113,11 +118,6 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>
           Messages
-          <?php if ($unread_count > 0): ?>
-          <span class="sidebar__link-badge">
-            <?php echo $unread_count; ?>
-          </span>
-          <?php endif; ?>
         </a>
         <a href="pages/notifications-manager.php" class="sidebar__link">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -264,21 +264,21 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
             <div class="card__body">
               <ul class="activity-list">
                 <?php while ($msg = mysqli_fetch_assoc($recent_result)): ?>
-                <li class="activity-item">
-                  <div class="activity-item__dot activity-item__dot--blue"></div>
-                  <div>
-                    <div class="activity-item__text">
-                      <strong>
-                        <?php echo htmlspecialchars($msg['subject']); ?>
-                      </strong>
-                      from
-                      <?php echo htmlspecialchars($msg['name']); ?>
+                  <li class="activity-item">
+                    <div class="activity-item__dot activity-item__dot--blue"></div>
+                    <div>
+                      <div class="activity-item__text">
+                        <strong>
+                          <?php echo htmlspecialchars($msg['subject']); ?>
+                        </strong>
+                        from
+                        <?php echo htmlspecialchars($msg['name']); ?>
+                      </div>
+                      <div class="activity-item__time">
+                        <?php echo date('d M Y', strtotime($msg['created_at'])); ?>
+                      </div>
                     </div>
-                    <div class="activity-item__time">
-                      <?php echo date('d M Y', strtotime($msg['created_at'])); ?>
-                    </div>
-                  </div>
-                </li>
+                  </li>
                 <?php endwhile; ?>
               </ul>
             </div>
@@ -314,9 +314,9 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
                 </svg>
                 View Messages
                 <?php if ($unread_count > 0): ?>
-                <span class="badge badge--pending" style="margin-left:auto;">
-                  <?php echo $unread_count; ?> new
-                </span>
+                  <span class="badge badge--pending" style="margin-left:auto;">
+                    <?php echo $unread_count; ?> new
+                  </span>
                 <?php endif; ?>
               </a>
             </div>
@@ -344,11 +344,12 @@ $admin_name = $_SESSION['admin_username'] ?? 'Admin';
 
           <div class="stat-card">
             <div class="stat-card__icon stat-card__icon--warning">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
               </svg>
             </div>
             <div class="stat-card__content">

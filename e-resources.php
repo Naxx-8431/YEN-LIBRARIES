@@ -645,6 +645,10 @@
   <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
   <?php include 'components/notifications.php'; ?>
 
+  <!-- ═══════════════ AI CHATBOT ═══════════════════ -->
+  <?php include 'components/chatbot.php'; ?>
+
+
   <script src="assets/js/main.js"></script>
   <script src="assets/js/enhancements.js"></script>
 </body>

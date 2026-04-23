@@ -693,35 +693,36 @@
       </div>
     </section>
 
-    <!-- ══════════════ CONSTITUENT LIBRARIES ══════ -->
+    <!-- ══════════════ CONSTITUENT LIBRARIES (Dynamic) ══════ -->
+    <?php
+    require_once 'includes/library_helpers.php';
+    $homepage_libraries = getActiveLibraries($conn);
+    ?>
     <section class="section libraries">
       <div class="container">
         <div class="section__header">
           <span class="section__label">Our Libraries</span>
-          <h2 class="section__title">Six Libraries Serving One University</h2>
+          <h2 class="section__title"><?php echo count($homepage_libraries); ?> Libraries Serving One University</h2>
           <p class="section__subtitle">Each constituent unit has a dedicated library tailored to its discipline and
             student community.</p>
         </div>
 
         <div class="libraries__grid">
 
+          <?php foreach ($homepage_libraries as $lib): ?>
           <div class="lib-card">
             <div class="lib-card__img">
-              <img src="assets/images/about/about-central4.webp" alt="Central Library">
+              <img src="<?php echo htmlspecialchars($lib['thumbnail']); ?>" alt="<?php echo htmlspecialchars($lib['library_name']); ?>">
             </div>
             <div class="lib-card__body">
               <div class="lib-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
+                <?php echo getLibraryIconSvg($lib['icon_name']); ?>
               </div>
-              <div class="lib-card__title">Central Library</div>
-              <div class="lib-card__desc">The main library hub with 53,738+ books, periodicals, digital lab and reading
-                rooms. Serving all faculties since 1992.</div>
+              <div class="lib-card__title"><?php echo htmlspecialchars($lib['library_name']); ?></div>
+              <div class="lib-card__desc"><?php echo htmlspecialchars($lib['short_description']); ?></div>
               <div class="lib-card__footer">
-                <span class="lib-card__meta">Est. 1992 · Deralakatte Campus</span>
-                <a href="about.php#central-library" class="lib-card__link">
+                <span class="lib-card__meta"><?php echo htmlspecialchars($lib['card_meta']); ?></span>
+                <a href="about.php#<?php echo htmlspecialchars($lib['slug']); ?>" class="lib-card__link">
                   Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
@@ -729,129 +730,7 @@
               </div>
             </div>
           </div>
-
-          <div class="lib-card">
-            <div class="lib-card__img">
-              <img src="assets/images/about/about-ayurveda1.webp" alt="Ayurveda Library">
-            </div>
-            <div class="lib-card__body">
-              <div class="lib-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-              </div>
-              <div class="lib-card__title">Ayurveda Library</div>
-              <div class="lib-card__desc">8,253 books on Ayurveda and basic medical science, serving YAMCH students and
-                faculty since 2018.</div>
-              <div class="lib-card__footer">
-                <span class="lib-card__meta">Est. 2018 · 8,253 Books</span>
-                <a href="about.php#ayurveda-library" class="lib-card__link">
-                  Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="lib-card">
-            <div class="lib-card__img">
-              <img src="assets/images/about/about-homeopathy1.webp" alt="Homoeopathy Library">
-            </div>
-            <div class="lib-card__body">
-              <div class="lib-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-                </svg>
-              </div>
-              <div class="lib-card__title">Homoeopathy Library</div>
-              <div class="lib-card__desc">4,780 books including Organon of Medicine, Materia Medica and allied health
-                sciences. Opened in 2018.</div>
-              <div class="lib-card__footer">
-                <span class="lib-card__meta">Est. 2018 · 4,780 Books</span>
-                <a href="about.php#homeopathy-library" class="lib-card__link">
-                  Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="lib-card">
-            <div class="lib-card__img">
-              <img src="assets/images/about/about-allied1.webp" alt="Allied Health Science Library">
-            </div>
-            <div class="lib-card__body">
-              <div class="lib-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <path d="M3 9h18M9 21V9" />
-                </svg>
-              </div>
-              <div class="lib-card__title">Allied Health Library</div>
-              <div class="lib-card__desc">Established in 2020 to serve Allied Healthcare professionals and students with
-                dedicated resources.</div>
-              <div class="lib-card__footer">
-                <span class="lib-card__meta">Est. 2020 · FAHCP Campus</span>
-                <a href="about.php#allied-library" class="lib-card__link">
-                  Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="lib-card">
-            <div class="lib-card__img">
-              <img src="assets/images/about/about-degree1.webp" alt="YIASCM Degree College Library">
-            </div>
-            <div class="lib-card__body">
-              <div class="lib-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                  <path d="M6 12v5c3 3 9 3 12 0v-5" />
-                </svg>
-              </div>
-              <div class="lib-card__title">YIASCM Library</div>
-              <div class="lib-card__desc">Degree college library at Balmatta, Mangalore serving Arts, Science, Commerce
-                and Management students since 2014.</div>
-              <div class="lib-card__footer">
-                <span class="lib-card__meta">Est. 2014 · Balmatta</span>
-                <a href="about.php#yiascm-library" class="lib-card__link">
-                  Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="lib-card">
-            <div class="lib-card__img">
-              <img src="assets/images/about/about-pharmacy1.webp" alt="Pharmacy College Library">
-            </div>
-            <div class="lib-card__body">
-              <div class="lib-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18" />
-                </svg>
-              </div>
-              <div class="lib-card__title">Pharmacy Library</div>
-              <div class="lib-card__desc">Dedicated library for Pharmacy College students and faculty with specialized
-                pharmaceutical science resources.</div>
-              <div class="lib-card__footer">
-                <span class="lib-card__meta">YPCRC Campus</span>
-                <a href="about.php#pharmacy-library" class="lib-card__link">
-                  Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
+          <?php endforeach; ?>
 
         </div>
       </div>

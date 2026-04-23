@@ -599,6 +599,10 @@ $db_events = mysqli_query($conn, "SELECT * FROM events WHERE status = 'published
   <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
   <?php include 'components/notifications.php'; ?>
 
+  <!-- ═══════════════ AI CHATBOT ═══════════════════ -->
+  <?php include 'components/chatbot.php'; ?>
+
+
 </body>
 
 </html>

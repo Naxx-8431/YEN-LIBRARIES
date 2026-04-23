@@ -659,6 +659,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_journal'])) {
   <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
   <?php include 'components/notifications.php'; ?>
 
+  <!-- ═══════════════ AI CHATBOT ═══════════════════ -->
+  <?php include 'components/chatbot.php'; ?>
+
+
   <script>
     // ── Toast Notification for form submission feedback ──
     (function() {

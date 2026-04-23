@@ -391,6 +391,10 @@
   <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
   <?php include 'components/notifications.php'; ?>
 
+  <!-- ═══════════════ AI CHATBOT ═══════════════════ -->
+  <?php include 'components/chatbot.php'; ?>
+
+
 </body>
 </html>
 

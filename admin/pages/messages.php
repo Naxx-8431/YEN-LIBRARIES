@@ -33,34 +33,9 @@ if (isset($_GET['delete']) && isset($_GET['table'])) {
   }
 }
 
-// ─── Handle Mark as Read ────────────────────────────────────
-if (isset($_GET['markread'])) {
-  $id = (int) $_GET['markread'];
-  mysqli_query($conn, "UPDATE contacts SET status = 'read' WHERE id = $id");
-  $message = "Marked as read.";
-  $msg_type = "success";
-}
 
-// ─── Handle Approve / Reject ────────────────────────────────
-if (isset($_GET['status_update']) && isset($_GET['id']) && isset($_GET['table'])) {
-  $id = (int) $_GET['id'];
-  $table = clean($conn, $_GET['table']); // Sanitize table name
-  $new_status = $_GET['status_update'] === 'approve' ? 'approved' : 'rejected';
 
-  // Security: only allow these two tables
-  $allowed_tables = ['book_recommendations', 'journal_recommendations'];
-  if (in_array($table, $allowed_tables)) {
-    $query = "UPDATE `$table` SET status = '$new_status' WHERE id = $id";
-    if (mysqli_query($conn, $query)) {
-      $message = ucfirst($new_status) . " successfully!";
-      $msg_type = "success";
-    } else {
-      // Debugging help as requested
-      $message = "Error updating status: " . mysqli_error($conn);
-      $msg_type = "error";
-    }
-  }
-}
+
 
 // ─── Fetch all messages ─────────────────────────────────────
 $tab = $_GET['tab'] ?? 'contacts';
@@ -117,6 +92,7 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
             <polyline points="9 22 9 12 15 12 15 22" />
           </svg>Homepage</a>
+        <a href="libraries-manager.php" class="sidebar__link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Libraries</a>
         <a href="events-manager.php" class="sidebar__link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -221,28 +197,24 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
                     <th>Subject</th>
                     <th>Message</th>
                     <th>Date</th>
-                    <th>Status</th>
                     <th>Actions</th>
                   <?php elseif ($tab == 'books'): ?>
                     <th>Book Title</th>
                     <th>Author</th>
                     <th>Publisher</th>
                     <th>Requested By</th>
-                    <th>Status</th>
                     <th>Actions</th>
                   <?php elseif ($tab == 'journals'): ?>
                     <th>Journal Title</th>
                     <th>Publisher</th>
                     <th>ISSN</th>
                     <th>Description</th>
-                    <th>Status</th>
                     <th>Actions</th>
                   <?php else: ?>
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Message</th>
                     <th>Date</th>
-                    <th>Status</th>
                     <th>Actions</th>
                   <?php endif; ?>
                 </tr>
@@ -262,14 +234,7 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
                           More</button>
                       </td>
                       <td><?php echo date('d M Y', strtotime($row['created_at'])); ?></td>
-                      <td><span
-                          class="badge badge--<?php echo $row['status'] == 'unread' ? 'pending' : 'active'; ?>"><?php echo ucfirst($row['status']); ?></span>
-                      </td>
                       <td>
-                        <?php if ($row['status'] == 'unread'): ?>
-                          <a href="messages.php?tab=contacts&markread=<?php echo $row['id']; ?>"
-                            class="btn btn--ghost btn--sm" title="Mark Read">✓</a>
-                        <?php endif; ?>
                         <a href="messages.php?tab=contacts&delete=<?php echo $row['id']; ?>&table=contacts"
                           class="btn btn--ghost btn--sm" title="Delete"
                           onclick="return confirm('Delete this message?');"><svg xmlns="http://www.w3.org/2000/svg"
@@ -286,33 +251,8 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
                       <td><?php echo htmlspecialchars($row['publisher']); ?></td>
                       <td><?php echo htmlspecialchars($row['requester_name']); ?></td>
                       <td>
-                        <?php
-                        // Set color based on status (pending = yellow, approved = green, rejected = red)
-                        $badge_class = 'pending';
-                        if (strtolower($row['status']) == 'approved')
-                          $badge_class = 'active';
-                        if (strtolower($row['status']) == 'rejected')
-                          $badge_class = 'inactive';
-                        ?>
-                        <span class="badge badge--<?php echo $badge_class; ?>"><?php echo ucfirst($row['status']); ?></span>
-                      </td>
-                      <td>
-                        <?php if (strtolower($row['status']) == 'pending'): ?>
-                          <a href="messages.php?tab=books&id=<?php echo $row['id']; ?>&table=book_recommendations&status_update=approve"
-                            class="btn btn--ghost btn--sm" title="Approve"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                              height="16" fill="currentColor" viewBox="0 0 16 16">
-                              <path
-                                d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
-                            </svg></a>
-                          <a href="messages.php?tab=books&id=<?php echo $row['id']; ?>&table=book_recommendations&status_update=reject"
-                            class="btn btn--ghost btn--sm" title="Reject"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                              height="16" fill="currentColor" viewBox="0 0 16 16">
-                              <path
-                                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
-                            </svg></a>
-                        <?php endif; ?>
                         <a href="messages.php?tab=books&delete=<?php echo $row['id']; ?>&table=book_recommendations"
-                          class="btn btn--ghost btn--sm" onclick="return confirm('Delete?');"><svg
+                          class="btn btn--ghost btn--sm" onclick="return confirm('Delete this recommendation?');" title="Delete"><svg
                             xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             viewBox="0 0 16 16">
                             <path
@@ -333,33 +273,8 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
                           onclick="viewFullMessage(this)">Read More</button>
                       </td>
                       <td>
-                        <?php
-                        // Set color based on status (pending = yellow, approved = green, rejected = red)
-                        $badge_class = 'pending';
-                        if (strtolower($row['status']) == 'approved')
-                          $badge_class = 'active';
-                        if (strtolower($row['status']) == 'rejected')
-                          $badge_class = 'inactive';
-                        ?>
-                        <span class="badge badge--<?php echo $badge_class; ?>"><?php echo ucfirst($row['status']); ?></span>
-                      </td>
-                      <td>
-                        <?php if (strtolower($row['status']) == 'pending'): ?>
-                          <a href="messages.php?tab=journals&id=<?php echo $row['id']; ?>&table=journal_recommendations&status_update=approve"
-                            class="btn btn--ghost btn--sm" title="Approve"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                              height="16" fill="currentColor" viewBox="0 0 16 16">
-                              <path
-                                d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
-                            </svg></a>
-                          <a href="messages.php?tab=journals&id=<?php echo $row['id']; ?>&table=journal_recommendations&status_update=reject"
-                            class="btn btn--ghost btn--sm" title="Reject"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                              height="16" fill="currentColor" viewBox="0 0 16 16">
-                              <path
-                                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
-                            </svg></a>
-                        <?php endif; ?>
                         <a href="messages.php?tab=journals&delete=<?php echo $row['id']; ?>&table=journal_recommendations"
-                          class="btn btn--ghost btn--sm" onclick="return confirm('Delete?');"><svg
+                          class="btn btn--ghost btn--sm" onclick="return confirm('Delete this recommendation?');" title="Delete"><svg
                             xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             viewBox="0 0 16 16">
                             <path
@@ -379,7 +294,7 @@ $c_enquiries = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as c FROM
                           More</button>
                       </td>
                       <td><?php echo date('d M Y', strtotime($row['created_at'])); ?></td>
-                      <td><span class="badge badge--info"><?php echo ucfirst($row['status']); ?></span></td>
+
                       <td><a href="messages.php?tab=enquiries&delete=<?php echo $row['id']; ?>&table=enquiries"
                           class="btn btn--ghost btn--sm" onclick="return confirm('Delete?');"><svg
                             xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

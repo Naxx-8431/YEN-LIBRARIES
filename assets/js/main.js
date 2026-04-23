@@ -22,7 +22,8 @@
     const burger = document.getElementById('burger');
     const mobileNav = document.getElementById('mobileNav');
     if (!burger || !mobileNav) return;
-    burger.addEventListener('click', () => {
+    burger.addEventListener('click', (e) => {
+      e.stopPropagation();
       burger.classList.toggle('open');
       mobileNav.classList.toggle('open');
     });
@@ -32,6 +33,19 @@
         burger.classList.remove('open');
         mobileNav.classList.remove('open');
       });
+    });
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (mobileNav.classList.contains('open') &&
+          !mobileNav.contains(e.target) &&
+          !burger.contains(e.target)) {
+        burger.classList.remove('open');
+        mobileNav.classList.remove('open');
+      }
+    });
+    // Prevent clicks inside nav from closing it
+    mobileNav.addEventListener('click', (e) => {
+      e.stopPropagation();
     });
   }
 

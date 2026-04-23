@@ -362,3 +362,53 @@ CREATE TABLE IF NOT EXISTS `trending_news` (
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
+
+-- ─── 17. LIBRARIES ──────────────────────────────────────────
+-- Constituent libraries (dynamic content for homepage & about)
+-- ─────────────────────────────────────────────────────────────
+
+DROP TABLE IF EXISTS `library_gallery`;
+DROP TABLE IF EXISTS `libraries`;
+
+CREATE TABLE IF NOT EXISTS `libraries` (
+  `id`                INT AUTO_INCREMENT PRIMARY KEY,
+  `library_name`      VARCHAR(255) NOT NULL,
+  `slug`              VARCHAR(100) NOT NULL UNIQUE,
+  `section_label`     VARCHAR(100) DEFAULT 'Constituent Library',
+  `short_description` TEXT DEFAULT NULL,
+  `full_description`  TEXT DEFAULT NULL,
+  `established_year`  VARCHAR(10) DEFAULT NULL,
+  `campus`            VARCHAR(255) DEFAULT NULL,
+  `subject_area`      VARCHAR(255) DEFAULT NULL,
+  `programmes`        VARCHAR(500) DEFAULT NULL,
+  `books_count`       VARCHAR(50) DEFAULT NULL,
+  `journals_count`    VARCHAR(50) DEFAULT NULL,
+  `back_volumes`      VARCHAR(50) DEFAULT NULL,
+  `theses_count`      VARCHAR(50) DEFAULT NULL,
+  `ejournals_count`   VARCHAR(50) DEFAULT NULL,
+  `thumbnail`         VARCHAR(500) DEFAULT NULL,
+  `card_meta`         VARCHAR(255) DEFAULT NULL,
+  `icon_name`         VARCHAR(50) DEFAULT 'book',
+  `working_hours`     TEXT DEFAULT NULL,
+  `contact_info`      TEXT DEFAULT NULL,
+  `contact_email`     VARCHAR(255) DEFAULT NULL,
+  `display_order`     INT DEFAULT 0,
+  `status`            ENUM('active','inactive') DEFAULT 'active',
+  `created_at`        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at`        TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- ─── 18. LIBRARY GALLERY ────────────────────────────────────
+-- Per-library photo gallery images
+-- ─────────────────────────────────────────────────────────────
+
+CREATE TABLE IF NOT EXISTS `library_gallery` (
+  `id`          INT AUTO_INCREMENT PRIMARY KEY,
+  `library_id`  INT NOT NULL,
+  `image_path`  VARCHAR(500) NOT NULL,
+  `caption`     VARCHAR(255) DEFAULT NULL,
+  `sort_order`  INT DEFAULT 0,
+  FOREIGN KEY (`library_id`) REFERENCES `libraries`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
