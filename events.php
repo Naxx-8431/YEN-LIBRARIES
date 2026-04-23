@@ -333,7 +333,7 @@ $db_events = mysqli_query($conn, "SELECT * FROM events WHERE status = 'published
         <div class="styled-accordion mt-4">
 
           <!-- Accordion 1 -->
-          <details open>
+          <details>
             <summary>User Awareness Programs — February 18–20, 2025 <span class="accordion-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></span></summary>
             <div class="details-content">
               <p>The Central Library organized a series of User Awareness Programs designed for faculty members,
@@ -517,7 +517,7 @@ $db_events = mysqli_query($conn, "SELECT * FROM events WHERE status = 'published
 
         <div class="styled-accordion mt-4">
 
-          <details open>
+          <details>
             <summary>Books Exhibition 2024–25 <span class="accordion-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></span></summary>
             <div class="details-content">
               <p>The Central Library organized a five-day Books Exhibition featuring Medical, Dental, Nursing,
