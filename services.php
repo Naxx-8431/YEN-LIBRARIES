@@ -692,6 +692,7 @@
   <?php include 'components/enquiry.php'; ?>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/enhancements.js"></script>
 
   <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
   <?php include 'components/notifications.php'; ?>

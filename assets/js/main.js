@@ -272,3 +272,9 @@
 
 })();
 
+/* ── Global: Notification Sidebar Toggle ─────── */
+/* Defined outside IIFE so onclick="toggleNotifications()" works on all pages */
+function toggleNotifications() {
+  const sidebar = document.getElementById('notifSidebar');
+  if (sidebar) sidebar.classList.toggle('open');
+}

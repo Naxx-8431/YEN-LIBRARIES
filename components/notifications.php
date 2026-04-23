@@ -84,3 +84,13 @@ try {
     <?php endif; ?>
   </div>
 </div>
+
+<script>
+/* Self-contained toggle — guaranteed to work on every page */
+if (typeof toggleNotifications === 'undefined') {
+  function toggleNotifications() {
+    var sidebar = document.getElementById('notifSidebar');
+    if (sidebar) sidebar.classList.toggle('open');
+  }
+}
+</script>

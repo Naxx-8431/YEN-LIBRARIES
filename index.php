@@ -918,19 +918,42 @@
                 $teve = mysqli_query($conn, "SELECT * FROM events WHERE status='published' ORDER BY event_date ASC LIMIT 3");
                 while ($evt = mysqli_fetch_assoc($teve)):
                   $d = strtotime($evt['event_date']);
+                  $hasImage = !empty($evt['image']);
                   ?>
-                  <a href="events.php?id=<?php echo $evt['id']; ?>" class="event-item" style="text-decoration:none; color:inherit; display:flex;">
-                    <div class="event-date">
-                      <span class="event-date__day"><?php echo date('d', $d); ?></span>
-                      <span class="event-date__mon"><?php echo strtoupper(date('M', $d)); ?></span>
-                    </div>
-                    <div class="event-info">
-                      <div class="event-title"><?php echo htmlspecialchars($evt['title']); ?></div>
-                      <div class="event-desc">
-                        <?php echo htmlspecialchars(strlen($evt['description']) > 70 ? substr($evt['description'], 0, 70) . '...' : $evt['description']); ?>
+                  <div class="event-item--redesigned">
+                    <?php if ($hasImage): ?>
+                    <div class="event-card__poster">
+                      <img src="<?php echo htmlspecialchars($evt['image']); ?>" alt="<?php echo htmlspecialchars($evt['title']); ?>">
+                      <div class="event-card__poster-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                        </svg>
                       </div>
                     </div>
-                  </a>
+                    <?php else: ?>
+                    <div class="event-card__poster event-card__poster--fallback">
+                      <div class="event-card__poster-date">
+                        <span class="event-card__poster-day"><?php echo date('d', $d); ?></span>
+                        <span class="event-card__poster-mon"><?php echo strtoupper(date('M', $d)); ?></span>
+                      </div>
+                    </div>
+                    <?php endif; ?>
+                    <div class="event-card__info">
+                      <div class="event-card__title"><?php echo htmlspecialchars($evt['title']); ?></div>
+                      <div class="event-card__desc">
+                        <?php echo htmlspecialchars(strlen($evt['description']) > 80 ? substr($evt['description'], 0, 80) . '...' : $evt['description']); ?>
+                      </div>
+                      <div class="event-card__date">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                          <line x1="16" y1="2" x2="16" y2="6"/>
+                          <line x1="8" y1="2" x2="8" y2="6"/>
+                          <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        <?php echo date('d M Y', $d); ?>
+                      </div>
+                    </div>
+                  </div>
                 <?php endwhile; ?>
               </div>
             </div>
@@ -1227,6 +1250,7 @@
     });
   </script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/enhancements.js"></script>
 </body>
 
 </html>

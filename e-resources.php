@@ -480,8 +480,6 @@
         </div>
 
         
-  <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
-  <?php include 'components/notifications.php'; ?>
 
   <script>
           function filterCourse(collegeId, btn) {
@@ -641,10 +639,14 @@
     </div>
   </footer>
 
-  <!-- ENQUIRY SIDEBAR -->
+  <!-- ═══════════════ SIDEBAR ENQUIRY ═══════════ -->
   <?php include 'components/enquiry.php'; ?>
 
+  <!-- ═══════════════ NOTIFICATION SIDEBAR ═════════ -->
+  <?php include 'components/notifications.php'; ?>
+
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/enhancements.js"></script>
 </body>
 
 </html>

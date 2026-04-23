@@ -53,16 +53,11 @@ $db_events = mysqli_query($conn, "SELECT * FROM events WHERE status = 'published
     }
 
     .styled-accordion summary::after {
-      content: '+';
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: var(--clr-primary, #283B6A);
-      flex-shrink: 0;
-      margin-left: 16px;
+      content: none;
     }
 
     .styled-accordion details[open] summary::after {
-      content: '−';
+      content: none;
     }
 
     .styled-accordion .details-content {
@@ -304,23 +299,31 @@ $db_events = mysqli_query($conn, "SELECT * FROM events WHERE status = 'published
 
         <!-- Dynamic Events from Database (added via Admin Panel) -->
         <?php if (mysqli_num_rows($db_events) > 0): ?>
-        <div class="events-grid" style="margin-bottom:32px;">
+        <div class="styled-accordion events-grid--dynamic" style="margin-bottom:32px;">
           <?php while ($ev = mysqli_fetch_assoc($db_events)): ?>
-          <div class="event-list-item">
-            <h3><?php echo htmlspecialchars($ev['title']); ?></h3>
-            <p>
-              <strong>Date:</strong> <?php echo $ev['event_date'] ? date('d M Y', strtotime($ev['event_date'])) : 'TBA'; ?>
-              &nbsp;·&nbsp;
-              <strong>Location:</strong> <?php echo htmlspecialchars($ev['location'] ?? 'TBA'); ?>
-              &nbsp;·&nbsp;
-              <span class="badge" style="font-size:11px; padding:2px 8px; background:<?php echo $ev['category']=='Workshop'?'#dbeafe':'#dcfce7'; ?>; color:<?php echo $ev['category']=='Workshop'?'#1e40af':'#16a34a'; ?>; border-radius:4px;"><?php echo htmlspecialchars($ev['category']); ?></span>
-            </p>
-            <?php if (!empty($ev['description'])): ?>
-              <p><?php echo htmlspecialchars($ev['description']); ?></p>
-            <?php endif; ?>
-            <?php if (!empty($ev['image'])): ?>
-              <div class="event-photos"><img src="<?php echo htmlspecialchars($ev['image']); ?>" alt="<?php echo htmlspecialchars($ev['title']); ?>"></div>
-            <?php endif; ?>
+          <div class="event-accordion-item">
+            <details>
+              <summary>
+                <?php echo htmlspecialchars($ev['title']); ?>
+                <span style="display:flex;align-items:center;gap:8px;">
+                  <span class="badge" style="font-size:11px; padding:2px 8px; background:<?php echo $ev['category']=='Workshop'?'#dbeafe':'#dcfce7'; ?>; color:<?php echo $ev['category']=='Workshop'?'#1e40af':'#16a34a'; ?>; border-radius:4px;"><?php echo htmlspecialchars($ev['category']); ?></span>
+                  <span class="accordion-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></span>
+                </span>
+              </summary>
+              <div class="details-content">
+                <p>
+                  <strong>Date:</strong> <?php echo $ev['event_date'] ? date('d M Y', strtotime($ev['event_date'])) : 'TBA'; ?>
+                  &nbsp;·&nbsp;
+                  <strong>Location:</strong> <?php echo htmlspecialchars($ev['location'] ?? 'TBA'); ?>
+                </p>
+                <?php if (!empty($ev['description'])): ?>
+                  <p><?php echo htmlspecialchars($ev['description']); ?></p>
+                <?php endif; ?>
+                <?php if (!empty($ev['image'])): ?>
+                  <div class="event-photos"><img src="<?php echo htmlspecialchars($ev['image']); ?>" alt="<?php echo htmlspecialchars($ev['title']); ?>"></div>
+                <?php endif; ?>
+              </div>
+            </details>
           </div>
           <?php endwhile; ?>
         </div>
@@ -331,7 +334,7 @@ $db_events = mysqli_query($conn, "SELECT * FROM events WHERE status = 'published
 
           <!-- Accordion 1 -->
           <details open>
-            <summary>User Awareness Programs — February 18–20, 2025</summary>
+            <summary>User Awareness Programs — February 18–20, 2025 <span class="accordion-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></span></summary>
             <div class="details-content">
               <p>The Central Library organized a series of User Awareness Programs designed for faculty members,
                 researchers, and students to enhance awareness of effective utilization of subscribed e-resources.</p>
@@ -351,7 +354,7 @@ $db_events = mysqli_query($conn, "SELECT * FROM events WHERE status = 'published
 
           <!-- Accordion 2 -->
           <details>
-            <summary>Sensitization &amp; User Awareness Programs — December 11–19, 2024</summary>
+            <summary>Sensitization &amp; User Awareness Programs — December 11–19, 2024 <span class="accordion-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></span></summary>
             <div class="details-content">
               <p>Series of online interactive seminars enhancing robust e-resources usage tracking.</p>
 
@@ -386,7 +389,7 @@ $db_events = mysqli_query($conn, "SELECT * FROM events WHERE status = 'published
 
           <!-- Accordion 3 -->
           <details>
-            <summary>User Training Program on Subscribed E-Resources — May 22 – June 27, 2024</summary>
+            <summary>User Training Program on Subscribed E-Resources — May 22 – June 27, 2024 <span class="accordion-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></span></summary>
             <div class="details-content">
               <div class="event-entry">
                 <h3>ProQuest Central &amp; Web of Science Training Weeks</h3>
@@ -515,7 +518,7 @@ $db_events = mysqli_query($conn, "SELECT * FROM events WHERE status = 'published
         <div class="styled-accordion mt-4">
 
           <details open>
-            <summary>Books Exhibition 2024–25</summary>
+            <summary>Books Exhibition 2024–25 <span class="accordion-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></span></summary>
             <div class="details-content">
               <p>The Central Library organized a five-day Books Exhibition featuring Medical, Dental, Nursing,
                 Physiotherapy, General Interest literature streams across multiple campuses including Deralakatte,
@@ -529,7 +532,7 @@ $db_events = mysqli_query($conn, "SELECT * FROM events WHERE status = 'published
           </details>
 
           <details>
-            <summary>Books Exhibition 2017</summary>
+            <summary>Books Exhibition 2017 <span class="accordion-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></span></summary>
             <div class="details-content">
               <div class="event-photos">
                 <img src="images/Books%20Exhibhition/Book%20Exhibition-2017.jpg" alt="Exhibition 2017"
@@ -539,7 +542,7 @@ $db_events = mysqli_query($conn, "SELECT * FROM events WHERE status = 'published
           </details>
 
           <details>
-            <summary>Books Exhibition 2015 &amp; 2014</summary>
+            <summary>Books Exhibition 2015 &amp; 2014 <span class="accordion-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></span></summary>
             <div class="details-content">
               <div class="event-photos">
                 <img src="images/Books%20Exhibhition/Book%20exhibition-23%20sept%202015-1.jpg" alt="Exhibition 2015">
@@ -588,6 +591,7 @@ $db_events = mysqli_query($conn, "SELECT * FROM events WHERE status = 'published
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/enhancements.js"></script>
 
   <!-- ═══════════════ SIDEBAR ENQUIRY ═══════════ -->
   <?php include 'components/enquiry.php'; ?>
