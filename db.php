@@ -34,6 +34,12 @@ if (!$conn) {
 // This ensures special characters (like accents, emojis) work properly
 mysqli_set_charset($conn, "utf8mb4");
 
+// ─── Set timezone to IST (Asia/Kolkata) ─────────────────────
+// Ensures PHP date/time functions and MySQL CURRENT_TIMESTAMP
+// use the same timezone, preventing "X hours ago" mismatches
+date_default_timezone_set('Asia/Kolkata');
+mysqli_query($conn, "SET time_zone = '+05:30'");
+
 
 // ═══════════════════════════════════════════════════════════
 // HELPER FUNCTIONS

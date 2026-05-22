@@ -5,8 +5,9 @@ if (!isset($conn)) {
 
 function time_elapsed_string($datetime, $full = false) {
     if (!$datetime) return 'a while ago';
-    $now = new DateTime;
-    $ago = new DateTime($datetime);
+    $tz = new DateTimeZone('Asia/Kolkata');
+    $now = new DateTime('now', $tz);
+    $ago = new DateTime($datetime, $tz);
     $diff = $now->diff($ago);
 
     $diff->w = floor($diff->d / 7);
